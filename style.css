@@ -381,3 +381,12 @@ footer {
     grid-template-columns: 1fr;
   }
 }
+
+.check-row {
+  margin-top: 0.25rem;
+  font-size: 0.85rem;
+  color: #e5e7eb;
+}
+.check-row input {
+  margin-right: 0.4rem;
+}
