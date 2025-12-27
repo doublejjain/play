@@ -1,116 +1,67 @@
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body { 
-  font-family: system-ui, -apple-system, sans-serif; 
-  font-size: 16px; 
-  line-height: 1.5; 
-  max-width: 100vw; 
-  margin: 0 auto; 
-  padding: 1rem; 
-  background: #f8fafc; 
-  color: #1e293b;
-}
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PLAY – 이번 주 축구/풋살, 너무 무리했을까?</title>
+  <meta name="description" content="이번 주 축구·풋살을 얼마나 했는지 간단히 입력하면, 몸에 무리가 갔는지 한눈에 알려주는 계산기." />
+  
+  <!-- AdSense 자동 광고 -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9152530321662851"
+          crossorigin="anonymous"></script>
+  
+  <link rel="stylesheet" href="style.css" />
+</head>
 
-/* 히어로 */
-.hero { 
-  text-align: center; 
-  padding: 2rem 0; 
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white; 
-  border-radius: 16px; 
-  margin-bottom: 2rem;
-}
-.hero h1 { font-size: clamp(1.5rem, 5vw, 2.5rem); font-weight: 700; margin-bottom: 0.5rem; }
-.hero p { font-size: 1.1rem; opacity: 0.9; }
+<body>
+  <!-- 히어로 -->
+  <header class="hero">
+    <h1>이번 주<br>축구/풋살<br>너무 무리했을까?</h1>
+    <p>3분 입력으로 확인</p>
+  </header>
 
-/* 입력 폼 */
-.input-section { max-width: 100%; }
-.input-group { 
-  margin-bottom: 1.5rem; 
-  background: white; 
-  padding: 1.25rem; 
-  border-radius: 12px; 
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-}
-.input-group label { 
-  display: block; 
-  margin-bottom: 0.5rem; 
-  font-weight: 600; 
-  color: #475569;
-}
-input, select { 
-  width: 100%; 
-  min-height: 48px; 
-  padding: 12px 16px; 
-  border: 2px solid #e2e8f0; 
-  border-radius: 8px; 
-  font-size: 16px; 
-  transition: border-color 0.2s;
-}
-input:focus, select:focus { outline: none; border-color: #667eea; box-shadow: 0 0 0 3px rgba(102,126,234,0.1); }
-button { 
-  width: 100%; 
-  min-height: 52px; 
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
-  color: white; 
-  border: none; 
-  border-radius: 12px; 
-  font-size: 1.1rem; 
-  font-weight: 600; 
-  cursor: pointer; 
-  transition: transform 0.2s;
-}
-button:hover { transform: translateY(-1px); }
-button:active { transform: translateY(0); }
+  <!-- 입력 폼 -->
+  <main class="input-section">
+    <form id="play-form">
+      <div class="input-group">
+        <label>이번 주 경기 수</label>
+        <input type="number" id="games" min="0" max="10" value="2" />
+      </div>
+      
+      <div class="input-group">
+        <label>1경기 평균 시간 (분)</label>
+        <input type="number" id="minutes" min="30" max="120" value="60" />
+      </div>
+      
+      <div class="input-group">
+        <label>운동 강도</label>
+        <select id="intensity">
+          <option value="1">가볍게 (60% 심박)</option>
+          <option value="2" selected>보통 (70-80% 심박)</option>
+          <option value="3">강도 높음 (85%+ 심박)</option>
+        </select>
+      </div>
+      
+      <button type="submit">계산하기</button>
+    </form>
+  </main>
 
-/* 결과 */
-.result-section { margin: 2rem 0; }
-.result-card { 
-  background: white; 
-  padding: 2rem; 
-  border-radius: 16px; 
-  box-shadow: 0 4px 20px rgba(0,0,0,0.12); 
-  text-align: center;
-}
-#risk-level { 
-  font-size: 2rem; 
-  font-weight: 800; 
-  margin-bottom: 1rem;
-}
-.risk-bar { 
-  width: 100%; 
-  height: 12px; 
-  background: #e2e8f0; 
-  border-radius: 6px; 
-  overflow: hidden; 
-  margin: 1.5rem 0;
-}
-.risk-fill { height: 100%; transition: width 0.8s ease; border-radius: 6px; }
+  <!-- 결과 -->
+  <section class="result-section" id="result" style="display: none;">
+    <div class="result-card">
+      <h2 id="risk-level">중간</h2>
+      <div class="risk-bar">
+        <div class="risk-fill" id="risk-fill"></div>
+      </div>
+      <p id="advice">이번 주 2경기(120분, 보통 강도)는 적당한 부하입니다. 다음 주도 비슷하게 유지하세요.</p>
+    </div>
+  </section>
 
-/* 위험도별 색상 */
-.low #risk-level { color: #10b981; }
-.medium #risk-level { color: #f59e0b; }
-.high #risk-level { color: #ef4444; }
-.low .risk-fill { background: #10b981; width: 30%; }
-.medium .risk-fill { background: #f59e0b; width: 65%; }
-.high .risk-fill { background: #ef4444; width: 100%; }
+  <!-- 푸터 (Auto Ads 공간) -->
+  <footer>
+    <p>namane.info/play</p>
+  </footer>
 
-#advice { 
-  color: #64748b; 
-  font-size: 1.1rem; 
-  line-height: 1.6;
-}
-
-/* 푸터 */
-footer { 
-  text-align: center; 
-  padding: 2rem 0; 
-  color: #94a3b8; 
-  font-size: 0.9rem;
-}
-
-/* 데스크톱 */
-@media (min-width: 768px) {
-  body { padding: 2rem; max-width: 600px; }
-  .input-group { padding: 1.5rem; }
-  .result-card { padding: 2.5rem; }
-}
+  <script src="script.js"></script>
+</body>
+</html>
