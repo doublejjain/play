@@ -4,11 +4,13 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PLAY – 이번 주 축구/풋살, 너무 무리했을까?</title>
-  <meta name="description" content="이번 주 축구·풋살 경기 수, 시간, 체감 강도를 입력하면 주간 부상 위험도와 퍼포먼스 점수를 보여주는 계산기. 아마추어 축구인을 위한 간단 대시보드까지 한 번에." />
+  <meta name="description"
+        content="이번 주 축구·풋살 경기 수, 시간, 체감 강도, 나이, 스마트워치 거리 등을 입력하면 주간 부상 위험도와 퍼포먼스 점수를 보여주는 계산기. 아마추어 축구인을 위한 간단 대시보드까지 한 번에." />
 
   <!-- AdSense 자동 광고 -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9152530321662851"
-          crossorigin="anonymous"></script>
+  <script async
+    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9152530321662851"
+    crossorigin="anonymous"></script>
 
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -18,7 +20,7 @@
     <header class="hero">
       <h1>이번 주 축구·풋살<br>너무 무리했을까?</h1>
       <p class="hero-sub">
-        주간 경기 수, 실제 뛴 시간, 체감 강도를 넣으면<br>
+        주간 경기 수, 실제 뛴 시간, 체감 강도, 나이·스마트워치 데이터를 넣으면<br>
         «이번 주 부하 점수»와 부상 위험 존, 간단 대시보드를 보여줍니다.
       </p>
       <ul class="hero-list">
@@ -55,6 +57,35 @@
           <small>대부분의 경기를 떠올렸을 때 평균 느낌.</small>
         </div>
 
+        <!-- 추가 1: 나이 -->
+        <div class="input-group">
+          <label for="age">나이</label>
+          <input type="number" id="age" min="15" max="65" placeholder="예: 32" />
+          <small>대략적인 연령대만 입력해도, 또래 기준 코멘트를 만들어 줍니다.</small>
+        </div>
+
+        <!-- 추가 2: 스마트워치 거리 (선택) -->
+        <div class="input-group">
+          <label for="watchDistance">이번 주 스마트워치 거리 (km, 선택)</label>
+          <input type="number" id="watchDistance" min="0" step="0.1" placeholder="예: 12.5" />
+          <small>워치에 축구/러닝 기록이 있다면, 그 주간 거리 합계를 적어 주세요. 없으면 비워 두면 됩니다.</small>
+        </div>
+
+        <!-- 추가 3: 테이핑 / 파워젤 / 단백질 체크 -->
+        <div class="input-group">
+          <label>이번 주 준비/보충</label>
+          <div class="check-row">
+            <label><input type="checkbox" id="useTaping" /> 발목/무릎 테이핑 했음</label>
+          </div>
+          <div class="check-row">
+            <label><input type="checkbox" id="useGel" /> 경기 전·중 파워젤/스포츠 젤 사용</label>
+          </div>
+          <div class="check-row">
+            <label><input type="checkbox" id="useProtein" /> 경기 후 단백질(프로틴/보충제) 섭취</label>
+          </div>
+          <small>자주 쓰는 루틴을 체크해 두면, 대시보드에서 패턴을 보는 데 도움이 됩니다.</small>
+        </div>
+
         <button type="submit">부상 위험도 계산하기</button>
       </form>
     </main>
@@ -79,7 +110,7 @@
   <!-- 3) 하단 대시보드 섹션 -->
   <header class="dash-header">
     <h2>내 축구/풋살 대시보드</h2>
-    <p>이번 주 입력값을 기준으로 점수, 거리, 간단 솔루션을 한눈에 정리해 줍니다.</p>
+    <p>이번 주 입력값을 기준으로 점수, 거리, 나이대 코멘트와 간단 솔루션을 한눈에 정리해 줍니다.</p>
   </header>
 
   <main class="dash" id="dash-root">
@@ -87,13 +118,13 @@
     <section class="card card-summary">
       <h2>이번 주 점수</h2>
       <p class="score" id="dash-score">–</p>
-      <p class="rank" id="dash-rank">계산 후 자동으로 표시됩니다</p>
+      <p class="rank" id="dash-rank">위에서 이번 주를 계산하면 점수가 표시됩니다.</p>
       <p class="mini" id="dash-mini">
         아직 데이터가 없습니다. 위에서 이번 주 운동량을 먼저 계산해 주세요.
       </p>
     </section>
 
-    <!-- 3-2) 최근 4주 부하/거리 자리 (지금은 텍스트만) -->
+    <!-- 3-2) 최근 4주 부하/거리 자리 (지금은 설명만) -->
     <section class="card card-trend">
       <h2>최근 4주 부하/거리</h2>
       <div class="chart-placeholder" id="dash-trend">
