@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PLAY – 이번 주 축구/풋살, 너무 무리했을까?</title>
-  <meta name="description" content="이번 주 축구·풋살 경기 수, 시간, 체감 강도를 입력하면 주간 부상 위험도를 점수로 보여주는 계산기." />
+  <meta name="description" content="이번 주 축구·풋살 경기 수, 시간, 체감 강도를 입력하면 주간 부상 위험도와 퍼포먼스 점수를 보여주는 계산기. 아마추어 축구인을 위한 간단 대시보드까지 한 번에." />
 
   <!-- AdSense 자동 광고 -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9152530321662851"
@@ -13,19 +13,19 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <!-- 1) 상단 계산기 영역 -->
   <div class="page">
     <header class="hero">
       <h1>이번 주 축구·풋살<br>너무 무리했을까?</h1>
       <p class="hero-sub">
         주간 경기 수, 실제 뛴 시간, 체감 강도를 넣으면<br>
-        «이번 주 부하 점수»와 부상 위험 존을 알려줍니다.
+        «이번 주 부하 점수»와 부상 위험 존, 간단 대시보드를 보여줍니다.
       </p>
       <ul class="hero-list">
         <li>최근 7일 기준으로 입력</li>
         <li>풋살·축구·조기축구 모두 포함</li>
         <li>컨디션이 많이 떨어졌다면 결과를 보수적으로 해석</li>
       </ul>
-      <a href="/dashboard.html" class="dash-link">내 대시보드 보기</a>
     </header>
 
     <main class="input-section">
@@ -60,6 +60,7 @@
     </main>
   </div>
 
+  <!-- 2) 결과 카드 -->
   <section class="result-section" id="result" style="display:none;">
     <div class="result-card" id="result-card">
       <h2 id="risk-level">안전 존 (낮음)</h2>
@@ -75,8 +76,71 @@
     </div>
   </section>
 
-  <footer>
-    <p>namane.info/play · 아마추어 축구/풋살을 위한 주간 부하 체크 도구</p>
+  <!-- 3) 하단 대시보드 섹션 -->
+  <header class="dash-header">
+    <h2>내 축구/풋살 대시보드</h2>
+    <p>이번 주 입력값을 기준으로 점수, 거리, 간단 솔루션을 한눈에 정리해 줍니다.</p>
+  </header>
+
+  <main class="dash" id="dash-root">
+    <!-- 3-1) 주간 요약 카드 -->
+    <section class="card card-summary">
+      <h2>이번 주 점수</h2>
+      <p class="score" id="dash-score">–</p>
+      <p class="rank" id="dash-rank">계산 후 자동으로 표시됩니다</p>
+      <p class="mini" id="dash-mini">
+        아직 데이터가 없습니다. 위에서 이번 주 운동량을 먼저 계산해 주세요.
+      </p>
+    </section>
+
+    <!-- 3-2) 최근 4주 부하/거리 자리 (지금은 텍스트만) -->
+    <section class="card card-trend">
+      <h2>최근 4주 부하/거리</h2>
+      <div class="chart-placeholder" id="dash-trend">
+        <span>앞으로 최근 4주의 부하/거리 트렌드를 그려줄 자리입니다.<br>지금은 가장 최근 1회 데이터만 사용 중입니다.</span>
+      </div>
+    </section>
+
+    <!-- 3-3) 오늘 추천 모드 -->
+    <section class="card card-mode">
+      <h2>오늘 추천 모드</h2>
+      <ul id="dash-mode-list">
+        <li>이번 주 데이터를 계산하면, 오늘 뛸지/쉴지에 대한 추천이 여기에 표시됩니다.</li>
+      </ul>
+    </section>
+
+    <!-- 3-4) 강화하면 좋은 부분 -->
+    <section class="card card-focus">
+      <h2>강화하면 좋은 부분</h2>
+
+      <div class="focus-row">
+        <span class="focus-label">체력</span>
+        <div class="focus-bar focus-mid" id="focus-fitness"></div>
+        <span class="focus-text" id="focus-fitness-text">
+          계산 결과에 따라, 인터벌 러닝이나 드리블 스프린트 추천 내용이 여기에 들어갑니다.
+        </span>
+      </div>
+
+      <div class="focus-row">
+        <span class="focus-label">근력/코어</span>
+        <div class="focus-bar focus-low" id="focus-strength"></div>
+        <span class="focus-text" id="focus-strength-text">
+          스쿼트·런지·플랭크·브리지 같은 간단 보강운동 추천이 표시됩니다.
+        </span>
+      </div>
+
+      <div class="focus-row">
+        <span class="focus-label">부상 위험</span>
+        <div class="focus-bar focus-high" id="focus-injury"></div>
+        <span class="focus-text" id="focus-injury-text">
+          햄스트링·발목·무릎 관련 위험도가 높을 때, 준비운동·테이핑·회복 루틴을 제안합니다.
+        </span>
+      </div>
+    </section>
+  </main>
+
+  <footer class="dash-footer">
+    <p>namane.info/play · 아마추어 축구/풋살을 오래 즐기기 위한 개인 체크 & 대시보드</p>
   </footer>
 
   <script src="app.js"></script>
