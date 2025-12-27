@@ -1,147 +1,116 @@
-<!doctype html>
-<html lang="ko">
-  <head>
-    <meta charset="utf-8" />
-    <title>PLAY – 아마추어 축구·풋살 로드 실험실</title>
-    <meta
-      name="description"
-      content="주말 축구·풋살 경기·훈련량을 입력하면 부하 점수와 부상 위험 레벨을 보여주는 아마추어 전용 계산기."
-    />
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <main class="page">
-      <!-- 히어로 -->
-      <section class="hero">
-        <h1>PLAY – 아마추어 축구·풋살 로드 실험실</h1>
-        <p>
-          이번 주 경기·훈련량을 입력하면, 부하 점수와 부상 위험 레벨을
-          한눈에 확인할 수 있어요.
-        </p>
-      </section>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { 
+  font-family: system-ui, -apple-system, sans-serif; 
+  font-size: 16px; 
+  line-height: 1.5; 
+  max-width: 100vw; 
+  margin: 0 auto; 
+  padding: 1rem; 
+  background: #f8fafc; 
+  color: #1e293b;
+}
 
-      <!-- 계산기 -->
-      <section class="card">
-        <h2>이번 주 로드 계산하기</h2>
+/* 히어로 */
+.hero { 
+  text-align: center; 
+  padding: 2rem 0; 
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white; 
+  border-radius: 16px; 
+  margin-bottom: 2rem;
+}
+.hero h1 { font-size: clamp(1.5rem, 5vw, 2.5rem); font-weight: 700; margin-bottom: 0.5rem; }
+.hero p { font-size: 1.1rem; opacity: 0.9; }
 
-        <form id="load-form" class="form">
-          <div class="form-row">
-            <label for="mode">종목</label>
-            <select id="mode" name="mode">
-              <option value="soccer">축구</option>
-              <option value="futsal">풋살</option>
-            </select>
-          </div>
+/* 입력 폼 */
+.input-section { max-width: 100%; }
+.input-group { 
+  margin-bottom: 1.5rem; 
+  background: white; 
+  padding: 1.25rem; 
+  border-radius: 12px; 
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.input-group label { 
+  display: block; 
+  margin-bottom: 0.5rem; 
+  font-weight: 600; 
+  color: #475569;
+}
+input, select { 
+  width: 100%; 
+  min-height: 48px; 
+  padding: 12px 16px; 
+  border: 2px solid #e2e8f0; 
+  border-radius: 8px; 
+  font-size: 16px; 
+  transition: border-color 0.2s;
+}
+input:focus, select:focus { outline: none; border-color: #667eea; box-shadow: 0 0 0 3px rgba(102,126,234,0.1); }
+button { 
+  width: 100%; 
+  min-height: 52px; 
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+  color: white; 
+  border: none; 
+  border-radius: 12px; 
+  font-size: 1.1rem; 
+  font-weight: 600; 
+  cursor: pointer; 
+  transition: transform 0.2s;
+}
+button:hover { transform: translateY(-1px); }
+button:active { transform: translateY(0); }
 
-          <div class="form-row">
-            <label for="matches">이번 주 경기 수</label>
-            <input
-              id="matches"
-              name="matches"
-              type="number"
-              min="0"
-              step="1"
-              value="1"
-              required
-            />
-          </div>
+/* 결과 */
+.result-section { margin: 2rem 0; }
+.result-card { 
+  background: white; 
+  padding: 2rem; 
+  border-radius: 16px; 
+  box-shadow: 0 4px 20px rgba(0,0,0,0.12); 
+  text-align: center;
+}
+#risk-level { 
+  font-size: 2rem; 
+  font-weight: 800; 
+  margin-bottom: 1rem;
+}
+.risk-bar { 
+  width: 100%; 
+  height: 12px; 
+  background: #e2e8f0; 
+  border-radius: 6px; 
+  overflow: hidden; 
+  margin: 1.5rem 0;
+}
+.risk-fill { height: 100%; transition: width 0.8s ease; border-radius: 6px; }
 
-          <div class="form-row">
-            <label for="minutes">경기당 평균 출전 시간(분)</label>
-            <input
-              id="minutes"
-              name="minutes"
-              type="number"
-              min="0"
-              step="5"
-              value="60"
-              required
-            />
-          </div>
+/* 위험도별 색상 */
+.low #risk-level { color: #10b981; }
+.medium #risk-level { color: #f59e0b; }
+.high #risk-level { color: #ef4444; }
+.low .risk-fill { background: #10b981; width: 30%; }
+.medium .risk-fill { background: #f59e0b; width: 65%; }
+.high .risk-fill { background: #ef4444; width: 100%; }
 
-          <div class="form-row">
-            <label for="trainings">훈련 횟수</label>
-            <input
-              id="trainings"
-              name="trainings"
-              type="number"
-              min="0"
-              step="1"
-              value="1"
-              required
-            />
-          </div>
+#advice { 
+  color: #64748b; 
+  font-size: 1.1rem; 
+  line-height: 1.6;
+}
 
-          <div class="form-row">
-            <label for="trainingMinutes">훈련 1회당 시간(분)</label>
-            <input
-              id="trainingMinutes"
-              name="trainingMinutes"
-              type="number"
-              min="0"
-              step="10"
-              value="60"
-              required
-            />
-          </div>
+/* 푸터 */
+footer { 
+  text-align: center; 
+  padding: 2rem 0; 
+  color: #94a3b8; 
+  font-size: 0.9rem;
+}
 
-          <div class="form-row">
-            <label for="rpe">이번 주 체감 강도 (RPE, 1~10)</label>
-            <input
-              id="rpe"
-              name="rpe"
-              type="number"
-              min="1"
-              max="10"
-              step="1"
-              value="6"
-              required
-            />
-          </div>
-
-          <div class="form-row">
-            <label for="lastWeekLoad">지난 주 총 부하 점수(없으면 비우기)</label>
-            <input
-              id="lastWeekLoad"
-              name="lastWeekLoad"
-              type="number"
-              min="0"
-              step="1"
-              placeholder="예: 1200"
-            />
-            <small>
-              지난 주에도 이 계산기를 썼다면, 그때 나온 부하 점수를 적어두고 여기
-              입력하면 증가율을 계산해 줍니다.
-            </small>
-          </div>
-
-          <button type="submit" class="btn-primary">로드 계산하기</button>
-        </form>
-      </section>
-
-      <!-- 결과 카드 -->
-      <section id="result-card" class="card result hidden">
-        <h2>이번 주 결과</h2>
-        <p class="result-main">
-          총 부하 점수: <span id="total-load">0</span>
-        </p>
-        <p class="result-sub" id="change-line"></p>
-        <p class="badge" id="risk-badge">-</p>
-        <p class="advice" id="advice-text"></p>
-      </section>
-
-      <!-- 설명 섹션 -->
-      <section class="card info">
-        <h2>이 점수가 의미하는 것</h2>
-        <ul>
-          <li>부하 점수 = 총 활동 시간(분) × 체감 강도(RPE).</li>
-          <li>지난 주 대비 0~10% 증가: 비교적 안전한 구간.</li>
-          <li>10~30% 증가: 주의 구간, 회복과 보강 운동을 신경 써야 함.</li>
-          <li>30% 이상 증가: 부상 위험이 커지는 구간, 다음 주 강도 조절 추천.</li>
-        </ul>
-      </section>
-    </main>
-
-    <script src="app.js"></script>
-  </body>
-</html>
+/* 데스크톱 */
+@media (min-width: 768px) {
+  body { padding: 2rem; max-width: 600px; }
+  .input-group { padding: 1.5rem; }
+  .result-card { padding: 2.5rem; }
+}
