@@ -2,10 +2,146 @@
 <html lang="ko">
   <head>
     <meta charset="utf-8" />
-    <title>PLAY – 테스트</title>
+    <title>PLAY – 아마추어 축구·풋살 로드 실험실</title>
+    <meta
+      name="description"
+      content="주말 축구·풋살 경기·훈련량을 입력하면 부하 점수와 부상 위험 레벨을 보여주는 아마추어 전용 계산기."
+    />
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <h1>PLAY 테스트 페이지</h1>
-    <p>여기에 아마추어 축구/풋살 로드 계산기가 들어갈 예정입니다.</p>
+    <main class="page">
+      <!-- 히어로 -->
+      <section class="hero">
+        <h1>PLAY – 아마추어 축구·풋살 로드 실험실</h1>
+        <p>
+          이번 주 경기·훈련량을 입력하면, 부하 점수와 부상 위험 레벨을
+          한눈에 확인할 수 있어요.
+        </p>
+      </section>
+
+      <!-- 계산기 -->
+      <section class="card">
+        <h2>이번 주 로드 계산하기</h2>
+
+        <form id="load-form" class="form">
+          <div class="form-row">
+            <label for="mode">종목</label>
+            <select id="mode" name="mode">
+              <option value="soccer">축구</option>
+              <option value="futsal">풋살</option>
+            </select>
+          </div>
+
+          <div class="form-row">
+            <label for="matches">이번 주 경기 수</label>
+            <input
+              id="matches"
+              name="matches"
+              type="number"
+              min="0"
+              step="1"
+              value="1"
+              required
+            />
+          </div>
+
+          <div class="form-row">
+            <label for="minutes">경기당 평균 출전 시간(분)</label>
+            <input
+              id="minutes"
+              name="minutes"
+              type="number"
+              min="0"
+              step="5"
+              value="60"
+              required
+            />
+          </div>
+
+          <div class="form-row">
+            <label for="trainings">훈련 횟수</label>
+            <input
+              id="trainings"
+              name="trainings"
+              type="number"
+              min="0"
+              step="1"
+              value="1"
+              required
+            />
+          </div>
+
+          <div class="form-row">
+            <label for="trainingMinutes">훈련 1회당 시간(분)</label>
+            <input
+              id="trainingMinutes"
+              name="trainingMinutes"
+              type="number"
+              min="0"
+              step="10"
+              value="60"
+              required
+            />
+          </div>
+
+          <div class="form-row">
+            <label for="rpe">이번 주 체감 강도 (RPE, 1~10)</label>
+            <input
+              id="rpe"
+              name="rpe"
+              type="number"
+              min="1"
+              max="10"
+              step="1"
+              value="6"
+              required
+            />
+          </div>
+
+          <div class="form-row">
+            <label for="lastWeekLoad">지난 주 총 부하 점수(없으면 비우기)</label>
+            <input
+              id="lastWeekLoad"
+              name="lastWeekLoad"
+              type="number"
+              min="0"
+              step="1"
+              placeholder="예: 1200"
+            />
+            <small>
+              지난 주에도 이 계산기를 썼다면, 그때 나온 부하 점수를 적어두고 여기
+              입력하면 증가율을 계산해 줍니다.
+            </small>
+          </div>
+
+          <button type="submit" class="btn-primary">로드 계산하기</button>
+        </form>
+      </section>
+
+      <!-- 결과 카드 -->
+      <section id="result-card" class="card result hidden">
+        <h2>이번 주 결과</h2>
+        <p class="result-main">
+          총 부하 점수: <span id="total-load">0</span>
+        </p>
+        <p class="result-sub" id="change-line"></p>
+        <p class="badge" id="risk-badge">-</p>
+        <p class="advice" id="advice-text"></p>
+      </section>
+
+      <!-- 설명 섹션 -->
+      <section class="card info">
+        <h2>이 점수가 의미하는 것</h2>
+        <ul>
+          <li>부하 점수 = 총 활동 시간(분) × 체감 강도(RPE).</li>
+          <li>지난 주 대비 0~10% 증가: 비교적 안전한 구간.</li>
+          <li>10~30% 증가: 주의 구간, 회복과 보강 운동을 신경 써야 함.</li>
+          <li>30% 이상 증가: 부상 위험이 커지는 구간, 다음 주 강도 조절 추천.</li>
+        </ul>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
   </body>
 </html>
