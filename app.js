@@ -1,3 +1,5 @@
+// PLAY 계산기 메인 로직
+
 document.getElementById('play-form').addEventListener('submit', function (e) {
   e.preventDefault();
 
@@ -5,14 +7,16 @@ document.getElementById('play-form').addEventListener('submit', function (e) {
   const minutes = parseInt(document.getElementById('minutes').value || "0", 10);
   const intensity = parseInt(document.getElementById('intensity').value || "2", 10);
 
-  const weeklyMinutes = games * minutes;
+  const weeklyMinutes = games * minutes; // 이번 주 실제 뛴 총 시간(분)
 
+  // 체감 강도 → 세션 RPE 매핑
   let sessionRPE = 5;
   if (intensity === 1) sessionRPE = 3;
   if (intensity === 2) sessionRPE = 5;
   if (intensity === 3) sessionRPE = 8;
 
-  const loadScore = weeklyMinutes * sessionRPE; // 세션 RPE × 시간[web:283][web:286]
+  // 세션 RPE × 시간 = 주간 부하 점수(대략적인 값)
+  const loadScore = weeklyMinutes * sessionRPE;
 
   let label, riskLevel, riskClass, summary, advice;
 
@@ -54,4 +58,25 @@ document.getElementById('play-form').addEventListener('submit', function (e) {
 
   resultSection.style.display = 'block';
   resultSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+  // 👉 대시보드에서 쓸 수 있도록 최근 결과 저장
+  const lastResult = {
+    games,
+    minutesPerGame: minutes,
+    weeklyMinutes,
+    sessionRPE,
+    loadScore,
+    label,
+    riskLevel,
+    riskClass,
+    summary,
+    advice,
+    // 간단한 퍼포먼스 점수(0~100 스케일로 변환)
+    perfScore: Math.max(
+      0,
+      Math.min(100, Math.round((loadScore / 1600) * 70 + (riskClass === "low" ? 20 : riskClass === "medium" ? 10 : 0)))
+    ),
+    timestamp: Date.now(),
+  };
+  localStorage.setItem('play_last_result', JSON.stringify(lastResult));
 });
