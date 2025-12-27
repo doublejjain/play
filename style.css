@@ -403,3 +403,168 @@ footer {
     padding: 2.1rem 2rem;
   }
 }
+
+/* ===== Dashboard 전용 ===== */
+
+.dash-body {
+  margin: 0;
+  font-family: system-ui, -apple-system, sans-serif;
+  background: #020617;
+  color: #e5e7eb;
+}
+
+.dash-header {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 1.8rem 1rem 0.5rem;
+}
+.dash-header h1 {
+  font-size: 1.6rem;
+  font-weight: 800;
+  margin-bottom: 0.4rem;
+}
+.dash-header p {
+  font-size: 0.9rem;
+  color: #9ca3af;
+  margin-bottom: 0.6rem;
+}
+.dash-link {
+  display: inline-block;
+  font-size: 0.85rem;
+  color: #a5b4fc;
+  text-decoration: none;
+}
+.dash-link:hover {
+  text-decoration: underline;
+}
+
+/* 대시보드 그리드 */
+.dash {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0.5rem 1rem 3rem;
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  grid-template-rows: auto auto;
+  gap: 1.5rem;
+}
+
+/* 공통 카드 */
+.card {
+  background: #020617;
+  border-radius: 16px;
+  border: 1px solid #1f2933;
+  padding: 1.4rem 1.4rem 1.2rem;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.8);
+}
+.card h2 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.8rem;
+}
+
+/* 1) 요약 카드 */
+.card-summary {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.card-summary .score {
+  font-size: 2.4rem;
+  font-weight: 800;
+  margin-bottom: 0.1rem;
+}
+.card-summary .rank {
+  font-size: 0.95rem;
+  color: #a5b4fc;
+  margin-bottom: 0.6rem;
+}
+.card-summary .mini {
+  font-size: 0.85rem;
+  color: #9ca3af;
+}
+
+/* 2) 트렌드 카드 */
+.card-trend .chart-placeholder {
+  height: 160px;
+  border-radius: 12px;
+  border: 1px dashed #334155;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  color: #64748b;
+  text-align: center;
+  padding: 0 1rem;
+}
+
+/* 3) 오늘 추천 모드 */
+.card-mode ul {
+  list-style: disc;
+  padding-left: 1.1rem;
+  font-size: 0.9rem;
+}
+.card-mode li + li {
+  margin-top: 0.35rem;
+}
+
+/* 4) 강화하면 좋은 부분 */
+.card-focus .focus-row {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  column-gap: 0.5rem;
+  align-items: center;
+  margin-bottom: 0.6rem;
+}
+.focus-label {
+  font-size: 0.85rem;
+  color: #cbd5f5;
+}
+.focus-bar {
+  height: 8px;
+  border-radius: 999px;
+  background: #111827;
+  position: relative;
+  overflow: hidden;
+}
+.focus-bar::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  transform-origin: left;
+}
+.focus-low::after {
+  background: #ef4444;
+  transform: scaleX(0.35);
+}
+.focus-mid::after {
+  background: #f97316;
+  transform: scaleX(0.6);
+}
+.focus-high::after {
+  background: #22c55e;
+  transform: scaleX(0.85);
+}
+.focus-text {
+  grid-column: 1 / -1;
+  font-size: 0.78rem;
+  color: #9ca3af;
+}
+
+/* 푸터 */
+.dash-footer {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 1rem 2.5rem;
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+/* 반응형 */
+@media (max-width: 768px) {
+  .dash {
+    grid-template-columns: 1fr;
+  }
+}
+
