@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PLAY – 이번 주 축구/풋살, 너무 무리했을까?</title>
-  <meta name="description" content="이번 주 축구·풋살 경기 수, 시간, 강도를 입력하면 몸에 얼마나 부담이 갔는지 부상 위험도를 확인할 수 있는 계산기." />
+  <meta name="description" content="이번 주 축구·풋살 경기 수, 시간, 체감 강도를 입력하면 주간 부상 위험도를 점수로 보여주는 계산기." />
 
   <!-- AdSense 자동 광고 -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9152530321662851"
@@ -14,68 +14,68 @@
 </head>
 <body>
   <div class="page">
-    <!-- 히어로 -->
     <header class="hero">
-      <h1>이번 주<br>축구·풋살<br>너무 무리했을까?</h1>
-      <p class="hero-sub">일주일 경기 수·시간·강도만 입력하면<br>대략적인 부상 위험도를 알려주는 계산기입니다.</p>
+      <h1>이번 주 축구·풋살<br>너무 무리했을까?</h1>
+      <p class="hero-sub">
+        주간 경기 수, 실제 뛴 시간, 체감 강도를 넣으면<br>
+        «이번 주 부하 점수»와 부상 위험 존을 알려줍니다.
+      </p>
       <ul class="hero-list">
         <li>최근 7일 기준으로 입력</li>
         <li>풋살·축구·조기축구 모두 포함</li>
-        <li>컨디션이 많이 떨어졌다면 병행해서 휴식 고려</li>
+        <li>컨디션이 많이 떨어졌다면 결과를 보수적으로 해석</li>
       </ul>
     </header>
 
-    <!-- 입력 폼 -->
     <main class="input-section">
       <h2 class="section-title">이번 주 운동량 입력</h2>
-      <p class="section-desc">가장 많이 뛴 포지션 기준으로, 실제 느낌에 가장 가까운 값으로 적어 주세요.</p>
+      <p class="section-desc">포지션과 실제 느낌 기준으로 가장 솔직하게 적어 주세요.</p>
 
       <form id="play-form">
         <div class="input-group">
           <label for="games">이번 주 경기 수</label>
           <input type="number" id="games" min="0" max="10" value="2" />
-          <small>풋살·축구 경기/용병 포함, 번개·조기축구 모두 합산.</small>
+          <small>풋살·축구·조기축구, 용병 경기까지 전부 합산.</small>
         </div>
 
         <div class="input-group">
           <label for="minutes">1경기 평균 시간 (분)</label>
           <input type="number" id="minutes" min="30" max="120" value="60" />
-          <small>실제 뛴 시간 기준. 하프타임·대기 시간은 제외해도 괜찮아요.</small>
+          <small>실제로 뛴 시간 기준. 교체로 빠진 시간은 빼도 됩니다.</small>
         </div>
 
         <div class="input-group">
-          <label for="intensity">운동 강도</label>
+          <label for="intensity">이번 주 평균 체감 강도</label>
           <select id="intensity">
-            <option value="1">가볍게 (60% 심박, 몸푸는 느낌)</option>
-            <option value="2" selected>보통 (70–80% 심박, 평소 경기)</option>
-            <option value="3">강도 높음 (85%+ 심박, 대회·풀스프린트 느낌)</option>
+            <option value="1">가볍게 (몸 푸는 느낌)</option>
+            <option value="2" selected>보통 (평소 경기 템포)</option>
+            <option value="3">빡셈 (대회·풀스프린트 느낌)</option>
           </select>
+          <small>대부분의 경기를 떠올렸을 때 평균 느낌.</small>
         </div>
 
-        <button type="submit">부상 위험도 확인하기</button>
+        <button type="submit">부상 위험도 계산하기</button>
       </form>
     </main>
   </div>
 
-  <!-- 결과 -->
   <section class="result-section" id="result" style="display:none;">
     <div class="result-card" id="result-card">
-      <h2 id="risk-level">중간</h2>
+      <h2 id="risk-level">안전 존 (낮음)</h2>
       <div class="risk-bar">
         <div class="risk-fill" id="risk-fill"></div>
       </div>
       <p id="summary" class="summary-text"></p>
       <p id="advice" class="advice-text"></p>
       <p class="disclaimer">
-        이 계산기는 최근 연구에서 사용하는 운동 부하 개념을 참고한 간단한 도구일 뿐이며,<br>
-        실제 부상 여부는 체력·나이·수면·기존 부상 등에 따라 달라질 수 있습니다.
+        이 계산기는 축구에서 쓰는 세션 RPE × 시간 개념을 간단히 변형한 도구입니다[web:283][web:289].  
+        실제 부상 여부는 체력, 나이, 수면, 기존 부상 상태에 따라 달라질 수 있습니다[web:290].
       </p>
     </div>
   </section>
 
-  <!-- 푸터 (광고가 자주 붙는 영역) -->
   <footer>
-    <p>play.namane.info · 축구/풋살 아마추어를 위한 컨디션 체크 도구</p>
+    <p>namane.info/play · 아마추어 축구/풋살을 위한 주간 부하 체크 도구</p>
   </footer>
 
   <script src="app.js"></script>
