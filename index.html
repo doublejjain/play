@@ -2,191 +2,142 @@
 <html lang="ko">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PLAY – 오늘 운동, 너무 무리했을까?</title>
-  <meta name="description"
-        content="축구·러닝·헬스 등 오늘 한 운동의 시간과 힘들기만 입력하면, 내일 컨디션과 무리 정도를 색깔 게이지로 보여주는 간단 계산기." />
-
-  <!-- AdSense 자동 광고 -->
-  <script async
-    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9152530321662851"
-    crossorigin="anonymous"></script>
-
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>풋살/축구 컨디션 & 회복 분석기</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="page">
-    <!-- 1) 상단 광고 (모바일용) -->
-    <section class="top-ad">
-      <div class="ad-slot">축구화 · 운동보조제 · 테이핑 추천</div>
-    </section>
-
-    <!-- 2) 헤더 -->
-    <header class="hero">
-      <h1>오늘 운동,<br>너무 무리했을까?</h1>
-      <p class="hero-sub">
-        어떤 운동을 얼마나, 얼마나 힘들게 했는지만 적으면<br>
-        내일 컨디션과 부상 위험도를 색깔 게이지로 보여줍니다.
-      </p>
-      <ul class="hero-list">
-        <li>축구·풋살, 러닝/걷기, 헬스/기타 모두 가능</li>
-        <li>오늘 한 운동 기준으로 입력 (여러 개면 합산)</li>
-        <li>느낌이 애매할 땐 보수적으로 "빡셈" 쪽으로 선택</li>
-      </ul>
+  <div class="container">
+    <header class="header">
+      <h1>풋살/축구 컨디션 & 회복</h1>
+      <p>워치 있어도/없어도 · 부위별 회복 루틴</p>
     </header>
 
-    <!-- 3) 입력 폼 -->
-    <main class="input-section">
-      <h2 class="section-title">오늘 운동 한 줄 입력</h2>
-      <p class="section-desc">누가 봐도 10초 안에 입력할 수 있는 최소 정보만 받습니다.</p>
-
-      <form id="play-form">
-        <!-- 운동 종류 -->
-        <div class="input-group">
-          <label>오늘 한 운동</label>
-          <div class="mode-buttons" id="sport-type">
-            <button type="button" data-type="football" class="mode-btn active">축구/풋살</button>
-            <button type="button" data-type="running" class="mode-btn">러닝/걷기</button>
-            <button type="button" data-type="gym" class="mode-btn">헬스/기타</button>
-          </div>
-          <small>가장 힘들었거나 시간이 길었던 운동을 하나 고르면 됩니다.</small>
+    <form id="match-form">
+      <!-- 워치 유무 -->
+      <div class="input-group">
+        <label>⌚ 워치 착용</label>
+        <div class="watch-buttons">
+          <button type="button" class="watch-btn active" data-watch="yes">✅ 착용</button>
+          <button type="button" class="watch-btn" data-watch="no">❌ 미착용</button>
         </div>
-
-        <!-- 오늘 운동 시간 -->
-        <div class="input-group">
-          <label for="minutes">오늘 운동한 총 시간 (분)</label>
-          <input type="number" id="minutes" min="10" max="240" value="90" />
-          <small>오늘 축구·러닝·헬스 등 전체 운동 시간을 대략 합쳐서 적어 주세요. 예: 8–10시 풋살이면 120.</small>
-        </div>
-
-        <!-- 체감 강도 -->
-        <div class="input-group">
-          <label>오늘 얼마나 힘들었나요?</label>
-          <div class="mode-buttons" id="intensity-group">
-            <button type="button" data-intensity="1" class="mode-btn">가볍게</button>
-            <button type="button" data-intensity="2" class="mode-btn active">보통</button>
-            <button type="button" data-intensity="3" class="mode-btn">빡셈</button>
-          </div>
-          <small>"오늘 경기/운동 전체를 떠올렸을 때" 느낌 기준.</small>
-        </div>
-
-        <!-- 자세히 입력 (선택) -->
-        <details class="input-group">
-          <summary>자세히 입력하기 (선택)</summary>
-          <div style="margin-top:0.6rem;">
-            <label for="age" style="display:block;margin-bottom:0.3rem;">나이</label>
-            <input type="number" id="age" min="15" max="80" placeholder="예: 32" />
-
-            <label for="watchDistance" style="display:block;margin:0.8rem 0 0.3rem;">오늘 스마트워치 거리 (km)</label>
-            <input type="number" id="watchDistance" min="0" step="0.1" placeholder="예: 7.3" />
-
-            <div class="check-row" style="margin-top:0.8rem;">
-              <label><input type="checkbox" id="useTaping" /> 발목/무릎 테이핑 했음</label>
-            </div>
-            <div class="check-row">
-              <label><input type="checkbox" id="useGel" /> 파워젤/스포츠 젤 사용</label>
-            </div>
-            <div class="check-row">
-              <label><input type="checkbox" id="useProtein" /> 운동 후 단백질(프로틴/보충제) 섭취</label>
-            </div>
-          </div>
-        </details>
-
-        <button type="submit">내일 컨디션/무리 정도 확인하기</button>
-      </form>
-    </main>
-
-    <!-- 4) 결과 카드 -->
-    <section class="result-section" id="result" style="display:none;">
-      <div class="result-card" id="result-card">
-        <h2 id="risk-level">안전 존 (낮음)</h2>
-
-        <!-- 색 게이지 -->
-        <div class="risk-bar">
-          <div class="risk-fill" id="risk-fill"></div>
-        </div>
-        <div class="risk-labels">
-          <span>안전</span><span>주의</span><span>빨간불</span>
-        </div>
-
-        <p id="summary" class="summary-text"></p>
-        <p id="advice" class="advice-text"></p>
-
-        <div class="chips" id="dash-chips"></div>
-
-        <p class="disclaimer">
-          이 계산기는 운동 종류와 상관없이, 오늘 운동의 «시간 × 체감 강도»로 몸에 쌓인 부담을 대략적으로 보여주는 도구입니다.  
-          실제 부상 여부는 체력, 나이, 수면, 기존 부상 상태 등에 따라 달라질 수 있습니다.
-        </p>
-      </div>
-    </section>
-
-    <!-- 5) 대시보드 -->
-    <section class="dashboard-row">
-      <div class="dashboard-main">
-        <!-- 오늘 이후 추천 모드 -->
-        <section class="card card-mode">
-          <h2>오늘 이후 추천 모드</h2>
-          <ul id="dash-mode-list">
-            <li>위에서 오늘 운동을 계산하면, 내일을 위해 뭘 하면 좋을지 추천이 여기에 표시됩니다.</li>
-          </ul>
-        </section>
-
-        <!-- 강화하면 좋은 부분 -->
-        <section class="card card-focus">
-          <h2>강화하면 좋은 부분</h2>
-
-          <div class="focus-row">
-            <span class="focus-label">체력</span>
-            <div class="focus-bar focus-mid" id="focus-fitness"></div>
-            <span class="focus-text" id="focus-fitness-text">
-              계산 결과에 따라, 인터벌이나 가벼운 러닝 같은 추천이 여기에 들어갑니다.
-            </span>
-          </div>
-
-          <div class="focus-row">
-            <span class="focus-label">근력/코어</span>
-            <div class="focus-bar focus-low" id="focus-strength"></div>
-            <span class="focus-text" id="focus-strength-text">
-              스쿼트·런지·플랭크 같은 간단 보강운동 추천이 표시됩니다.
-            </span>
-          </div>
-
-          <div class="focus-row">
-            <span class="focus-label">부상 위험</span>
-            <div class="focus-bar focus-high" id="focus-injury"></div>
-            <span class="focus-text" id="focus-injury-text">
-              햄스트링·발목·무릎 관련 위험도가 높을 때, 준비운동·테이핑·회복 루틴을 제안합니다.
-            </span>
-          </div>
-        </section>
       </div>
 
-      <!-- 추천존 (데스크톱용) -->
-      <aside class="dashboard-aside">
-        <section class="card">
-          <h2>축구/운동인 추천 존</h2>
-          <p>풋살화, 테이핑, 프로틴 등</p>
-          <p>실제 사용하는 제품들만 엄선</p>
-          <a href="#" class="rec-link">지금 추천 상품 보기</a>
-          <div class="ad-slot">
-            👟 ⚽ 💪<br>
-            <small>축구화 · 보조제 · 테이핑</small>
-          </div>
-        </section>
-      </aside>
-    </section>
+      <!-- 운동 종류 -->
+      <div class="input-group">
+        <label>⚽ 운동 종류</label>
+        <div class="sport-buttons">
+          <button type="button" class="sport-btn active" data-sport="futsal">🏠 풋살</button>
+          <button type="button" class="sport-btn" data-sport="football">🌳 축구</button>
+        </div>
+      </div>
+      <!-- 워치 O: 거리 -->
+      <div class="input-group large" id="distance-group">
+        <label for="distance">📏 워치 거리</label>
+        <div>
+          <input type="number" id="distance" placeholder="3.8" step="0.1" min="1" max="15" />
+          <span>km</span>
+        </div>
+        <small>풋살 3~5km · 축구 9~13km 정도가 보통</small>
+      </div>
 
-    <!-- 6) 하단 광고 -->
-    <section class="bottom-ad">
-      <div class="ad-slot">풋살화 비교 · 프로틴 추천 · 부상예방 가이드</div>
+      <!-- 워치 X: RPE -->
+      <div class="input-group" id="rpe-group" style="display:none;">
+        <label for="rpe">💪 체감 강도 (0–10)</label>
+        <div class="rpe-row">
+          <input type="range" id="rpe" min="0" max="10" value="7" />
+          <span id="rpe-value">7</span>
+        </div>
+        <small>0=쉬움 · 5=보통 · 10=완전 탈진</small>
+      </div>
+
+      <!-- 경기 시간 -->
+      <div class="input-group">
+        <label for="duration">⏱️ 경기 시간</label>
+        <select id="duration">
+          <option value="60">60분</option>
+          <option value="90" selected>90분</option>
+          <option value="120">2시간(5~6쿼터)</option>
+        </select>
+      </div>
+      <!-- 통증 부위 -->
+      <div class="input-group">
+        <label>🩹 통증 부위 (복수 선택 가능)</label>
+        <div class="pain-grid">
+          <label><input type="checkbox" name="pain" value="calf" /><span>종아리</span></label>
+          <label><input type="checkbox" name="pain" value="shin" /><span>정강이</span></label>
+          <label><input type="checkbox" name="pain" value="hamstring" /><span>햄스트링</span></label>
+          <label><input type="checkbox" name="pain" value="knee" /><span>무릎</span></label>
+          <label><input type="checkbox" name="pain" value="ankle" /><span>발목</span></label>
+          <label><input type="checkbox" name="pain" value="groin" /><span>사타구니</span></label>
+          <label><input type="checkbox" name="pain" value="shoulder" /><span>어깨</span></label>
+          <label><input type="checkbox" name="pain" value="back" /><span>허리</span></label>
+          <label><input type="checkbox" name="pain" value="foot" /><span>발바닥</span></label>
+          <label><input type="checkbox" name="pain" value="none" checked /><span>통증 없음</span></label>
+        </div>
+      </div>
+
+      <button type="submit">분석 & 회복 루틴 보기</button>
+    </form>
+    <!-- 결과 -->
+    <section id="result" style="display:none;">
+      <div class="sport-info">
+        <div class="sport-badge" id="sport-badge">🏠 풋살</div>
+        <div class="distance-highlight" id="distance-highlight">–</div>
+      </div>
+
+      <div class="performance-card">
+        <h2>📊 퍼포먼스</h2>
+        <div class="stats-grid">
+          <div class="stat">
+            <div class="stat-num green" id="perf-rank">–</div>
+            <div>등급</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num orange" id="calories">–</div>
+            <div>kcal</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num red" id="load-score">–</div>
+            <div>부하 점수</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="recovery-card">
+        <h2>🩹 1주일 회복 루틴</h2>
+        <div class="timeline-item">
+          <div class="time">지금</div>
+          <div class="action" id="now-action"></div>
+        </div>
+        <div class="timeline-item">
+          <div class="time">30분 후</div>
+          <div class="action" id="step1-action"></div>
+        </div>
+        <div class="timeline-item">
+          <div class="time">저녁</div>
+          <div class="action" id="step2-action"></div>
+        </div>
+        <div class="timeline-item">
+          <div class="time">23:00</div>
+          <div class="action" id="step3-action"></div>
+        </div>
+        <div class="timeline-item">
+          <div class="time">다음 경기 전</div>
+          <div class="action" id="prep-action"></div>
+        </div>
+      </div>
+
+      <div class="prep-card">
+        <h3>✅ 다음 경기 전 체크</h3>
+        <ul>
+          <li>워치 충전 + 축구화 확인</li>
+          <li>간단 동적 스트레칭 5분</li>
+          <li>통증 있던 부위 한 번 더 점검</li>
+        </ul>
+      </div>
     </section>
   </div>
-
-  <!-- 7) 푸터 수정 -->
-  <footer class="dash-footer">
-    <p>play.namane.info · 누구나 쉽게 쓰는 오늘 운동 체크 & 대시보드</p>
-  </footer>
 
   <script src="app.js"></script>
 </body>
