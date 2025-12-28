@@ -16,6 +16,12 @@
 </head>
 <body>
   <div class="page">
+    <!-- 1) 상단 광고 (모바일용) -->
+    <section class="top-ad">
+      <div class="ad-slot">축구화 · 운동보조제 · 테이핑 추천</div>
+    </section>
+
+    <!-- 2) 헤더 -->
     <header class="hero">
       <h1>오늘 운동,<br>너무 무리했을까?</h1>
       <p class="hero-sub">
@@ -25,10 +31,11 @@
       <ul class="hero-list">
         <li>축구·풋살, 러닝/걷기, 헬스/기타 모두 가능</li>
         <li>오늘 한 운동 기준으로 입력 (여러 개면 합산)</li>
-        <li>느낌이 애매할 땐 보수적으로 “빡셈” 쪽으로 선택</li>
+        <li>느낌이 애매할 땐 보수적으로 "빡셈" 쪽으로 선택</li>
       </ul>
     </header>
 
+    <!-- 3) 입력 폼 -->
     <main class="input-section">
       <h2 class="section-title">오늘 운동 한 줄 입력</h2>
       <p class="section-desc">누가 봐도 10초 안에 입력할 수 있는 최소 정보만 받습니다.</p>
@@ -60,7 +67,7 @@
             <button type="button" data-intensity="2" class="mode-btn active">보통</button>
             <button type="button" data-intensity="3" class="mode-btn">빡셈</button>
           </div>
-          <small>“오늘 경기/운동 전체를 떠올렸을 때” 느낌 기준.</small>
+          <small>"오늘 경기/운동 전체를 떠올렸을 때" 느낌 기준.</small>
         </div>
 
         <!-- 자세히 입력 (선택) -->
@@ -88,94 +95,97 @@
         <button type="submit">내일 컨디션/무리 정도 확인하기</button>
       </form>
     </main>
+
+    <!-- 4) 결과 카드 -->
+    <section class="result-section" id="result" style="display:none;">
+      <div class="result-card" id="result-card">
+        <h2 id="risk-level">안전 존 (낮음)</h2>
+
+        <!-- 색 게이지 -->
+        <div class="risk-bar">
+          <div class="risk-fill" id="risk-fill"></div>
+        </div>
+        <div class="risk-labels">
+          <span>안전</span><span>주의</span><span>빨간불</span>
+        </div>
+
+        <p id="summary" class="summary-text"></p>
+        <p id="advice" class="advice-text"></p>
+
+        <div class="chips" id="dash-chips"></div>
+
+        <p class="disclaimer">
+          이 계산기는 운동 종류와 상관없이, 오늘 운동의 «시간 × 체감 강도»로 몸에 쌓인 부담을 대략적으로 보여주는 도구입니다.  
+          실제 부상 여부는 체력, 나이, 수면, 기존 부상 상태 등에 따라 달라질 수 있습니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- 5) 대시보드 -->
+    <section class="dashboard-row">
+      <div class="dashboard-main">
+        <!-- 오늘 이후 추천 모드 -->
+        <section class="card card-mode">
+          <h2>오늘 이후 추천 모드</h2>
+          <ul id="dash-mode-list">
+            <li>위에서 오늘 운동을 계산하면, 내일을 위해 뭘 하면 좋을지 추천이 여기에 표시됩니다.</li>
+          </ul>
+        </section>
+
+        <!-- 강화하면 좋은 부분 -->
+        <section class="card card-focus">
+          <h2>강화하면 좋은 부분</h2>
+
+          <div class="focus-row">
+            <span class="focus-label">체력</span>
+            <div class="focus-bar focus-mid" id="focus-fitness"></div>
+            <span class="focus-text" id="focus-fitness-text">
+              계산 결과에 따라, 인터벌이나 가벼운 러닝 같은 추천이 여기에 들어갑니다.
+            </span>
+          </div>
+
+          <div class="focus-row">
+            <span class="focus-label">근력/코어</span>
+            <div class="focus-bar focus-low" id="focus-strength"></div>
+            <span class="focus-text" id="focus-strength-text">
+              스쿼트·런지·플랭크 같은 간단 보강운동 추천이 표시됩니다.
+            </span>
+          </div>
+
+          <div class="focus-row">
+            <span class="focus-label">부상 위험</span>
+            <div class="focus-bar focus-high" id="focus-injury"></div>
+            <span class="focus-text" id="focus-injury-text">
+              햄스트링·발목·무릎 관련 위험도가 높을 때, 준비운동·테이핑·회복 루틴을 제안합니다.
+            </span>
+          </div>
+        </section>
+      </div>
+
+      <!-- 추천존 (데스크톱용) -->
+      <aside class="dashboard-aside">
+        <section class="card">
+          <h2>축구/운동인 추천 존</h2>
+          <p>풋살화, 테이핑, 프로틴 등</p>
+          <p>실제 사용하는 제품들만 엄선</p>
+          <a href="#" class="rec-link">지금 추천 상품 보기</a>
+          <div class="ad-slot">
+            👟 ⚽ 💪<br>
+            <small>축구화 · 보조제 · 테이핑</small>
+          </div>
+        </section>
+      </aside>
+    </section>
+
+    <!-- 6) 하단 광고 -->
+    <section class="bottom-ad">
+      <div class="ad-slot">풋살화 비교 · 프로틴 추천 · 부상예방 가이드</div>
+    </section>
   </div>
 
-  <!-- 2) 결과 카드 -->
-  <section class="result-section" id="result" style="display:none;">
-    <div class="result-card" id="result-card">
-      <h2 id="risk-level">안전 존 (낮음)</h2>
-
-      <!-- 색 게이지 -->
-      <div class="risk-bar">
-        <div class="risk-fill" id="risk-fill"></div>
-      </div>
-      <div class="risk-labels">
-        <span>안전</span><span>주의</span><span>빨간불</span>
-      </div>
-
-      <p id="summary" class="summary-text"></p>
-      <p id="advice" class="advice-text"></p>
-
-      <div class="chips" id="dash-chips"></div>
-
-      <p class="disclaimer">
-        이 계산기는 운동 종류와 상관없이, 오늘 운동의 «시간 × 체감 강도»로 몸에 쌓인 부담을 대략적으로 보여주는 도구입니다.  
-        실제 부상 여부는 체력, 나이, 수면, 기존 부상 상태 등에 따라 달라질 수 있습니다.
-      </p>
-    </div>
-  </section>
-
-  <!-- 3) 중단: 추천/광고 영역 -->
-  <section class="dashboard-row">
-    <div class="dashboard-main">
-      <!-- 오늘 이후 추천 모드 -->
-      <section class="card card-mode">
-        <h2>오늘 이후 추천 모드</h2>
-        <ul id="dash-mode-list">
-          <li>위에서 오늘 운동을 계산하면, 내일을 위해 뭘 하면 좋을지 추천이 여기에 표시됩니다.</li>
-        </ul>
-      </section>
-
-      <!-- 강화하면 좋은 부분 -->
-      <section class="card card-focus">
-        <h2>강화하면 좋은 부분</h2>
-
-        <div class="focus-row">
-          <span class="focus-label">체력</span>
-          <div class="focus-bar focus-mid" id="focus-fitness"></div>
-          <span class="focus-text" id="focus-fitness-text">
-            계산 결과에 따라, 인터벌이나 가벼운 러닝 같은 추천이 여기에 들어갑니다.
-          </span>
-        </div>
-
-        <div class="focus-row">
-          <span class="focus-label">근력/코어</span>
-          <div class="focus-bar focus-low" id="focus-strength"></div>
-          <span class="focus-text" id="focus-strength-text">
-            스쿼트·런지·플랭크 같은 간단 보강운동 추천이 표시됩니다.
-          </span>
-        </div>
-
-        <div class="focus-row">
-          <span class="focus-label">부상 위험</span>
-          <div class="focus-bar focus-high" id="focus-injury"></div>
-          <span class="focus-text" id="focus-injury-text">
-            햄스트링·발목·무릎 관련 위험도가 높을 때, 준비운동·테이핑·회복 루틴을 제안합니다.
-          </span>
-        </div>
-      </section>
-    </div>
-
-    <!-- 광고/추천 존 -->
-    <aside class="dashboard-aside">
-      <section class="card">
-        <h2>축구/운동인 추천 존</h2>
-        <div class="ad-slot">
-          <!-- Auto Ads 또는 수동 광고 자리 -->
-        </div>
-      </section>
-    </aside>
-  </section>
-
-  <!-- 4) 하단 가로 배너 -->
-  <section class="bottom-ad">
-    <div class="ad-slot">
-      <!-- 하단 가로 광고 자리 -->
-    </div>
-  </section>
-
+  <!-- 7) 푸터 수정 -->
   <footer class="dash-footer">
-    <p>namane.info/play · 누구나 쉽게 쓰는 오늘 운동 체크 & 대시보드</p>
+    <p>play.namane.info · 누구나 쉽게 쓰는 오늘 운동 체크 & 대시보드</p>
   </footer>
 
   <script src="app.js"></script>
