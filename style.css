@@ -1,162 +1,231 @@
-/* PLAY - 수정된 스타일시트 */
-* { box-sizing: border-box; }
-body { 
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
-  margin: 0; padding: 0; line-height: 1.6; color: #333; 
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-  min-height: 100vh;
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  background:linear-gradient(135deg,#f5f7fa 0%,#c3cfe2 100%);
+  padding:1rem;
+  min-height:100vh;
+}
+.container {
+  max-width:440px;
+  margin:0 auto;
+  background:#fff;
+  border-radius:24px;
+  box-shadow:0 25px 50px rgba(0,0,0,.12);
+  overflow:hidden;
+}
+.header {
+  background:linear-gradient(135deg,#667eea,#764ba2);
+  color:#fff;
+  text-align:center;
+  padding:2rem 1.5rem;
+}
+.header h1 { font-size:1.75rem; margin-bottom:.5rem; font-weight:800; }
+.header p { opacity:.95; font-size:1rem; }
+
+.input-group {
+  padding:1.5rem 1.5rem 1.25rem;
+  border-bottom:1px solid #f3f4f6;
+}
+.input-group label {
+  display:block;
+  font-weight:600;
+  margin-bottom:.75rem;
+  color:#374151;
+  font-size:.95rem;
+}
+.small { font-size:.85rem; color:#6b7280; }
+
+.watch-buttons,
+.sport-buttons {
+  display:flex;
+  gap:.75rem;
+  margin-bottom:.5rem;
+}
+.watch-btn,
+.sport-btn {
+  flex:1;
+  padding:.9rem .75rem;
+  border:2px solid #e5e7eb;
+  border-radius:14px;
+  background:#fff;
+  font-weight:600;
+  font-size:.95rem;
+  cursor:pointer;
+  transition:all .2s;
+}
+.watch-btn.active,
+.sport-btn.active {
+  background:linear-gradient(135deg,#667eea,#764ba2);
+  color:#fff;
+  border-color:#667eea;
+  box-shadow:0 4px 15px rgba(102,126,234,.3);
 }
 
-.page { max-width: 1200px; margin: 0 auto; padding: 1rem; }
 
-/* 1. 헤더 (기존 동일) */
-.hero { 
-  text-align: center; padding: 3rem 2rem; background: white; 
-  border-radius: 24px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); 
-  margin-bottom: 2rem;
+.large div {
+  display:flex;
+  gap:.75rem;
+  align-items:center;
 }
-.hero h1 { 
-  font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; 
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent; 
-  margin: 0 0 1rem 0; line-height: 1.1;
+.large input {
+  flex:1;
+  padding:1.1rem;
+  font-size:1.6rem;
+  border:2px solid #e5e7eb;
+  border-radius:14px;
+  text-align:center;
+  font-weight:700;
 }
-.hero-sub { font-size: 1.2rem; margin: 0 0 2rem; opacity: 0.9; }
-.hero-list { 
-  list-style: none; padding: 0; margin: 0; font-size: 1.1rem; 
-  max-width: 600px; margin: 0 auto;
-}
-.hero-list li { padding: 0.5rem 0; opacity: 0.9; }
-
-/* 2. 입력 폼 (기존 동일) */
-.input-section { background: white; padding: 2.5rem; border-radius: 24px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); margin-bottom: 2rem; }
-.section-title { font-size: 1.8rem; font-weight: 700; margin: 0 0 0.5rem 0; color: #2c3e50; }
-.section-desc { color: #666; margin: 0 0 2rem 0; font-size: 1.1rem; }
-
-.input-group { margin-bottom: 2rem; }
-.input-group label { display: block; font-weight: 600; margin-bottom: 0.8rem; font-size: 1.1rem; color: #2c3e50; }
-.input-group input[type="number"] { 
-  width: 100%; padding: 1rem 1.2rem; font-size: 1.5rem; 
-  border: 2px solid #e1e5e9; border-radius: 16px; 
-  transition: all 0.3s; background: #f8f9fa;
-}
-.input-group input:focus { outline: none; border-color: #667eea; box-shadow: 0 0 0 4px rgba(102,126,234,0.1); }
-
-.mode-buttons { display: flex; gap: 1rem; margin-bottom: 0.5rem; }
-.mode-btn { 
-  flex: 1; padding: 1rem 1.5rem; font-size: 1.1rem; font-weight: 600; 
-  border: 2px solid #e1e5e9; border-radius: 16px; background: white; 
-  cursor: pointer; transition: all 0.3s; min-height: 56px;
-}
-.mode-btn:hover { border-color: #667eea; transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
-.mode-btn.active { 
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
-  color: white; border-color: #667eea; box-shadow: 0 10px 30px rgba(102,126,234,0.4);
+.large span {
+  font-weight:700;
+  color:#4b5563;
 }
 
-small { display: block; margin-top: 0.5rem; color: #888; font-size: 0.95rem; }
-details summary { cursor: pointer; font-weight: 600; color: #667eea; padding: 1rem; border: 2px dashed #e1e5e9; border-radius: 12px; }
-details[open] summary { background: #f0f4ff; border-style: solid; }
-
-.check-row { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.5rem; }
-.check-row input[type="checkbox"] { width: 20px; height: 20px; accent-color: #667eea; }
-
-button[type="submit"] { 
-  width: 100%; padding: 1.5rem; font-size: 1.3rem; font-weight: 700; 
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
-  color: white; border: none; border-radius: 20px; cursor: pointer; 
-  transition: all 0.3s; box-shadow: 0 15px 35px rgba(102,126,234,0.4);
+.rpe-row {
+  display:flex;
+  gap:.75rem;
+  align-items:center;
 }
-button[type="submit"]:hover { transform: translateY(-3px); box-shadow: 0 25px 50px rgba(102,126,234,0.5); }
+#rpe { flex:1; }
+#rpe-value { min-width:2rem; text-align:center; font-weight:700; }
 
-/* 3. 결과 섹션 (기존 동일) */
-.result-section { background: white; padding: 3rem; border-radius: 24px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); margin-bottom: 2rem; }
-.result-card { text-align: center; }
-#risk-level { 
-  font-size: 2.5rem; font-weight: 800; margin: 0 0 1.5rem 0; 
-  background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%); 
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-}
-.risk-bar { 
-  width: 100%; height: 20px; background: #ecf0f1; 
-  border-radius: 12px; overflow: hidden; margin: 2rem 0; position: relative;
-}
-.risk-fill { 
-  height: 100%; background: linear-gradient(90deg, #27ae60 0%, #f39c12 50%, #e74c3c 100%); 
-  border-radius: 12px; transition: width 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); width: 0%;
-}
-.risk-labels { display: flex; justify-content: space-between; font-weight: 600; color: #666; margin-top: 0.5rem; }
-.summary-text { font-size: 1.3rem; font-weight: 600; margin: 1.5rem 0; color: #2c3e50; }
-.advice-text { font-size: 1.2rem; margin: 2rem 0; color: #555; line-height: 1.6; }
-
-.chips { display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap; margin: 2rem 0; }
-.chip { 
-  padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.9rem; font-weight: 600; 
-}
-.chip-sport { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
-.chip-good { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
-
-.disclaimer { background: #f8f9fa; padding: 1.5rem; border-radius: 12px; font-size: 0.95rem; color: #666; margin-top: 2rem; }
-
-/* 4. 대시보드 - 수정 */
-.dashboard-row { display: grid; grid-template-columns: 1fr 320px; gap: 2rem; margin-bottom: 2rem; }
-@media (max-width: 900px) { 
-  .dashboard-row { grid-template-columns: 1fr; } 
-  /* 모바일: 중간 광고 제거하고 상단/하단만 */
-  .dashboard-aside { display: none; }
+select {
+  width:100%;
+  padding:1rem;
+  font-size:1rem;
+  border:2px solid #e5e7eb;
+  border-radius:12px;
+  background:#fff;
+  font-weight:600;
 }
 
-.card { background: white; padding: 2rem; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.08); }
-.card h2 { font-size: 1.5rem; font-weight: 700; margin: 0 0 1.5rem 0; color: #2c3e50; }
-
-/* 추천존 콘텐츠 채우기 */
-.card p { color: #666; line-height: 1.6; margin-bottom: 1rem; }
-.card ul { padding-left: 1.2rem; color: #555; }
-.card li { margin-bottom: 0.5rem; }
-.rec-link { 
-  display: inline-block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
-  color: white; padding: 0.6rem 1.2rem; border-radius: 20px; text-decoration: none; 
-  font-weight: 600; margin-top: 1rem; transition: all 0.3s;
+.pain-grid {
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:.75rem;
 }
-.rec-link:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(102,126,234,0.4); }
-
-.focus-row { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }
-.focus-label { min-width: 80px; font-weight: 600; color: #555; }
-.focus-bar { 
-  flex: 1; height: 8px; border-radius: 4px; transition: all 0.5s; 
-  background: #ecf0f1; position: relative; overflow: hidden;
+.pain-grid label {
+  display:flex;
+  align-items:center;
+  gap:.5rem;
+  padding:.8rem;
+  border:2px solid #f3f4f6;
+  border-radius:12px;
+  cursor:pointer;
+  font-size:.92rem;
+  transition:all .2s;
 }
-.focus-high::after { background: linear-gradient(90deg, #e74c3c, #c0392b); }
-.focus-mid::after { background: linear-gradient(90deg, #f39c12, #e67e22); }
-.focus-low::after { background: linear-gradient(90deg, #27ae60, #2ecc71); }
-.focus-text { flex: 2; color: #666; font-size: 0.95rem; }
-
-.ad-slot { 
-  width: 100%; height: 250px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
-  border-radius: 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; 
-  color: white; font-size: 1rem; font-weight: 600; text-align: center; gap: 1rem;
+.pain-grid input { display:none; }
+.pain-grid input:checked + span {
+  font-weight:600;
+  color:#667eea;
 }
-.ad-slot::before { content: "👟 ⚽ 💪"; font-size: 2rem; }
-.ad-slot p { margin: 0; opacity: 0.9; }
+.pain-grid label:hover { border-color:#e0e7ff; }
 
-/* 5. 상단/하단 광고 (모바일용) */
-.top-ad, .bottom-ad { 
-  background: white; padding: 1.5rem; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.08); 
-  margin-bottom: 1.5rem; text-align: center; 
+button[type="submit"] {
+  width:100%;
+  padding:1.3rem;
+  background:linear-gradient(135deg,#10b981,#059669);
+  color:#fff;
+  border:none;
+  border-radius:16px;
+  font-size:1.15rem;
+  font-weight:700;
+  cursor:pointer;
+  margin:1.5rem 1.5rem 2rem;
+  box-shadow:0 8px 25px rgba(16,185,129,.3);
+  transition:all .2s;
 }
-.top-ad { margin-top: 1rem; margin-bottom: 2rem; }
-
-/* 6. 푸터 수정 */
-.dash-footer { 
-  text-align: center; color: #888; font-size: 0.9rem; padding: 2rem 0; 
-  background: white; border-radius: 20px; box-shadow: 0 -10px 30px rgba(0,0,0,0.05); margin-top: 2rem;
+button[type="submit"]:hover {
+  transform:translateY(-2px);
+  box-shadow:0 12px 35px rgba(16,185,129,.4);
 }
-.dash-footer p { margin: 0; font-weight: 500; }
+#result {
+  display:none;
+  animation:fadeInUp .45s ease-out;
+}
+@keyframes fadeInUp {
+  from { opacity:0; transform:translateY(20px); }
+  to { opacity:1; transform:translateY(0); }
+}
 
-/* 7. 반응형 */
-@media (max-width: 768px) {
-  .page { padding: 0.5rem; }
-  .hero, .input-section, .result-section { padding: 1.5rem; border-radius: 16px; }
-  .mode-buttons { flex-direction: column; }
-  .focus-row { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+.sport-info {
+  padding:1.5rem 1.5rem 1rem;
+  background:#f8fafc;
+  border-bottom:1px solid #e2e8f0;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.sport-badge {
+  padding:.5rem 1rem;
+  background:linear-gradient(135deg,#667eea,#764ba2);
+  color:#fff;
+  border-radius:20px;
+  font-weight:600;
+  font-size:.9rem;
+}
+.distance-highlight {
+  font-size:1.2rem;
+  font-weight:700;
+  color:#1f2937;
+}
+
+.performance-card {
+  padding:2rem 1.5rem;
+}
+.performance-card h2 {
+  margin-bottom:1.5rem;
+  color:#1f2937;
+  font-size:1.3rem;
+}
+.stats-grid {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1.25rem;
+}
+.stat { text-align:center; }
+.stat-num {
+  font-size:1.75rem;
+  font-weight:800;
+  margin-bottom:.25rem;
+}
+.green { color:#10b981; }
+.orange { color:#f59e0b; }
+.red { color:#ef4444; }
+
+.recovery-card {
+  padding:2rem 1.5rem;
+  background:#f8fafc;
+}
+.recovery-card h2 {
+  margin-bottom:1.5rem;
+  color:#1f2937;
+}
+.timeline-item {
+  display:flex;
+  gap:1rem;
+  padding:1.1rem 0;
+  border-bottom:1px solid #e5e7eb;
+}
+.time {
+  min-width:65px;
+  font-weight:600;
+  font-size:.92rem;
+  color:#6b7280;
+}
+.action { flex:1; font-size:.98rem; }
+
+.prep-card {
+  padding:1.5rem;
+  background:#fef3c7;
+  border-top:3px solid #f59e0b;
+}
+.prep-card h3 { margin-bottom:1rem; color:#92400e; }
+.prep-card ul { list-style:none; }
+.prep-card li { padding:.45rem 0; color:#92400e; font-size:.95rem; }
+
+@media (max-width:480px) {
+  .container { margin:0 .5rem; border-radius:20px; }
+  .stats-grid { gap:.75rem; }
 }
