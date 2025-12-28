@@ -14,7 +14,6 @@
     </header>
 
     <form id="match-form">
-      <!-- 워치 유무 -->
       <div class="input-group">
         <label>⌚ 워치 착용</label>
         <div class="watch-buttons">
@@ -23,7 +22,6 @@
         </div>
       </div>
 
-      <!-- 운동 종류 -->
       <div class="input-group">
         <label>⚽ 운동 종류</label>
         <div class="sport-buttons">
@@ -31,27 +29,25 @@
           <button type="button" class="sport-btn" data-sport="football">🌳 축구</button>
         </div>
       </div>
-      <!-- 워치 O: 거리 -->
+
       <div class="input-group large" id="distance-group">
         <label for="distance">📏 워치 거리</label>
-        <div>
+        <div class="large-row">
           <input type="number" id="distance" placeholder="3.8" step="0.1" min="1" max="15" />
           <span>km</span>
         </div>
-        <small>풋살 3~5km · 축구 9~13km 정도가 보통</small>
+        <small class="hint">풋살 3~5km · 축구 9~13km 정도가 보통</small>
       </div>
 
-      <!-- 워치 X: RPE -->
       <div class="input-group" id="rpe-group" style="display:none;">
         <label for="rpe">💪 체감 강도 (0–10)</label>
         <div class="rpe-row">
           <input type="range" id="rpe" min="0" max="10" value="7" />
           <span id="rpe-value">7</span>
         </div>
-        <small>0=쉬움 · 5=보통 · 10=완전 탈진</small>
+        <small class="hint">0=쉬움 · 5=보통 · 10=완전 탈진</small>
       </div>
 
-      <!-- 경기 시간 -->
       <div class="input-group">
         <label for="duration">⏱️ 경기 시간</label>
         <select id="duration">
@@ -60,7 +56,7 @@
           <option value="120">2시간(5~6쿼터)</option>
         </select>
       </div>
-      <!-- 통증 부위 -->
+
       <div class="input-group">
         <label>🩹 통증 부위 (복수 선택 가능)</label>
         <div class="pain-grid">
@@ -79,7 +75,7 @@
 
       <button type="submit">분석 & 회복 루틴 보기</button>
     </form>
-    <!-- 결과 -->
+
     <section id="result" style="display:none;">
       <div class="sport-info">
         <div class="sport-badge" id="sport-badge">🏠 풋살</div>
@@ -87,19 +83,19 @@
       </div>
 
       <div class="performance-card">
-        <h2>📊 퍼포먼스</h2>
+        <h2>📊 오늘 퍼포먼스</h2>
         <div class="stats-grid">
           <div class="stat">
             <div class="stat-num green" id="perf-rank">–</div>
-            <div>등급</div>
+            <div class="stat-label">등급</div>
           </div>
           <div class="stat">
             <div class="stat-num orange" id="calories">–</div>
-            <div>kcal</div>
+            <div class="stat-label">kcal</div>
           </div>
           <div class="stat">
             <div class="stat-num red" id="load-score">–</div>
-            <div>부하 점수</div>
+            <div class="stat-label">부하 점수</div>
           </div>
         </div>
       </div>
@@ -131,7 +127,7 @@
       <div class="prep-card">
         <h3>✅ 다음 경기 전 체크</h3>
         <ul>
-          <li>워치 충전 + 축구화 확인</li>
+          <li>워치 충전 + 축구화 상태 확인</li>
           <li>간단 동적 스트레칭 5분</li>
           <li>통증 있던 부위 한 번 더 점검</li>
         </ul>
