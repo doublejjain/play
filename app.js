@@ -1,237 +1,183 @@
-// PLAY 계산기 + 대시보드 연동 (나이 / 워치 거리 / 테이핑·보충 포함)
-
-// 하단 대시보드 업데이트
-function updateDashboard(last) {
-  if (!last) return;
-
-  const {
-    games,
-    minutesPerGame,
-    weeklyMinutes,
-    sessionRPE,
-    loadScore,
-    label,
-    riskLevel,
-    riskClass,
-    perfScore,
-    age,
-    distanceKm,
-    useTaping,
-    useGel,
-    useProtein,
-  } = last;
-
-  const dashScore = document.getElementById('dash-score');
-  const dashRank = document.getElementById('dash-rank');
-  const dashMini = document.getElementById('dash-mini');
-
-  if (dashScore) dashScore.textContent = `${perfScore}점`;
-
-  if (dashRank) {
-    if (age) {
-      dashRank.textContent = `${age}세 또래 기준 임시 활동 지수 ${perfScore}/100`;
-    } else {
-      dashRank.textContent = `임시 기준: 이번 주 활동량 지수 ${perfScore}/100`;
-    }
+// PLAY - 운동 부하 계산기 (축구/러닝/헬스 공통)
+class PlayCalculator {
+  constructor() {
+    this.form = document.getElementById('play-form');
+    this.resultSection = document.getElementById('result');
+    this.initEventListeners();
   }
 
-  if (dashMini) {
-    const km = distanceKm != null ? distanceKm : (weeklyMinutes * 0.09) / 1000; // km 추정
-    const kmText = km > 0 ? `${km.toFixed(1)}km` : "거리 정보 없음";
-    dashMini.textContent =
-      `경기 ${games}회 · 총 ${weeklyMinutes}분(경기당 ${minutesPerGame}분, RPE ${sessionRPE}/10) · ` +
-      `추정/입력 거리 ${kmText} · ${label} (${riskLevel})`;
+  initEventListeners() {
+    // 운동 종류 버튼
+    document.querySelectorAll('#sport-type .mode-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        document.querySelectorAll('#sport-type .mode-btn').forEach(b => b.classList.remove('active'));
+        e.target.classList.add('active');
+      });
+    });
+
+    // 강도 버튼
+    document.querySelectorAll('#intensity-group .mode-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        document.querySelectorAll('#intensity-group .mode-btn').forEach(b => b.classList.remove('active'));
+        e.target.classList.add('active');
+      });
+    });
+
+    this.form.addEventListener('submit', (e) => this.handleSubmit(e));
   }
 
-  // 오늘 추천 모드
-  const modeList = document.getElementById('dash-mode-list');
-  if (modeList) {
-    modeList.innerHTML = "";
-    const add = (t) => {
-      const li = document.createElement('li');
-      li.textContent = t;
-      modeList.appendChild(li);
+  handleSubmit(e) {
+    e.preventDefault();
+    const data = this.getFormData();
+    const result = this.calculateLoad(data);
+    this.displayResult(result, data);
+    this.updateDashboard(result, data);
+  }
+
+  getFormData() {
+    return {
+      sport: document.querySelector('#sport-type .mode-btn.active').dataset.type,
+      minutes: parseInt(document.getElementById('minutes').value) || 90,
+      intensity: parseInt(document.querySelector('#intensity-group .mode-btn.active').dataset.intensity) || 2,
+      age: parseInt(document.getElementById('age').value) || 30,
+      distance: parseFloat(document.getElementById('watchDistance').value) || 0,
+      taping: document.getElementById('useTaping').checked,
+      gel: document.getElementById('useGel').checked,
+      protein: document.getElementById('useProtein').checked
     };
+  }
 
-    if (riskClass === "low") {
-      add("이번 주는 무난한 부하입니다. 이번 주말에 추가로 1게임 더 뛰어도 괜찮은 수준입니다.");
-      if (age && age >= 35) {
-        add("다만 35세 이상이라면, 주 1일은 완전 휴식으로 비워 두고 수면 7시간 이상을 한 번 챙겨 보세요.");
-      } else {
-        add("주 1일은 완전 휴식으로 비워 두고, 가볍게 걷기나 스트레칭 정도만 해도 충분합니다.");
-      }
-      add("경기 전에 바나나·파워젤 중 하나와 물만 챙겨도 후반 퍼포먼스 유지에 도움이 됩니다.");
-    } else if (riskClass === "medium") {
-      add("주의 존입니다. 이번 주 추가 경기는 1게임까지만, 연속 2게임은 가급적 피하는 걸 추천합니다.");
-      add("오늘 뛴다면, 다음 48시간은 전력 질주보다 기술·볼터치 위주로 가볍게 가져가 보세요.");
-      if (!useProtein) {
-        add("이번 주는 경기 후 단백질 보충(프로틴·고기·계란)을 한 번 챙겨보면 회복에 도움이 됩니다.");
-      } else {
-        add("경기 후 단백질을 잘 챙기고 있으니, 수분·수면만 조금 더 신경 쓰면 좋습니다.");
-      }
-    } else {
-      add("레드 존입니다. 오늘은 새로운 경기보다는 회복 모드(산책·가벼운 볼터치)를 가장 추천합니다.");
-      add("최소 이틀은 전력 질주가 많은 경기·대회는 피하고, 스트레칭과 수면에 집중해 주세요.");
-      if (!useTaping) {
-        add("발목·무릎이 불안하다면, 다음 고강도 경기 전에는 발목/무릎 테이핑을 한 번 고려해 보세요.");
-      } else {
-        add("테이핑까지 하고 있는 상태라면, 지금은 경기 수 자체를 줄여서 관절에 쉬는 날을 주는 게 좋습니다.");
-      }
+  // 핵심: 시간 × 강도 × 운동가중치 × 나이계수
+  calculateLoad(data) {
+    // 1. 기본 부하 = 시간 × RPE (0-10 스케일로 변환)
+    const rpeScale = data.intensity * 3.33; // 1→3.3, 2→6.6, 3→10
+    let baseLoad = data.minutes * rpeScale;
+
+    // 2. 운동별 가중치 (축구>러닝>헬스)
+    const sportWeights = { football: 1.3, running: 1.1, gym: 1.0 };
+    baseLoad *= sportWeights[data.sport] || 1.0;
+
+    // 3. 거리 보너스 (스마트워치)
+    if (data.distance > 0) {
+      baseLoad += data.distance * 20; // km당 20점 추가
     }
+
+    // 4. 나이 조정 (30대 기준 1.0, 20대 0.9, 40대+ 1.1)
+    const ageFactor = this.getAgeFactor(data.age);
+    baseLoad *= ageFactor;
+
+    // 5. 보호요소 감소 (테이핑/젤/프로틴)
+    if (data.taping) baseLoad *= 0.92;
+    if (data.gel) baseLoad *= 0.95;
+    if (data.protein) baseLoad *= 0.90;
+
+    // 6. 위험도 구간 (하루 기준)
+    const riskLevel = this.getRiskLevel(baseLoad);
+    
+    return {
+      baseLoad: Math.round(baseLoad),
+      riskLevel,
+      riskScore: this.getRiskScore(baseLoad), // 0-100
+      sport: data.sport,
+      advice: this.getAdvice(riskLevel, data)
+    };
   }
 
-  // 강화해야 할 부분 (간단 매핑)
-  const fitnessBar = document.getElementById('focus-fitness');
-  const strengthBar = document.getElementById('focus-strength');
-  const injuryBar = document.getElementById('focus-injury');
-  const fitnessText = document.getElementById('focus-fitness-text');
-  const strengthText = document.getElementById('focus-strength-text');
-  const injuryText = document.getElementById('focus-injury-text');
-
-  if (fitnessBar && strengthBar && injuryBar) {
-    if (loadScore < 800) {
-      fitnessBar.className = "focus-bar focus-mid";
-      injuryBar.className = "focus-bar focus-high";
-    } else if (loadScore < 1600) {
-      fitnessBar.className = "focus-bar focus-high";
-      injuryBar.className = "focus-bar focus-mid";
-    } else {
-      fitnessBar.className = "focus-bar focus-high";
-      injuryBar.className = "focus-bar focus-low";
-    }
-    strengthBar.className = "focus-bar focus-mid";
+  getAgeFactor(age) {
+    if (age < 25) return 0.90;
+    if (age < 35) return 1.00;
+    if (age < 45) return 1.10;
+    return 1.25;
   }
 
-  if (fitnessText) {
-    fitnessText.textContent =
-      "주 1회만이라도 20초 전력 + 40초 걷기 셔틀런 6세트를 넣어주면 후반 체력 유지에 도움이 됩니다.";
+  getRiskLevel(load) {
+    if (load < 400) return '안전';
+    if (load < 700) return '주의';
+    return '빨간불';
   }
-  if (strengthText) {
-    strengthText.textContent =
-      "하루 10분, 스쿼트·런지·플랭크·브리지만 해도 몸싸움·균형감이 눈에 띄게 좋아질 수 있습니다.";
+
+  getRiskScore(load) {
+    if (load < 400) return Math.min(33, load / 12);
+    if (load < 700) return 33 + Math.min(33, (load - 400) / 9);
+    return 66 + Math.min(34, (load - 700) / 10);
   }
-  if (injuryText) {
-    if (useTaping) {
-      injuryText.textContent =
-        "이미 테이핑까지 하고 있다면, 지금은 경기 수와 강도를 조절해 관절에 쉬는 날을 주는 게 더 중요합니다.";
-    } else {
-      injuryText.textContent =
-        "햄스트링·발목이 자주 불안하다면, FIFA 11+ 스타일 준비운동과 간단 테이핑을 고강도 경기 전에만이라도 적용해 보세요.";
-    }
+
+  getAdvice(level, data) {
+    const sportKR = { football: '축구/풋살', running: '러닝', gym: '헬스' };
+    const sportName = sportKR[data.sport] || '운동';
+    
+    const advice = {
+      안전: `오늘 ${sportName} ${data.minutes}분은 내일 컨디션 기준으로 **안전 존**입니다. 내일 비슷한 강도로도 괜찮아요.`,
+      주의: `오늘 ${sportName} ${data.minutes}분은 **주의** 수준입니다. 내일은 시간을 70% 정도로 줄이거나 강도를 낮추세요.`,
+      '빨간불': `오늘 ${sportName} ${data.minutes}분은 **고부하**입니다. 내일은 완전 휴식 또는 30분 걷기 정도로만 하세요.`
+    };
+    return advice[level];
+  }
+
+  displayResult(result, data) {
+    // 결과 보이기
+    document.getElementById('risk-level').textContent = result.riskLevel;
+    document.getElementById('risk-fill').style.width = `${result.riskScore}%`;
+    document.getElementById('summary').textContent = `부하 점수: ${result.baseLoad}점`;
+    document.getElementById('summary').dataset.load = result.baseLoad;
+    document.getElementById('advice').innerHTML = result.advice;
+
+    // 칩스 (sport + 보호요소)
+    const chips = document.getElementById('dash-chips');
+    chips.innerHTML = `
+      <span class="chip chip-sport">${result.sport === 'football' ? '⚽' : result.sport === 'running' ? '🏃' : '💪'} ${result.sport}</span>
+      ${data.taping ? '<span class="chip chip-good">테이핑</span>' : ''}
+      ${data.gel ? '<span class="chip chip-good">젤</span>' : ''}
+      ${data.protein ? '<span class="chip chip-good">프로틴</span>' : ''}
+    `;
+
+    this.resultSection.style.display = 'block';
+    this.resultSection.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  updateDashboard(result, data) {
+    // 강화 영역 업데이트
+    this.updateFocusArea('fitness', result.riskLevel === '안전' ? 'high' : 'mid');
+    this.updateFocusArea('strength', data.sport === 'gym' ? 'high' : 'mid');
+    this.updateFocusArea('injury', result.riskLevel === '빨간불' ? 'high' : 'low');
+
+    // 추천 모드
+    const recList = document.getElementById('dash-mode-list');
+    recList.innerHTML = `
+      <li>${result.advice.split('입니다.')[0]}입니다.</li>
+      <li><strong>내일 추천:</strong> ${this.getTomorrowRec(result.riskLevel, data.sport)}</li>
+    `;
+  }
+
+  updateFocusArea(id, level) {
+    const bar = document.getElementById(`focus-${id}`);
+    const text = document.getElementById(`focus-${id}-text`);
+    bar.className = `focus-bar focus-${level}`;
+  }
+
+  getTomorrowRec(risk, sport) {
+    const recs = {
+      안전: {
+        football: '가벼운 풋살 or 인터벌 러닝 45분',
+        running: '인터벌 or 언덕 러닝 50분',
+        gym: '전신 웨이트 + 코어 60분'
+      },
+      주의: {
+        football: '러닝 30분 or 헬스 하체 40분',
+        running: '가벼운 조깅 30분 or 헬스 상체',
+        gym: '상체 위주 or 유산소 40분'
+      },
+      '빨간불': {
+        football: '완전 휴식 or 20분 산책',
+        running: '스트레칭 + 폼롤러',
+        gym: '상체 가볍게 or 요가'
+      }
+    };
+    return recs[risk][sport] || '가벼운 산책 or 스트레칭';
   }
 }
 
-// 계산기 메인
-document.getElementById('play-form').addEventListener('submit', function (e) {
-  e.preventDefault();
-
-  const games = parseInt(document.getElementById('games').value || "0", 10);
-  const minutes = parseInt(document.getElementById('minutes').value || "0", 10);
-  const intensity = parseInt(document.getElementById('intensity').value || "2", 10);
-  const age = parseInt(document.getElementById('age')?.value || "", 10);
-  const watchDistanceRaw = document.getElementById('watchDistance')?.value;
-  const distanceKm = watchDistanceRaw ? parseFloat(watchDistanceRaw) : null;
-  const useTaping = document.getElementById('useTaping')?.checked || false;
-  const useGel = document.getElementById('useGel')?.checked || false;
-  const useProtein = document.getElementById('useProtein')?.checked || false;
-
-  const weeklyMinutes = games * minutes;
-
-  let sessionRPE = 5;
-  if (intensity === 1) sessionRPE = 3;
-  if (intensity === 2) sessionRPE = 5;
-  if (intensity === 3) sessionRPE = 8;
-
-  const loadScoreBase = weeklyMinutes * sessionRPE;
-
-  // 나이 보정: 30대 이후는 부하를 조금 더 높게 평가
-  let ageFactor = 1;
-  if (!isNaN(age)) {
-    if (age >= 30 && age < 35) ageFactor = 1.1;
-    else if (age >= 35 && age < 40) ageFactor = 1.25;
-    else if (age >= 40) ageFactor = 1.4;
-  }
-  const loadScore = loadScoreBase * ageFactor;
-
-  let label, riskLevel, riskClass, summary, advice;
-
-  if (loadScore < 800) {
-    label = "안전 존";
-    riskLevel = "낮음";
-    riskClass = "low";
-    summary = `이번 주 부하 점수는 약 ${Math.round(loadScore)}점으로, 몸이 편하게 적응할 수 있는 수준입니다.`;
-    advice = "지금 패턴을 유지하되, 주 1일은 완전 휴식으로 비워 두면 다음 경기 퍼포먼스도 잘 나올 가능성이 큽니다.";
-  } else if (loadScore < 1600) {
-    label = "주의 존";
-    riskLevel = "중간";
-    riskClass = "medium";
-    summary = `부하 점수 약 ${Math.round(loadScore)}점으로, 체력은 오르지만 피로도도 꽤 쌓이는 구간입니다.`;
-    advice = "다음 주엔 경기 수를 1경기 줄이거나, 한 경기만 강도를 ‘가볍게’로 내려서 파동을 만들어 주면 부상 위험을 줄일 수 있습니다.";
-  } else {
-    label = "레드 존";
-    riskLevel = "높음";
-    riskClass = "high";
-    summary = `부하 점수 약 ${Math.round(loadScore)}점으로, 과부하와 부상 위험이 확 올라가는 영역입니다.`;
-    advice = "향후 7일 동안은 전력 질주가 많은 경기·대회를 피하고, 공만 살짝 만지는 회복 세션이나 가벼운 러닝 위주로 조절하는 걸 추천합니다.";
-  }
-
-  const resultSection = document.getElementById('result');
-  const resultCard = document.getElementById('result-card');
-  const riskFill = document.getElementById('risk-fill');
-
-  document.getElementById('risk-level').textContent = `${label} (${riskLevel})`;
-  document.getElementById('summary').textContent =
-    `경기 ${games}회, 총 ${weeklyMinutes}분, 체감 강도 ${sessionRPE}/10 기준입니다. ${summary}`;
-  document.getElementById('advice').textContent = advice;
-
-  resultCard.classList.remove('low', 'medium', 'high');
-  resultCard.classList.add(riskClass);
-
-  if (riskClass === "low") riskFill.style.width = "30%";
-  else if (riskClass === "medium") riskFill.style.width = "65%";
-  else riskFill.style.width = "100%";
-
-  resultSection.style.display = 'block';
-  resultSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-
-  // 퍼포먼스 점수 (간단)
-  const perfScore = Math.max(
-    0,
-    Math.min(
-      100,
-      Math.round((loadScoreBase / 1600) * 60 + (riskClass === "low" ? 25 : riskClass === "medium" ? 15 : 5))
-    )
-  );
-
-  const lastResult = {
-    games,
-    minutesPerGame: minutes,
-    weeklyMinutes,
-    sessionRPE,
-    loadScore,
-    label,
-    riskLevel,
-    riskClass,
-    summary,
-    advice,
-    perfScore,
-    age: isNaN(age) ? null : age,
-    distanceKm,
-    useTaping,
-    useGel,
-    useProtein,
-    timestamp: Date.now(),
-  };
-  localStorage.setItem('play_last_result', JSON.stringify(lastResult));
-  updateDashboard(lastResult);
-});
-
-// 페이지 로드 시 이전 결과 불러오기
-window.addEventListener('DOMContentLoaded', () => {
-  const raw = localStorage.getItem('play_last_result');
-  if (!raw) return;
-  try {
-    const last = JSON.parse(raw);
-    updateDashboard(last);
-  } catch {}
+// 초기화
+document.addEventListener('DOMContentLoaded', () => {
+  new PlayCalculator();
 });
