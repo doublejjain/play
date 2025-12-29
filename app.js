@@ -3,7 +3,6 @@ const SPORT_DATA = {
   football: { avg: 10.5, pro: 12.0, calPerKm: 110 }
 };
 
-// 🔥 통증별 가중치 시스템
 const PAIN_WEIGHTS = {
   none: { load: 1.0, recovery: 1.0 },
   calf: { load: 1.4, recovery: 0.6 },
@@ -20,12 +19,54 @@ const PAIN_WEIGHTS = {
 const RECOVERY_PLANS_PRIORITY = ['hamstring', 'knee', 'calf', 'shin', 'ankle', 'groin', 'foot', 'back', 'shoulder', 'none'];
 
 const RECOVERY_PLANS = {
-  none: { now: '🧊 RICE(휴식+얼음+압박+거상) 20분', s1: '🍽️ 탄수+단백 1:4 (바나나+우유)', s2: '🧴 폼롤러 10분', s3: '💊 마그네슘 400mg+수면8시간', prep: '🚶 동적 스트레칭 5분' },
-  calf: { now: '🧊 종아리 RICE 25분(다리↑)', s1: '💊 마그네슘400mg+체리주스', s2: '🧴 폼롤러(3x30초)', s3: '🛌 수면8.5시간+다리높이', prep: '⤵ 앵클펌프3분' },
-  shin: { now: '🧊 정강이 얼음 20분', s1: '🩹 테이핑준비', s2: '🥛 칼슘1000mg+D2000IU', s3: '🦶 발목스트레칭', prep: '👟 쿠션깔창' },
-  hamstring: { now: '🧊 햄스트링 RICE 20분', s1: '🧘 햄스트링 스트레칭3세트', s2: '🍒 체리주스200ml', s3: '🛌 수면8시간', prep: '🏃 슬로우조깅5분' },
-  knee: { now: '🧊 무릎 RICE 25분', s1: '🦵 보호대착용', s2: '💊 글루코사민1500mg', s3: '🛌 수면', prep: '🚲 자전거5분' },
-  ankle: { now: '🧊 발목 RICE+압박', s1: '🩹 테이핑연습', s2: '🦶 밸런스3세트', s3: '🛌 수면', prep: '🧘 발목돌리기2분' }
+  none: { 
+    now: '🧊 RICE(휴식+얼음+압박+거상) 20분', 
+    s1: '🍽️ 탄수+단백 1:4 (바나나+우유)', 
+    s2: '🧴 폼롤러 10분', 
+    s3: '💊 마그네슘 400mg+수면8시간', 
+    prep: '🚶 동적 스트레칭 5분' 
+  },
+  calf: { 
+    now: '🧊 종아리 RICE 25분(다리↑)', 
+    s1: '💊 마그네슘400mg+체리주스', 
+    s2: '🧴 폼롤러(3x30초)', 
+    s3: '🛌 수면8.5시간+다리높이', 
+    prep: '⤵ 앵클펌프3분' 
+  },
+  shin: { 
+    now: '🧊 정강이 얼음 20분', 
+    s1: '🩹 테이핑준비', 
+    s2: '🥛 칼슘1000mg+D2000IU', 
+    s3: '🦶 발목스트레칭', 
+    prep: '👟 쿠션깔창' 
+  },
+  hamstring: { 
+    now: '🧊 햄스트링 RICE 20분', 
+    s1: '🧘 햄스트링 스트레칭3세트', 
+    s2: '🍒 체리주스200ml', 
+    s3: '🛌 수면8시간', 
+    prep: '🏃 슬로우조깅5분' 
+  },
+  knee: { 
+    now: '🧊 무릎 RICE 25분', 
+    s1: '🦵 보호대착용', 
+    s2: '💊 글루코사민1500mg', 
+    s3: '🛌 수면', 
+    prep: '🚲 자전거5분' 
+  },
+  ankle: { 
+    now: '🧊 발목 RICE+압박', 
+    s1: '🩹 테이핑연습', 
+    s2: '🦶 밸런스3세트', 
+    s3: '🛌 수면', 
+    prep: '🧘 발목돌리기2분' 
+  }
+};
+
+const PAIN_NAMES = {
+  calf: '종아리', shin: '정강이', hamstring: '햄스트링', 
+  knee: '무릎', ankle: '발목', groin: '사타구니',
+  shoulder: '어깨', back: '허리', foot: '발바닥'
 };
 
 const NUTRITION_CALCULATOR = {
@@ -33,6 +74,16 @@ const NUTRITION_CALCULATOR = {
   medium: (load, painCount) => `⚡ 중강도 ${load}점\n• 단백질 2.2g/kg\n• 체리주스200ml\n• 마그네슘 400mg`,
   low: (load, painCount) => `😌 보통 ${load}점\n• 단백질 1.8g/kg\n• 물 3.5L\n• 수면 8.5시간`
 };
+
+function formatDate(date) {
+  const options = { 
+    year: 'numeric', 
+    month: 'short', 
+    day: 'numeric',
+    weekday: 'short'
+  };
+  return new Date(date).toLocaleDateString('ko-KR', options);
+}
 
 function calculateWeightedPain(pains) {
   if (pains.length === 0) return { weight: 1.0, recoveryFactor: 1.0, primary: 'none', count: 0, secondary: [] };
@@ -66,7 +117,9 @@ function init() {
   document.querySelectorAll('.sport-btn')?.forEach(b => b.addEventListener('click', onSportClick));
   
   const rpe = document.getElementById('rpe');
-  if (rpe) rpe.addEventListener('input', () => document.getElementById('rpe-value').textContent = rpe.value);
+  if (rpe) rpe.addEventListener('input', () => {
+    document.getElementById('rpe-value').textContent = rpe.value;
+  });
   
   const form = document.getElementById('match-form');
   if (form) form.addEventListener('submit', onSubmit);
@@ -113,12 +166,10 @@ function onSubmit(e) {
       baseDistance = +(sport.avg * (baseRPE / 6)).toFixed(1);
     }
     
-    // 🔥 통증 가중치 적용
     const painAnalysis = calculateWeightedPain(pains);
     const finalLoad = Math.round(baseLoad * painAnalysis.weight);
     const finalRecovery = Math.round(100 * painAnalysis.recoveryFactor);
     
-    // 등급 재계산
     let rank;
     const adjustedDistance = baseDistance * painAnalysis.recoveryFactor;
     if (adjustedDistance < sport.avg * 0.8) rank = '하위 40%';
@@ -132,7 +183,7 @@ function onSubmit(e) {
     updateUI(sportKey, baseDistance, rank, calories, finalLoad, sport, intensity, painAnalysis);
     
     saveHistory({
-      date: new Date().toLocaleDateString('ko-KR'),
+      date: Date.now(),
       distance: baseDistance.toFixed(1),
       pains: painAnalysis.primary + (painAnalysis.count > 1 ? `+${painAnalysis.count - 1}` : ''),
       rank,
@@ -159,15 +210,16 @@ function updateUI(sportKey, baseDistance, rank, calories, finalLoad, sport, inte
   document.getElementById('distance-highlight').textContent = `${baseDistance.toFixed(1)}km (${rank})`;
   document.getElementById('perf-rank').textContent = rank;
   document.getElementById('calories').textContent = calories.toLocaleString();
-  document.getElementById('load-score').textContent = `${finalLoad} (${painAnalysis.count}부위)`;
+  document.getElementById('load-score').textContent = `${finalLoad} (${painAnalysis.count ? painAnalysis.count + '부위' : '정상'})`;
+  
   document.getElementById('benchmark-note').innerHTML = 
     `기준: ${sport.avg.toFixed(1)}km(평균) ~ ${sport.pro.toFixed(1)}km(프로)<br>` +
-    `<small>통증 ${painAnalysis.primary}${painAnalysis.secondary.length ? `+${painAnalysis.secondary.length}` : ''} → 부하 ${Math.round(painAnalysis.weight * 100)}%↑</small>`;
+    `<small>${painAnalysis.primary ? PAIN_NAMES[painAnalysis.primary] || painAnalysis.primary : '정상'} ${painAnalysis.secondary.length ? `+${painAnalysis.secondary.length}` : ''} → 부하 ${Math.round(painAnalysis.weight * 100)}%↑</small>`;
   
   const plan = RECOVERY_PLANS[painAnalysis.primary] || RECOVERY_PLANS.none;
   ['now', 'step1', 'step2', 'step3', 'prep'].forEach(key => {
     const el = document.getElementById(`${key}-action`);
-    if (el) el.innerHTML = plan[key] + (key === 'now' ? `<br><small>복합: ${painAnalysis.secondary.join(', ') || '없음'}</small>` : '');
+    if (el) el.innerHTML = plan[key] + (key === 'now' ? `<br><small>${painAnalysis.secondary.map(p => PAIN_NAMES[p] || p).join(', ') || '없음'}</small>` : '');
   });
   
   document.getElementById('nutrition-guide').innerHTML = NUTRITION_CALCULATOR[intensity](finalLoad, painAnalysis.count);
@@ -176,7 +228,7 @@ function updateUI(sportKey, baseDistance, rank, calories, finalLoad, sport, inte
   document.getElementById('readiness-score').textContent = `${readiness}%`;
   document.getElementById('readiness-tips').innerHTML = 
     `${readiness >= 85 ? '✅ 최상' : readiness >= 70 ? '✅ 양호' : '⚠️ 주의'} ` +
-    `- ${painAnalysis.count > 1 ? `${painAnalysis.count}부위 복합` : `${painAnalysis.primary}`} ` +
+    `- ${painAnalysis.count > 1 ? `${painAnalysis.count}부위 복합` : painAnalysis.primary ? PAIN_NAMES[painAnalysis.primary] : '정상'} ` +
     `회복 ${readiness}% 예상`;
 }
 
@@ -199,7 +251,7 @@ function showHistory() {
   if (history.length) {
     list.innerHTML = history.map(h => `
       <div class="history-item">
-        <span>${h.date}</span>
+        <span>${formatDate(h.date)}</span>
         <span>${h.distance}km ${h.pains}</span>
         <span>${h.rank} ${h.load}</span>
       </div>
