@@ -1,165 +1,80 @@
-const SPORT_DATA = {futsal:{avg:4.2,pro:4.5,calPerKm:280},football:{avg:10.5,pro:12.0,calPerKm:110}};
-const RECOVERY_PLANS = {
-  none:{now:'🧊 RICE(휴식+얼음+압박+거상) 20분',s1:'🍽️ 탄수+단백 1:4 (바나나+우유)',s2:'🧴 폼롤러 10분',s3:'💊 마그네슘 400mg+수면8시간',prep:'🚶 동적 스트레칭 5분'},
-  calf:{now:'🧊 종아리 RICE 25분(다리↑)',s1:'💊 마그네슘400mg+체리주스',s2:'🧴 폼롤러(3x30초)',s3:'🛌 수면8.5시간+다리높이',prep:'⤵ 앵클펌프3분'},
-  shin:{now:'🧊 정강이 얼음 20분',s1:'🩹 테이핑준비',s2:'🥛 칼슘1000mg+D2000IU',s3:'🦶 발목스트레칭',prep:'👟 쿠션깔창'},
-  hamstring:{now:'🧊 햄스트링 RICE 20분',s1:'🧘 햄스트링 스트레칭3세트',s2:'🍒 체리주스200ml',s3:'🛌 수면8시간',prep:'🏃 슬로우조깅5분'},
-  knee:{now:'🧊 무릎 RICE 25분',s1:'🦵 보호대착용',s2:'💊 글루코사민1500mg',s3:'🛌 수면',prep:'🚲 자전거5분'},
-  ankle:{now:'🧊 발목 RICE+압박',s1:'🩹 테이핑연습',s2:'🦶 밸런스3세트',s3:'🛌 수면',prep:'🧘 발목돌리기2분'}
-};
-const NUTRITION_GUIDE={high:'🚨 고강도: 탄수8g/kg+BCAA5g',medium:'✅ 중강도: 단백2g/kg+체리주스',low:'😌 보통: 마그네슘400mg+물3L'};
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:linear-gradient(135deg,#f5f7fa 0%,#c3cfe2 100%);padding:1rem;min-height:100vh;line-height:1.4}
 
-async function init(){
-  const urlParams=new URLSearchParams(window.location.search);
-  if(urlParams.get('prematch')){
-    document.getElementById('page-title').textContent='⚽ 경기 전 체크';
-    document.getElementById('subtitle').textContent='30초만에 준비도 확인';
-  }
-  
-  document.querySelectorAll('.watch-btn').forEach(b=>b.addEventListener('click',onWatchClick));
-  document.querySelectorAll('.sport-btn').forEach(b=>b.addEventListener('click',onSportClick));
-  const rpe=document.getElementById('rpe');
-  if(rpe)rpe.addEventListener('input',()=>document.getElementById('rpe-value').textContent=rpe.value);
-  
-  document.getElementById('match-form').addEventListener('submit',onSubmit);
-  const clearBtn=document.getElementById('clear-history');
-  if(clearBtn)clearBtn.addEventListener('click',()=>localStorage.removeItem('matchHistory')||showHistory());
-  
-  // 통증 체크박스 상호 배제
-  document.querySelectorAll('input[name="pain"]').forEach(cb=>{
-    cb.addEventListener('change',function(){
-      const noneCb=document.querySelector('input[value="none"]');
-      if(this.value!=='none'&&this.checked&&noneCb.checked)noneCb.checked=false;
-      else if(this.value==='none'&&this.checked){
-        document.querySelectorAll('input[name="pain"]').forEach(other=>{
-          if(other.value!=='none')other.checked=false;
-        });
-      }
-    });
-  });
-  
-  showHistory();
+.container{max-width:600px;margin:0 auto;background:#fff;border-radius:24px;box-shadow:0 25px 50px rgba(0,0,0,.12);overflow:hidden}
+
+.header{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;text-align:center;padding:2rem 1.5rem}
+.header h1{font-size:clamp(1.5rem,4vw,1.75rem);margin-bottom:.5rem;font-weight:800}
+.header p{opacity:.95;font-size:clamp(.9rem,3vw,1rem)}
+
+#match-form{padding-bottom:1rem}
+.input-group{padding:1.25rem 1.5rem 1rem;border-bottom:1px solid #f3f4f6}
+.input-group label{display:block;font-weight:600;margin-bottom:.75rem;color:#374151;font-size:.95rem}
+.hint{display:block;margin-top:.4rem;font-size:.85rem;color:#6b7280}
+
+.watch-buttons,.sport-buttons{display:flex;gap:.75rem;flex-wrap:wrap}
+.watch-btn,.sport-btn{flex:1;padding:.9rem .75rem;border:2px solid #e5e7eb;border-radius:14px;background:#fff;font-weight:600;font-size:.95rem;cursor:pointer;transition:all .2s;flex-basis:48%}
+.watch-btn.active,.sport-btn.active{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border-color:#667eea;box-shadow:0 4px 15px rgba(102,126,234,.3)}
+
+.large-row{display:flex;gap:.75rem;align-items:center;flex-wrap:wrap}
+.large-row input{flex:1;padding:1.1rem;font-size:1.6rem;border:2px solid #e5e7eb;border-radius:14px;text-align:center;font-weight:700;min-width:120px}
+.large-row span{font-weight:700;color:#4b5563;min-width:30px;flex-shrink:0}
+
+.rpe-row{display:flex;gap:.75rem;align-items:center;flex-wrap:wrap}
+#rpe{flex:1;flex-basis:200px}
+#rpe-value{min-width:2.2rem;text-align:center;font-weight:700;flex-shrink:0}
+
+select{width:100%;padding:1rem;font-size:1rem;border:2px solid #e5e7eb;border-radius:12px;background:#fff;font-weight:600}
+
+.pain-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:.75rem}
+.pain-grid label{display:flex;align-items:center;gap:.5rem;padding:.8rem;border:2px solid #f3f4f6;border-radius:12px;cursor:pointer;font-size:.92rem;transition:all .2s}
+.pain-grid input[type="checkbox"]{display:none}
+.pain-grid input:checked + span{font-weight:600;color:#667eea}
+.pain-grid label:hover{border-color:#e0e7ff}
+
+.submit-btn-top{width:100%;padding:1.3rem;background:linear-gradient(135deg,#10b981,#059669);color:#fff;border:none;border-radius:16px;font-size:1.15rem;font-weight:700;cursor:pointer;margin:1rem 1.5rem 1rem;box-shadow:0 8px 25px rgba(16,185,129,.3);transition:all .2s}
+.submit-btn-top:hover{transform:translateY(-2px);box-shadow:0 12px 35px rgba(16,185,129,.4)}
+
+#result{display:none;animation:fadeInUp .45s ease-out;padding-bottom:3rem}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+.sport-info{padding:1.5rem;background:#f8fafc;border-bottom:1px solid #e2e8f0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.sport-badge{padding:.5rem 1rem;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border-radius:20px;font-weight:600;font-size:.9rem;flex-shrink:0}
+.distance-highlight{font-size:1.15rem;font-weight:700;color:#1f2937;flex:1;text-align:right}
+
+.performance-card{padding:1.5rem 1.5rem 2rem;margin:1rem 0;background:#fff;border-radius:20px;box-shadow:0 8px 25px rgba(0,0,0,.08)}
+.performance-card h2{margin-bottom:1.5rem;color:#1f2937;font-size:1.25rem;text-align:center}
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));gap:1rem;justify-items:center}
+.stat{text-align:center;flex:1}
+.stat-num{font-size:clamp(1.3rem,5vw,1.7rem);font-weight:800;margin-bottom:.25rem;line-height:1}
+.stat-label{font-size:.85rem;color:#6b7280;font-weight:500}
+.benchmark{margin-top:1rem;padding:1rem;background:#fef3c7;border-radius:12px;font-size:.9rem;color:#92400e;border-left:4px solid #f59e0b}
+
+.recovery-card{padding:1.5rem 1.5rem 2rem;margin:1rem 0;background:#f8fafc;border-radius:20px;border-left:4px solid #10b981}
+.recovery-card h2{margin-bottom:1.5rem;color:#1f2937;font-size:1.2rem}
+.timeline-item{display:flex;gap:1rem;padding:1rem 0;border-bottom:1px solid #e5e7eb;align-items:flex-start}
+.time{min-width:70px;font-weight:600;font-size:.95rem;color:#6b7280;flex-shrink:0;padding-top:.2rem}
+.action{flex:1;font-size:.96rem;line-height:1.4}
+
+.nutrition-card,.readiness-card,.history-card,.share-card{margin:1rem 1.5rem 1rem;padding:1.5rem;background:#f8fafc;border-radius:16px;border-left:4px solid #10b981}
+.nutrition-card h3,.readiness-card h3,.history-card h3,.share-card h3{margin-bottom:1rem;color:#1f2937;font-size:1.1rem}
+#readiness-score{background:linear-gradient(135deg,#10b981,#059669);color:#fff;padding:.3rem .8rem;border-radius:20px;font-size:1.1rem;font-weight:700;display:inline-block;margin-left:.5rem}
+#history-list{max-height:150px;overflow-y:auto;font-size:.9rem}
+.history-item{padding:.75rem 0;border-bottom:1px solid #e5e7eb;display:flex;justify-content:space-between;font-size:.9rem}
+#clear-history{background:#ef4444;color:#fff;border:none;padding:.6rem 1.2rem;border-radius:8px;cursor:pointer;margin-top:.75rem;font-size:.9rem;width:100%}
+.share-btn{background:linear-gradient(135deg,#3b82f6,#1d4ed8);color:#fff;border:none;padding:1rem;border-radius:12px;font-weight:600;cursor:pointer;width:100%;margin-bottom:1rem}
+
+.green{color:#10b981}
+.orange{color:#f59e0b}
+.red{color:#ef4444}
+
+@media (max-width:640px){
+  body{padding:.5rem}
+  .container{border-radius:16px;margin:0}
+  .input-group{padding:1rem}
+  .sport-info{padding:1.25rem}
+  .stats-grid{grid-template-columns:repeat(3,1fr);gap:.75rem}
+  .timeline-item{flex-direction:column;gap:.5rem}
+  .time{min-width:auto;font-size:.9rem}
+  .pain-grid{grid-template-columns:repeat(2,1fr)}
 }
-
-function onWatchClick(e){
-  document.querySelectorAll('.watch-btn').forEach(b=>b.classList.remove('active'));
-  e.target.classList.add('active');
-  const hasWatch=e.target.dataset.watch==='yes';
-  document.getElementById('distance-group').style.display=hasWatch?'block':'none';
-  document.getElementById('rpe-group').style.display=hasWatch?'none':'block';
-}
-
-function onSportClick(e){
-  document.querySelectorAll('.sport-btn').forEach(b=>b.classList.remove('active'));
-  e.target.classList.add('active');
-}
-
-async function onSubmit(e){
-  e.preventDefault();
-  try{
-    const hasWatch=document.querySelector('.watch-btn.active').dataset.watch==='yes';
-    const sportKey=document.querySelector('.sport-btn.active').dataset.sport;
-    const duration=parseInt(document.getElementById('duration').value,10);
-    let pains=Array.from(document.querySelectorAll('input[name="pain"]:checked')).map(cb=>cb.value);
-    const noneChecked=document.querySelector('input[value="none"]').checked;
-    if(noneChecked)pains=['none'];
-    else pains=pains.filter(v=>v!=='none');
-    
-    const sport=SPORT_DATA[sportKey];
-    let distance,rpe,load;
-    if(hasWatch){
-      distance=parseFloat(document.getElementById('distance').value||sport.avg);
-      rpe=Math.min(10,Math.max(2,(distance/sport.avg)*6));
-      load=Math.round(duration*rpe);
-    }else{
-      rpe=parseInt(document.getElementById('rpe').value||'6',10);
-      load=Math.round(duration*rpe);
-      distance=+(sport.avg*(rpe/6)).toFixed(1);
-    }
-    
-    let rank;
-    if(distance<sport.avg*.8)rank='하위 40%';
-    else if(distance<sport.avg*1.1)rank='중위 50%';
-    else if(distance<sport.pro)rank='상위 25%';
-    else rank='프로급 TOP 10%';
-    
-    const calories=Math.round(distance*sport.calPerKm);
-    const intensity=load>=700?'high':load>=500?'medium':'low';
-    
-    document.getElementById('sport-badge').textContent=sportKey==='futsal'?'🏠 풋살':'🌳 축구';
-    document.getElementById('distance-highlight').textContent=`${distance.toFixed(1)}km (${rank})`;
-    document.getElementById('perf-rank').textContent=rank;
-    document.getElementById('calories').textContent=calories;
-    document.getElementById('load-score').textContent=load;
-    document.getElementById('benchmark-note').innerHTML=`기준: ${sport.avg.toFixed(1)}km(평균) ~ ${sport.pro.toFixed(1)}km(프로)`;
-    
-    const mainPain=pains[0]||'none';
-    const plan=RECOVERY_PLANS[mainPain]||RECOVERY_PLANS.none;
-    document.getElementById('now-action').textContent=plan.now;
-    document.getElementById('step1-action').textContent=plan.s1;
-    document.getElementById('step2-action').textContent=plan.s2;
-    document.getElementById('step3-action').textContent=plan.s3;
-    document.getElementById('prep-action').textContent=plan.prep;
-    
-    document.getElementById('nutrition-guide').textContent=NUTRITION_GUIDE[intensity];
-    const readiness=Math.max(60,100-(load/10));
-    document.getElementById('readiness-score').textContent=`${readiness}%`;
-    document.getElementById('readiness-tips').innerHTML=`${readiness>=85?'✅ 최상':readiness>=70?'✅ 양호':'⚠️ 주의'} - ${load>=700?'고강도 회복 집중':'보통 회복'} 필요`;
-    
-    saveHistory({date:new Date().toLocaleDateString('ko-KR'),distance:distance.toFixed(1),rank,load});
-    showHistory();
-    await generateQRCode();
-    
-    document.getElementById('result').style.display='block';
-    document.getElementById('result').scrollIntoView({behavior:'smooth'});
-    
-    if(typeof adsbygoogle!=='undefined')(adsbygoogle=window.adsbygoogle||[]).push({});
-  }catch(error){
-    console.error('분석 오류:',error);
-    alert('분석 중 오류가 발생했습니다.');
-  }
-}
-
-function saveHistory(data){
-  try{
-    let history=JSON.parse(localStorage.getItem('matchHistory')||'[]');
-    history.unshift(data);
-    localStorage.setItem('matchHistory',JSON.stringify(history.slice(0,10)));
-  }catch(e){console.warn('localStorage 저장 실패:',e)}
-}
-
-function showHistory(){
-  try{
-    const history=JSON.parse(localStorage.getItem('matchHistory')||'[]');
-    const list=document.getElementById('history-list');
-    if(history.length){
-      list.innerHTML=history.map(h=>`<div class="history-item"><span>${h.date}</span><span>${h.distance}km ${h.rank}</span><span>${h.load}</span></div>`).join('');
-      document.getElementById('clear-history').style.display='inline-block';
-    }
-  }catch(e){
-    console.warn('히스토리 로드 실패:',e);
-  }
-}
-
-async function generateQRCode(){
-  const qrContainer=document.getElementById('qr-container');
-  if(!qrContainer)return;
-  try{
-    qrContainer.innerHTML='<div>QR 생성 중...</div>';
-    await QRCode.toCanvas(qrContainer,window.location.href,{width:150});
-  }catch(error){
-    console.error('QR 생성 실패:',error);
-    qrContainer.innerHTML='<small>QR 생성 실패</small>';
-  }
-}
-
-function shareResult(){
-  const text=`⚽ 오늘 경기 분석\n거리: ${document.getElementById('distance-highlight').textContent}\n등급: ${document.getElementById('perf-rank').textContent}\n회복 플랜 👇\n${window.location.href}`;
-  if(navigator.share){
-    navigator.share({title:'풋살 컨디션',text,url:window.location.href});
-  }else{
-    navigator.clipboard.writeText(text).then(()=>alert('클립보드에 복사!')).catch(()=>alert('공유 실패: '+window.location.href));
-  }
-}
-
-document.addEventListener('DOMContentLoaded',init);
