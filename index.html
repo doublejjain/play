@@ -1,84 +1,171 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>⚽ 풋살 팀 컨디션 분석기 | namane.info</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>⚽ 풋살/축구 컨디션 & 회복 분석기 | namane.info</title>
+  <link rel="stylesheet" href="style.css"/>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9152530321662851" crossorigin="anonymous"></script>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>⚽ 풋살 팀 컨디션 분석기</h1>
-            <p class="subtitle">주간 훈련 데이터로 다음 경기 준비도 자동 진단</p>
-        </header>
-        
-        <main>
-            <!-- 입력 폼 -->
-            <section id="form-section" class="section">
-                <h2>📊 이번주 팀 데이터 입력</h2>
-                <div class="input-grid">
-                    <div>
-                        <label>경기/훈련 횟수</label>
-                        <input type="number" id="matchCount" min="0" max="7" value="2">
-                    </div>
-                    <div>
-                        <label>총 출석률 (%)</label>
-                        <input type="number" id="attendance" min="0" max="100" value="85">
-                    </div>
-                    <div>
-                        <label>평균 RPE (1-10)</label>
-                        <input type="number" id="rpeAvg" min="1" max="10" step="0.1" value="6.5">
-                    </div>
-                    <div>
-                        <label>부상자 수</label>
-                        <input type="number" id="injured" min="0" max="11" value="1">
-                    </div>
-                </div>
-                <button class="btn-primary" onclick="analyzeTeam()">🚀 팀 컨디션 분석 시작</button>
-            </section>
-            
-            <!-- 결과 섹션 -->
-            <section id="result">
-                <div class="card-grid">
-                    <div class="performance-card">
-                        <h3>💪 성과 분석</h3>
-                        <div id="performance-score" class="score-badge">–</div>
-                        <div id="performance-tips"></div>
-                    </div>
-                    
-                    <div class="recovery-card">
-                        <h3>🩹 회복 상태</h3>
-                        <div id="recovery-score" class="score-badge">–</div>
-                        <div id="recovery-tips"></div>
-                    </div>
-                    
-                    <div class="nutrition-card">
-                        <h3>🍎 영양 가이드</h3>
-                        <div id="nutrition-guide"></div>
-                    </div>
-                    
-                    <div class="readiness-card">
-                        <h3>📈 다음 경기 준비도 <span id="readiness-score">–</span></h3>
-                        <div id="readiness-tips"></div>
-                    </div>
-                    
-                    <!-- 🔧 history-card 추가로 에러 해결 -->
-                    <div class="history-card">
-                        <h3>📊 최근 기록</h3>
-                        <div id="history-list">분석 후 표시됩니다</div>
-                        <button id="clear-history">기록 삭제</button>
-                    </div>
-                    
-                    <div class="share-card">
-                        <button onclick="shareResult()" class="share-btn">📱 팀원 공유</button>
-                        <div id="qr-container"></div>
-                    </div>
-                </div>
-            </section>
-        </main>
-    </div>
+  <div class="container">
+    <header class="header">
+      <h1 id="page-title">⚽ 풋살/축구 컨디션 분석</h1>
+      <p id="subtitle">과학적 기준 · 개인 기록 · 최적 회복 플랜</p>
+    </header>
 
-    <script src="app.js"></script>
+    <form id="match-form">
+      <div class="input-group">
+        <label>⌚ 워치 착용</label>
+        <div class="watch-buttons">
+          <button type="button" class="watch-btn active" data-watch="yes">✅ 착용</button>
+          <button type="button" class="watch-btn" data-watch="no">❌ 미착용</button>
+        </div>
+      </div>
+
+      <div class="input-group">
+        <label>⚽ 운동 종류</label>
+        <div class="sport-buttons">
+          <button type="button" class="sport-btn active" data-sport="futsal">🏠 풋살</button>
+          <button type="button" class="sport-btn" data-sport="football">🌳 축구</button>
+        </div>
+      </div>
+
+      <div class="input-group large" id="distance-group">
+        <label for="distance">📏 워치 거리</label>
+        <div class="large-row">
+          <input type="number" id="distance" placeholder="3.8" step="0.1" min="1" max="15"/>
+          <span>km</span>
+        </div>
+        <small class="hint">풋살 3.5~5km · 축구 9~13km 기준</small>
+      </div>
+
+      <div class="input-group" id="rpe-group" style="display:none;">
+        <label for="rpe">💪 RPE 체감 강도 (0–10)</label>
+        <div class="rpe-row">
+          <input type="range" id="rpe" min="0" max="10" value="7"/>
+          <span id="rpe-value">7</span>
+        </div>
+        <small class="hint">0=쉬움 · 5=보통 · 8+=고강도</small>
+      </div>
+
+      <div class="input-group">
+        <label for="duration">⏱️ 경기 시간</label>
+        <select id="duration">
+          <option value="60">60분</option>
+          <option value="90" selected>90분</option>
+          <option value="120">2시간(연장전)</option>
+        </select>
+      </div>
+
+      <div class="input-group">
+        <label>🩹 통증 부위</label>
+        <div class="pain-grid">
+          <label><input type="checkbox" name="pain" value="calf"/><span>종아리</span></label>
+          <label><input type="checkbox" name="pain" value="shin"/><span>정강이</span></label>
+          <label><input type="checkbox" name="pain" value="hamstring"/><span>햄스트링</span></label>
+          <label><input type="checkbox" name="pain" value="knee"/><span>무릎</span></label>
+          <label><input type="checkbox" name="pain" value="ankle"/><span>발목</span></label>
+          <label><input type="checkbox" name="pain" value="groin"/><span>사타구니</span></label>
+          <label><input type="checkbox" name="pain" value="shoulder"/><span>어깨</span></label>
+          <label><input type="checkbox" name="pain" value="back"/><span>허리</span></label>
+          <label><input type="checkbox" name="pain" value="foot"/><span>발바닥</span></label>
+          <label><input type="checkbox" name="pain" value="none" checked/><span>없음</span></label>
+        </div>
+      </div>
+
+      <button type="submit" class="submit-btn-top">🚀 분석 & 회복 플랜 생성</button>
+    </form>
+
+    <ins class="adsbygoogle" 
+         style="display:block; margin:1rem 1.5rem;" 
+         data-ad-client="ca-pub-9152530321662851" 
+         data-ad-slot="1234567890" 
+         data-ad-format="auto" 
+         data-full-width-responsive="true"></ins>
+
+    <section id="result" style="display:none;">
+      <div class="sport-info">
+        <div class="sport-badge" id="sport-badge">🏠 풋살</div>
+        <div class="distance-highlight" id="distance-highlight">–</div>
+      </div>
+
+      <div class="performance-card">
+        <h2>📊 오늘 퍼포먼스</h2>
+        <div class="stats-grid">
+          <div class="stat">
+            <div class="stat-num green" id="perf-rank">–</div>
+            <div class="stat-label">등급</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num orange" id="calories">–</div>
+            <div class="stat-label">칼로리</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num red" id="load-score">–</div>
+            <div class="stat-label">부하</div>
+          </div>
+        </div>
+        <div class="benchmark" id="benchmark-note"></div>
+      </div>
+
+      <div class="recovery-card">
+        <h2>🩹 48시간 회복 플랜</h2>
+        <div class="timeline-item">
+          <div class="time">🚨 지금</div>
+          <div class="action" id="now-action"></div>
+        </div>
+        <div class="timeline-item">
+          <div class="time">⏰ 1시간 후</div>
+          <div class="action" id="step1-action"></div>
+        </div>
+        <div class="timeline-item">
+          <div class="time">🌙 저녁</div>
+          <div class="action" id="step2-action"></div>
+        </div>
+        <div class="timeline-item">
+          <div class="time">🛌 취침 전</div>
+          <div class="action" id="step3-action"></div>
+        </div>
+        <div class="timeline-item">
+          <div class="time">⚽ 다음 경기</div>
+          <div class="action" id="prep-action"></div>
+        </div>
+      </div>
+
+      <div class="nutrition-card">
+        <h3>🍎 영양 가이드</h3>
+        <div id="nutrition-guide"></div>
+      </div>
+
+      <div class="readiness-card">
+        <h3>📈 다음 경기 준비도 <span id="readiness-score">–</span></h3>
+        <div id="readiness-tips"></div>
+      </div>
+
+      <div class="history-card">
+        <h3>📊 최근 기록</h3>
+        <div id="history-list">분석 후 표시됩니다</div>
+        <button id="clear-history" style="display:none;">🗑️ 기록 삭제</button>
+      </div>
+
+      <div class="share-card">
+        <h3>👥 팀 공유</h3>
+        <button onclick="shareResult()" class="share-btn">📱 카톡 공유</button>
+        <div id="qr-container"></div>
+      </div>
+
+      <ins class="adsbygoogle" 
+           style="display:block; margin:2rem 1.5rem;" 
+           data-ad-client="ca-pub-9152530321662851" 
+           data-ad-slot="5555555555" 
+           data-ad-format="auto" 
+           data-full-width-responsive="true"></ins>
+    </section>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  <script src="app.js"></script>
 </body>
 </html>
