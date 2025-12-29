@@ -1,10 +1,10 @@
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:linear-gradient(135deg,#f5f7fa 0%,#c3cfe2 100%);padding:1rem;min-height:100vh;line-height:1.4}
 
-.container{max-width:600px;margin:0 auto;background:#fff;border-radius:24px;box-shadow:0 25px 50px rgba(0,0,0,.12);overflow:hidden;position:relative}
+.container{max-width:600px;margin:0 auto;background:#fff;border-radius:24px;box-shadow:0 25px 50px rgba(0,0,0,.12);overflow:hidden}
 
 /* 헤더 */
-.header{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;text-align:center;padding:2rem 1.5rem;position:sticky;top:0;z-index:10}
+.header{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;text-align:center;padding:2rem 1.5rem}
 .header h1{font-size:clamp(1.5rem,4vw,1.75rem);margin-bottom:.5rem;font-weight:800}
 .header p{opacity:.95;font-size:clamp(.9rem,3vw,1rem)}
 
@@ -33,17 +33,13 @@ select{width:100%;padding:1rem;font-size:1rem;border:2px solid #e5e7eb;border-ra
 /* 통증 체크박스 */
 .pain-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:.75rem}
 .pain-grid label{display:flex;align-items:center;gap:.5rem;padding:.8rem;border:2px solid #f3f4f6;border-radius:12px;cursor:pointer;font-size:.92rem;transition:all .2s}
-.pain-grid input{display:none}
-.pain-grid input:checked+span{font-weight:600;color:#667eea}
+.pain-grid input[type="checkbox"]{display:none}
+.pain-grid input:checked + span{font-weight:600;color:#667eea}
 .pain-grid label:hover{border-color:#e0e7ff}
 
-/* 제출 버튼 - 상단 고정 */
-.submit-btn-top{width:100%;padding:1.3rem;background:linear-gradient(135deg,#10b981,#059669);color:#fff;border:none;border-radius:16px;font-size:1.15rem;font-weight:700;cursor:pointer;margin:1rem 0;box-shadow:0 8px 25px rgba(16,185,129,.3);transition:all .2s;position:sticky;bottom:0;background:#fff;z-index:20}
+/* 제출 버튼 */
+.submit-btn-top{width:100%;padding:1.3rem;background:linear-gradient(135deg,#10b981,#059669);color:#fff;border:none;border-radius:16px;font-size:1.15rem;font-weight:700;cursor:pointer;margin:1rem 1.5rem 1rem;box-shadow:0 8px 25px rgba(16,185,129,.3);transition:all .2s;position:static}
 .submit-btn-top:hover{transform:translateY(-2px);box-shadow:0 12px 35px rgba(16,185,129,.4)}
-
-/* 광고 - 폼 밖으로 완전 분리 */
-.ads-top,.ads-bottom{position:relative;margin:1.5rem;max-width:100%;overflow:hidden;border-radius:12px}
-.ads-top{margin-top:1rem}
 
 /* 결과 섹션 */
 #result{display:none;animation:fadeInUp .45s ease-out;padding-bottom:3rem}
@@ -95,10 +91,4 @@ select{width:100%;padding:1rem;font-size:1rem;border:2px solid #e5e7eb;border-ra
   .timeline-item{flex-direction:column;gap:.5rem}
   .time{min-width:auto;font-size:.9rem}
   .pain-grid{grid-template-columns:repeat(2,1fr)}
-  .ads-top,.ads-bottom{margin:1rem 0}
-}
-
-/* 태블릿 */
-@media (max-width:768px) and (min-width:641px){
-  .stats-grid{grid-template-columns:repeat(3,1fr)}
 }
