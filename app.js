@@ -3,290 +3,232 @@ const SPORT_DATA = {
   football: { avg: 10.5, pro: 12.0, calPerKm: 110 }
 };
 
-const PAIN_NAMES_KR = {
-  calf: '종아리', shin: '정강이', hamstring: '햄스트링', knee: '무릎', 
-  ankle: '발목', groin: '사타구니', shoulder: '어깨', back: '허리', foot: '발바닥'
-};
-
-const PAIN_WEIGHTS = {
-  none: { load: 1.0, recovery: 1.0 },
-  calf: { load: 1.4, recovery: 0.6 }, shin: { load: 1.3, recovery: 0.7 },
-  hamstring: { load: 1.5, recovery: 0.5 }, knee: { load: 1.6, recovery: 0.4 },
-  ankle: { load: 1.2, recovery: 0.8 }, groin: { load: 1.3, recovery: 0.7 },
-  shoulder: { load: 1.1, recovery: 0.9 }, back: { load: 1.2, recovery: 0.8 },
-  foot: { load: 1.3, recovery: 0.7 }
-};
-
-const RECOVERY_PLANS_PRIORITY = ['hamstring','knee','calf','shin','ankle','groin','foot','back','shoulder','none'];
-
 const RECOVERY_PLANS = {
-  none: {now:'🧊 RICE(휴식+얼음+압박+거상) 20분',s1:'🍽️ 탄수+단백 1:4 (바나나+우유)',s2:'🧴 폼롤러 10분',s3:'💊 마그네슘 400mg+수면8시간',prep:'🚶 동적 스트레칭 5분'},
-  calf: {now:'🧊 종아리 RICE 25분(다리↑)',s1:'💊 마그네슘400mg+체리주스',s2:'🧴 폼롤러(3x30초)',s3:'🛌 수면8.5시간+다리높이',prep:'⤵ 앵클펌프3분'},
-  shin: {now:'🧊 정강이 얼음 20분',s1:'🩹 테이핑준비',s2:'🥛 칼슘1000mg+D2000IU',s3:'🦶 발목스트레칭',prep:'👟 쿠션깔창'},
-  hamstring: {now:'🧊 햄스트링 RICE 20분',s1:'🧘 햄스트링 스트레칭3세트',s2:'🍒 체리주스200ml',s3:'🛌 수면8시간',prep:'🏃 슬로우조깅5분'},
-  knee: {now:'🧊 무릎 RICE 25분',s1:'🦵 보호대착용',s2:'💊 글루코사민1500mg',s3:'🛌 수면',prep:'🚲 자전거5분'},
-  ankle: {now:'🧊 발목 RICE+압박',s1:'🩹 테이핑연습',s2:'🦶 밸런스3세트',s3:'🛌 수면',prep:'🧘 발목돌리기2분'}
-};
-
-const NUTRITION_CALCULATOR = {
-  high: (load,painCount)=>`🔥 고강도 ${load}점\n• 탄수화물 ${Math.round(7+load/200)}g/kg\n• BCAA 8g + 체리주스300ml\n• 마그네슘 500mg`,
-  medium: (load,painCount)=>`⚡ 중강도 ${load}점\n• 단백질 2.2g/kg\n• 체리주스200ml\n• 마그네슘 400mg`,
-  low: (load,painCount)=>`😌 보통 ${load}점\n• 단백질 1.8g/kg\n• 물 3.5L\n• 수면 8.5시간`
-};
-
-function getPainName(pain) {
-  return PAIN_NAMES_KR[pain] || pain || '정상';
-}
-
-function formatDate(timestamp) {
-  const date = new Date(timestamp);
-  const options = { year: 'numeric', month: 'short', day: 'numeric', weekday: 'short' };
-  return date.toLocaleDateString('ko-KR', options);
-}
-
-function calculateWeightedPain(pains) {
-  const validPains = pains.filter(p => p !== 'none');
-  
-  if (validPains.length === 0) {
-    return { weight: 1.0, recoveryFactor: 1.0, primary: 'none', count: 0, secondary: [], pains: [] };
+  none: {
+    now: '🧊 RICE(휴식+얼음+압박+거상) 20분',
+    s1: '🍽️ 탄수+단백 1:4 (바나나+우유)',
+    s2: '🧴 폼롤러 10분',
+    s3: '💊 마그네슘 400mg+수면8시간',
+    prep: '🚶 동적 스트레칭 5분'
+  },
+  calf: {
+    now: '🧊 종아리 RICE 25분(다리↑)',
+    s1: '💊 마그네슘400mg+체리주스',
+    s2: '🧴 폼롤러(3x30초)',
+    s3: '🛌 수면8.5시간+다리높이',
+    prep: '⤵ 앵클펌프3분'
+  },
+  shin: {
+    now: '🧊 정강이 얼음 20분',
+    s1: '🩹 테이핑준비',
+    s2: '🥛 칼슘1000mg+D2000IU',
+    s3: '🦶 발목스트레칭',
+    prep: '👟 쿠션깔창'
+  },
+  hamstring: {
+    now: '🧊 햄스트링 RICE 20분',
+    s1: '🧘 햄스트링 스트레칭3세트',
+    s2: '🍒 체리주스200ml',
+    s3: '🛌 수면8시간',
+    prep: '🏃 슬로우조깅5분'
+  },
+  knee: {
+    now: '🧊 무릎 RICE 25분',
+    s1: '🦵 보호대착용',
+    s2: '💊 글루코사민1500mg',
+    s3: '🛌 수면',
+    prep: '🚲 자전거5분'
+  },
+  ankle: {
+    now: '🧊 발목 RICE+압박',
+    s1: '🩹 테이핑연습',
+    s2: '🦶 밸런스3세트',
+    s3: '🛌 수면',
+    prep: '🧘 발목돌리기2분'
   }
-  
-  const sortedPains = validPains.sort((a,b)=>RECOVERY_PLANS_PRIORITY.indexOf(a)-RECOVERY_PLANS_PRIORITY.indexOf(b));
-  const primary = sortedPains[0];
-  
-  let totalLoad = 1.0, totalRecovery = 1.0;
-  sortedPains.forEach(pain => {
-    totalLoad *= PAIN_WEIGHTS[pain]?.load || 1.1;
-    totalRecovery *= PAIN_WEIGHTS[pain]?.recovery || 0.9;
-  });
-  
-  return {
-    weight: totalLoad,
-    recoveryFactor: totalRecovery,
-    primary: primary || 'none',
-    count: sortedPains.length,
-    secondary: sortedPains.slice(1),
-    pains: sortedPains
-  };
-}
+};
 
-function calculateReadiness(baseLoad, painAnalysis, baseRPE, duration) {
-  let baseReadiness = Math.max(40, 100 - (baseLoad / 15));
-  const painPenalty = (1 - painAnalysis.recoveryFactor) * 40;
-  const rpeBonus = baseRPE <= 6 ? 10 : baseRPE >= 9 ? -15 : 0;
-  const durationPenalty = duration > 100 ? -10 : 0;
-  
-  const finalReadiness = Math.max(30, Math.round(baseReadiness - painPenalty + rpeBonus + durationPenalty));
-  
-  return {
-    score: finalReadiness,
-    factors: { base: Math.round(baseReadiness), pain: Math.round(painPenalty), rpe: rpeBonus, duration: durationPenalty }
-  };
-}
+const NUTRITION_GUIDE = {
+  high: '🚨 고강도: 탄수8g/kg+BCAA5g',
+  medium: '✅ 중강도: 단백2g/kg+체리주스',
+  low: '😌 보통: 마그네슘400mg+물3L'
+};
 
-function init() {
-  setupPainCheckboxes();
-  
+async function init() {
+  // URL 파라미터 처리
   const urlParams = new URLSearchParams(window.location.search);
   if (urlParams.get('prematch')) {
     document.getElementById('page-title').textContent = '⚽ 경기 전 체크';
     document.getElementById('subtitle').textContent = '30초만에 준비도 확인';
   }
-  
-  document.querySelectorAll('.watch-btn, .sport-btn').forEach(b => b.addEventListener('click', handleButtonClick));
+
+  // 이벤트 바인딩
+  document.querySelectorAll('.watch-btn').forEach(b => b.addEventListener('click', onWatchClick));
+  document.querySelectorAll('.sport-btn').forEach(b => b.addEventListener('click', onSportClick));
   
   const rpe = document.getElementById('rpe');
-  if (rpe) rpe.addEventListener('input', () => document.getElementById('rpe-value').textContent = rpe.value);
-  
-  const form = document.getElementById('match-form');
-  if (form) form.addEventListener('submit', onSubmit);
+  if (rpe) rpe.addEventListener('input', () => {
+    document.getElementById('rpe-value').textContent = rpe.value;
+  });
+
+  document.getElementById('match-form').addEventListener('submit', onSubmit);
   
   const clearBtn = document.getElementById('clear-history');
-  if (clearBtn) clearBtn.addEventListener('click', clearHistory);
-  
+  if (clearBtn) clearBtn.addEventListener('click', () => {
+    localStorage.removeItem('matchHistory');
+    showHistory();
+  });
+
   showHistory();
 }
 
-function setupPainCheckboxes() {
-  const painCheckboxes = document.querySelectorAll('input[name="pain"]');
-  painCheckboxes.forEach(checkbox => {
-    checkbox.addEventListener('change', function() {
-      const noneCheckbox = document.querySelector('input[name="pain"][value="none"]');
-      const hasOtherPain = Array.from(painCheckboxes).some(cb => cb !== noneCheckbox && cb.checked);
-      
-      if (hasOtherPain && this.value === 'none') {
-        this.checked = false;
-      } else if (this.checked && this.value === 'none') {
-        painCheckboxes.forEach(cb => {
-          if (cb.value !== 'none') cb.checked = false;
-        });
-      }
-    });
-  });
-}
-
-function handleButtonClick(e) {
-  const buttons = e.target.parentNode.querySelectorAll('button');
-  buttons.forEach(b => b.classList.remove('active'));
-  e.target.classList.add('active');
-  
-  if (e.target.dataset.watch) onWatchClick(e);
-}
-
 function onWatchClick(e) {
+  document.querySelectorAll('.watch-btn').forEach(b => b.classList.remove('active'));
+  e.target.classList.add('active');
   const hasWatch = e.target.dataset.watch === 'yes';
   document.getElementById('distance-group').style.display = hasWatch ? 'block' : 'none';
   document.getElementById('rpe-group').style.display = hasWatch ? 'none' : 'block';
 }
 
-function onSubmit(e) {
+function onSportClick(e) {
+  document.querySelectorAll('.sport-btn').forEach(b => b.classList.remove('active'));
+  e.target.classList.add('active');
+}
+
+async function onSubmit(e) {
   e.preventDefault();
   
   try {
+    // 데이터 수집
     const hasWatch = document.querySelector('.watch-btn.active').dataset.watch === 'yes';
     const sportKey = document.querySelector('.sport-btn.active').dataset.sport;
     const duration = parseInt(document.getElementById('duration').value, 10);
-    const allPains = Array.from(document.querySelectorAll('input[name="pain"]:checked')).map(cb => cb.value);
+    const pains = Array.from(document.querySelectorAll('input[name="pain"]:checked'))
+      .map(cb => cb.value).filter(v => v !== 'none');
     
     const sport = SPORT_DATA[sportKey];
-    let baseDistance, baseRPE, baseLoad;
-    
+    let distance, rpe, load;
+
     if (hasWatch) {
-      baseDistance = parseFloat(document.getElementById('distance').value || sport.avg);
-      baseRPE = Math.min(10, Math.max(2, (baseDistance / sport.avg) * 6));
-      baseLoad = Math.round(duration * baseRPE);
+      distance = parseFloat(document.getElementById('distance').value || sport.avg);
+      rpe = Math.min(10, Math.max(2, (distance / sport.avg) * 6));
+      load = Math.round(duration * rpe);
     } else {
-      baseRPE = parseInt(document.getElementById('rpe').value || '6', 10);
-      baseLoad = Math.round(duration * baseRPE);
-      baseDistance = +(sport.avg * (baseRPE / 6)).toFixed(1);
+      rpe = parseInt(document.getElementById('rpe').value || '6', 10);
+      load = Math.round(duration * rpe);
+      distance = +(sport.avg * (rpe / 6)).toFixed(1);
     }
-    
-    const painAnalysis = calculateWeightedPain(allPains);
-    const finalLoad = Math.round(baseLoad * painAnalysis.weight);
-    const readinessData = calculateReadiness(baseLoad, painAnalysis, baseRPE, duration);
-    
+
+    // 퍼포먼스 등급 계산
     let rank;
-    const adjustedDistance = baseDistance * painAnalysis.recoveryFactor;
-    if (adjustedDistance < sport.avg * 0.8) rank = '하위 40%';
-    else if (adjustedDistance < sport.avg * 1.1) rank = '중위 50%';
-    else if (adjustedDistance < sport.pro) rank = '상위 25%';
+    if (distance < sport.avg * 0.8) rank = '하위 40%';
+    else if (distance < sport.avg * 1.1) rank = '중위 50%';
+    else if (distance < sport.pro) rank = '상위 25%';
     else rank = '프로급 TOP 10%';
+
+    const calories = Math.round(distance * sport.calPerKm);
+    const intensity = load >= 700 ? 'high' : load >= 500 ? 'medium' : 'low';
+
+    // 결과 업데이트
+    document.getElementById('sport-badge').textContent = sportKey === 'futsal' ? '🏠 풋살' : '🌳 축구';
+    document.getElementById('distance-highlight').textContent = `${distance.toFixed(1)}km (${rank})`;
+    document.getElementById('perf-rank').textContent = rank;
+    document.getElementById('calories').textContent = calories;
+    document.getElementById('load-score').textContent = load;
+    document.getElementById('benchmark-note').innerHTML = `기준: ${sport.avg.toFixed(1)}km(평균) ~ ${sport.pro.toFixed(1)}km(프로)`;
+
+    const mainPain = pains[0] || 'none';
+    const plan = RECOVERY_PLANS[mainPain] || RECOVERY_PLANS.none;
+    document.getElementById('now-action').textContent = plan.now;
+    document.getElementById('step1-action').textContent = plan.s1;
+    document.getElementById('step2-action').textContent = plan.s2;
+    document.getElementById('step3-action').textContent = plan.s3;
+    document.getElementById('prep-action').textContent = plan.prep;
+
+    document.getElementById('nutrition-guide').textContent = NUTRITION_GUIDE[intensity];
     
-    const calories = Math.round(baseDistance * sport.calPerKm * painAnalysis.weight);
-    const intensity = finalLoad >= 700 ? 'high' : finalLoad >= 500 ? 'medium' : 'low';
-    
-    updateUI(sportKey, baseDistance, rank, calories, finalLoad, sport, intensity, painAnalysis, readinessData, baseRPE);
-    
-    saveHistory({
-      date: Date.now(),
-      distance: baseDistance.toFixed(1),
-      pains: painAnalysis.pains.length ? painAnalysis.pains.map(getPainName).join('+') : '없음',
-      rank,
-      load: finalLoad,
-      readiness: readinessData.score
-    });
-    
+    const readiness = Math.max(60, 100 - (load / 10));
+    document.getElementById('readiness-score').textContent = `${readiness}%`;
+    document.getElementById('readiness-tips').innerHTML = 
+      `${readiness >= 85 ? '✅ 최상' : readiness >= 70 ? '✅ 양호' : '⚠️ 주의'} - ${load >= 700 ? '고강도 회복 집중' : '보통 회복'} 필요`;
+
+    // 히스토리 저장 및 표시
+    saveHistory({ date: new Date().toLocaleDateString('ko-KR'), distance: distance.toFixed(1), rank, load });
     showHistory();
-    if (typeof QRCode !== 'undefined') {
-      QRCode.toCanvas(document.getElementById('qr-container'), window.location.href, { width: 150 });
-    }
-    
+
+    // QR 코드 생성 (오류 방지)
+    await generateQRCode();
+
+    // 결과 표시
     document.getElementById('result').style.display = 'block';
     document.getElementById('result').scrollIntoView({ behavior: 'smooth' });
-    
+
   } catch (error) {
-    console.error('분석 에러:', error);
-    alert('분석 중 오류가 발생했습니다. 페이지를 새로고침해주세요.');
+    console.error('분석 오류:', error);
+    alert('분석 중 오류가 발생했습니다. 콘솔을 확인하세요.');
   }
 }
 
-function updateUI(sportKey, baseDistance, rank, calories, finalLoad, sport, intensity, painAnalysis, readinessData, baseRPE) {
-  document.getElementById('sport-badge').textContent = sportKey === 'futsal' ? '🏠 풋살' : '🌳 축구';
-  document.getElementById('distance-highlight').textContent = `${baseDistance.toFixed(1)}km (${rank})`;
-  document.getElementById('perf-rank').textContent = rank;
-  document.getElementById('calories').textContent = calories.toLocaleString();
-  document.getElementById('load-score').textContent = `${finalLoad} (${painAnalysis.count || 0}부위)`;
-  
-  const primaryName = getPainName(painAnalysis.primary);
-  document.getElementById('benchmark-note').innerHTML = 
-    `기준: ${sport.avg.toFixed(1)}km(평균) ~ ${sport.pro.toFixed(1)}km(프로)<br>` +
-    `<small>${primaryName} ${painAnalysis.secondary.length ? `+${painAnalysis.secondary.length}` : ''} → 부하 ${Math.round(painAnalysis.weight*100)}%↑</small>`;
-  
-  const plan = RECOVERY_PLANS[painAnalysis.primary] || RECOVERY_PLANS.none;
-  ['now','step1','step2','step3','prep'].forEach(key => {
-    const el = document.getElementById(`${key}-action`);
-    if (el) {
-      el.innerHTML = plan[key] + (key === 'now' && painAnalysis.secondary.length ? 
-        `<br><small>추가: ${painAnalysis.secondary.map(getPainName).join(', ')}</small>` : '');
-    }
-  });
-  
-  document.getElementById('nutrition-guide').innerHTML = NUTRITION_CALCULATOR[intensity](finalLoad, painAnalysis.count);
-  
-  document.getElementById('readiness-score').textContent = `${readinessData.score}%`;
-  document.getElementById('readiness-tips').innerHTML = 
-    `<strong>${readinessData.score >= 85 ? '✅ 최상' : readinessData.score >= 70 ? '✅ 양호' : '⚠️ 주의'}</strong><br>` +
-    `${primaryName} 회복 ${Math.round(painAnalysis.recoveryFactor*100)}% | 운동강도 ${Math.round((100-readinessData.factors.base))}%↓<br>` +
-    `<small>RPE${baseRPE} ${readinessData.factors.rpe !== 0 ? (readinessData.factors.rpe > 0 ? '+' : '') + readinessData.factors.rpe + '%' : ''} | ${duration}분 ${readinessData.factors.duration !== 0 ? readinessData.factors.duration + '%' : ''}</small>`;
-}
-
-function clearHistory() {
-  localStorage.removeItem('matchHistory');
-  showHistory();
-}
-
 function saveHistory(data) {
-  const history = JSON.parse(localStorage.getItem('matchHistory') || '[]');
-  history.unshift(data);
-  localStorage.setItem('matchHistory', JSON.stringify(history.slice(0, 10)));
+  try {
+    let history = JSON.parse(localStorage.getItem('matchHistory') || '[]');
+    history.unshift(data);
+    localStorage.setItem('matchHistory', JSON.stringify(history.slice(0, 10)));
+  } catch (e) {
+    console.warn('localStorage 저장 실패:', e);
+  }
 }
 
 function showHistory() {
-  const history = JSON.parse(localStorage.getItem('matchHistory') || '[]');
-  const list = document.getElementById('history-list');
-  if (!list) return;
+  try {
+    const history = JSON.parse(localStorage.getItem('matchHistory') || '[]');
+    const list = document.getElementById('history-list');
+    if (history.length) {
+      list.innerHTML = history.map(h => 
+        `<div class="history-item">
+          <span>${h.date}</span>
+          <span>${h.distance}km ${h.rank}</span>
+          <span>${h.load}</span>
+        </div>`
+      ).join('');
+      document.getElementById('clear-history').style.display = 'inline-block';
+    }
+  } catch (e) {
+    console.warn('히스토리 로드 실패:', e);
+    document.getElementById('history-list').textContent = '기록 로드 실패';
+  }
+}
+
+async function generateQRCode() {
+  const qrContainer = document.getElementById('qr-container');
+  if (!qrContainer) {
+    console.warn('QR 컨테이너 없음');
+    return;
+  }
   
-  if (history.length) {
-    list.innerHTML = history.map(h => {
-      const painDisplay = h.pains === '없음' ? '없음' : h.pains.split('+')[0];
-      const painName = getPainName(painDisplay);
-      return `
-        <div class="history-item">
-          <span>${formatDate(h.date)}</span>
-          <span>${h.distance}km ${painName}</span>
-          <span>${h.rank} ${h.load}</span>
-        </div>
-      `;
-    }).join('');
-    const clearBtn = document.getElementById('clear-history');
-    if (clearBtn) clearBtn.style.display = 'block';
-  } else {
-    list.innerHTML = '📭 분석 기록이 없습니다';
-    const clearBtn = document.getElementById('clear-history');
-    if (clearBtn) clearBtn.style.display = 'none';
+  try {
+    qrContainer.innerHTML = '<div>QR 생성 중...</div>';
+    await QRCode.toCanvas(qrContainer, window.location.href, { width: 150 });
+    qrContainer.title = '페이지 QR 코드';
+  } catch (error) {
+    console.error('QR 생성 실패:', error);
+    qrContainer.innerHTML = '<small>QR 생성 실패</small>';
   }
 }
 
 function shareResult() {
-  const distanceEl = document.getElementById('distance-highlight');
-  const rankEl = document.getElementById('perf-rank');
-  const readinessEl = document.getElementById('readiness-score');
-  const text = `⚽ 풋살/축구 컨디션 분석 완료!
-거리: ${distanceEl ? distanceEl.textContent : '–'}
-등급: ${rankEl ? rankEl.textContent : '–'}
-준비도: ${readinessEl ? readinessEl.textContent : '–'}
-회복 플랜 👇
-${window.location.href}`;
+  const text = `⚽ 오늘 경기 분석\n거리: ${document.getElementById('distance-highlight').textContent}\n등급: ${document.getElementById('perf-rank').textContent}\n회복 플랜 👇\n${window.location.href}`;
   
   if (navigator.share) {
-    navigator.share({ title: '풋살/축구 컨디션 분석', text, url: window.location.href });
+    navigator.share({ title: '풋살 컨디션', text, url: window.location.href });
   } else {
     navigator.clipboard.writeText(text).then(() => {
-      alert('📋 카톡에 붙여넣기 복사됨!');
+      alert('클립보드에 복사!');
     }).catch(() => {
-      alert('공유 텍스트가 복사되었습니다!');
+      alert('공유 실패. 링크를 복사하세요: ' + window.location.href);
     });
   }
 }
 
+// 초기화
 document.addEventListener('DOMContentLoaded', init);
