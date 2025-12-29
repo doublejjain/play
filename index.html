@@ -59,7 +59,7 @@
       </div>
 
       <div class="input-group">
-        <label>🩹 통증 부위</label>
+        <label>🩹 통증 부위 <span id="pain-count" style="color:#10b981;font-weight:700;font-size:.9rem">(0개)</span></label>
         <div class="pain-grid">
           <label><input type="checkbox" name="pain" value="calf"/><span>종아리</span></label>
           <label><input type="checkbox" name="pain" value="shin"/><span>정강이</span></label>
@@ -147,12 +147,10 @@
       <div class="share-card">
         <h3>👥 팀 공유</h3>
         <button onclick="shareResult()" class="share-btn">📱 카톡 공유</button>
-        <div id="qr-container"></div>
       </div>
     </section>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
   <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
   <script src="app.js"></script>
 </body>
