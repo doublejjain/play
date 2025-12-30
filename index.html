@@ -6,6 +6,8 @@
   <title>⚽ 풋살/축구 컨디션 & 회복 분석기</title>
   <link rel="stylesheet" href="style.css"/>
   <script src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9152530321662851" crossorigin="anonymous"></script>
+
+  <script type="module" src="https://unpkg.com/@google/a2ui@latest/dist/index.js"></script>
 </head>
 <body>
   <div class="container">
@@ -14,6 +16,9 @@
       <p id="subtitle">과학적 기준 · 개인 기록 · 최적 회복 플랜</p>
     </header>
 
+    <div id="ai-coach" style="max-width:600px;margin:20px auto;padding:20px;border:1px solid #ddd;border-radius:10px;">
+  <h2>🔥 AI 풋살 코치</h2>
+</div>
     <form id="match-form">
       <div class="input-group">
         <label>⌚ 워치 착용</label>
@@ -156,8 +161,19 @@
       </div>
     </section>
   </div>
-
+<script>
+const coachUI = {
+  title: "컨디션 체크", 
+  elements: [
+    {type:"slider",label:"피로도",name:"fatigue",min:1,max:10},
+    {type:"checkboxes",label:"아픈부위",name:"pain",options:["종아리","허벅지"]},
+    {type:"button",label:"💪 코칭받기",action:"analyze"}
+  ]
+};
+A2UIRenderer.render(document.getElementById('ai-coach'), coachUI);
+</script>
   <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
   <script src="app.js"></script>
+  
 </body>
 </html>
