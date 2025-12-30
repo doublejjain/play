@@ -37,7 +37,7 @@
           <input type="number" id="distance" placeholder="3.8" step="0.1" min="1" max="20"/>
           <span>km</span>
         </div>
-        <small class="hint">평균 활동량: 풋살 3.5~5km / 축구 9~13km [FIFA 자료]</small>
+        <small class="hint">평균: 풋살 3.5~5km / 축구 9~13km</small>
       </div>
 
       <div class="input-group" id="rpe-group" style="display:none;">
@@ -50,16 +50,15 @@
       </div>
 
       <div class="input-group">
-        <label for="duration">⏱️ 경기 시간</label>
+        <label for="duration">⏱️ 경기 상세 시간</label>
         <select id="duration">
-          <option value="60">60분</option>
-          <option value="90" selected>90분</option>
-          <option value="120">120분 (연장전)</option>
+          <!-- JS에서 종목에 따라 동적으로 생성됨 -->
         </select>
+        <small class="hint" id="duration-hint">종목을 선택하면 표준 시간이 표시됩니다.</small>
       </div>
 
       <div class="input-group">
-        <label>🩹 현재 통증/불편 부위 <span id="pain-count" style="color:#10b981;font-weight:700;">(0개)</span></label>
+        <label>🩹 통증 부위 <span id="pain-count" style="color:#10b981;font-weight:700;">(0개)</span></label>
         <div class="pain-grid">
           <label><input type="checkbox" name="pain" value="calf"/><span>종아리</span></label>
           <label><input type="checkbox" name="pain" value="shin"/><span>정강이</span></label>
@@ -67,6 +66,7 @@
           <label><input type="checkbox" name="pain" value="knee"/><span>무릎</span></label>
           <label><input type="checkbox" name="pain" value="ankle"/><span>발목</span></label>
           <label><input type="checkbox" name="pain" value="groin"/><span>사타구니</span></label>
+          <label><input type="checkbox" name="pain" value="shoulder"/><span>어깨</span></label>
           <label><input type="checkbox" name="pain" value="back"/><span>허리</span></label>
           <label><input type="checkbox" name="pain" value="foot"/><span>발바닥</span></label>
           <label><input type="checkbox" name="pain" value="none"/><span>통증 없음</span></label>
@@ -97,7 +97,7 @@
           </div>
           <div class="stat">
             <div class="stat-num red" id="load-score">–</div>
-            <div class="stat-label">신체 부하 지수</div>
+            <div class="stat-label">부하 지수</div>
           </div>
         </div>
         <div class="benchmark" id="benchmark-note"></div>
@@ -105,32 +105,17 @@
 
       <div class="recovery-card">
         <h2>🩹 48시간 과학적 회복 프로토콜</h2>
-        <p class="recovery-note">근거 기반 재활 및 영양 전략입니다. 통증이 심해질 경우 반드시 전문가와 상담하세요.</p>
-        <div class="timeline-item">
-          <div class="time">🚨 즉시</div>
-          <div class="action" id="now-action"></div>
-        </div>
-        <div class="timeline-item">
-          <div class="time">⏰ 1시간 후</div>
-          <div class="action" id="step1-action"></div>
-        </div>
-        <div class="timeline-item">
-          <div class="time">🌙 저녁</div>
-          <div class="action" id="step2-action"></div>
-        </div>
-        <div class="timeline-item">
-          <div class="time">🛌 취침 전</div>
-          <div class="action" id="step3-action"></div>
-        </div>
-        <div class="timeline-item">
-          <div class="time">⚽ 경기 전</div>
-          <div class="action" id="prep-action"></div>
-        </div>
+        <p class="recovery-note">근거 기반 가이드라인입니다. 통증이 심해질 경우 전문가와 상담하세요.</p>
+        <div class="timeline-item"><div class="time">🚨 즉시</div><div class="action" id="now-action"></div></div>
+        <div class="timeline-item"><div class="time">⏰ 1시간 후</div><div class="action" id="step1-action"></div></div>
+        <div class="timeline-item"><div class="time">🌙 저녁</div><div class="action" id="step2-action"></div></div>
+        <div class="timeline-item"><div class="time">🛌 취침 전</div><div class="action" id="step3-action"></div></div>
+        <div class="timeline-item"><div class="time">⚽ 경기 전</div><div class="action" id="prep-action"></div></div>
       </div>
 
       <div class="nutrition-card">
-        <h3>🍎 영양학적 보충 전략</h3>
-        <div id="nutrition-guide"></div>
+        <h3>🍎 영양학적 보충 전략 (파워젤 포함)</h3>
+        <div id="nutrition-guide" style="white-space: pre-wrap;"></div>
       </div>
 
       <div class="readiness-card">
@@ -141,7 +126,7 @@
       <div class="history-card">
         <h3>📊 나의 경기 히스토리</h3>
         <div id="history-list">기록 데이터가 없습니다.</div>
-        <button id="clear-history" style="display:none;">히스토리 삭제</button>
+        <button id="clear-history" style="display:none; width:100%; padding:0.8rem; background:#ef4444; color:#fff; border:none; border-radius:12px; font-weight:700; cursor:pointer; margin-top:1rem;">히스토리 삭제</button>
       </div>
 
       <div class="share-card">
