@@ -2,26 +2,21 @@
 <html lang="ko">
 <head>
   <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
   <title>⚽ 풋살/축구 컨디션 & 회복 분석기</title>
   <link rel="stylesheet" href="style.css"/>
   <script src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9152530321662851" crossorigin="anonymous"></script>
-
-  <script type="module" src="https://unpkg.com/@google/a2ui@latest/dist/index.js"></script>
 </head>
 <body>
   <div class="container">
     <header class="header">
       <h1 id="page-title">⚽ 풋살/축구 컨디션 분석</h1>
-      <p id="subtitle">과학적 기준 · 개인 기록 · 최적 회복 플랜</p>
+      <p id="subtitle">스포츠 과학 기반 · 개인 기록 · 정밀 회복 솔루션</p>
     </header>
 
-    <div id="ai-coach" style="max-width:600px;margin:20px auto;padding:20px;border:1px solid #ddd;border-radius:10px;">
-  <h2>🔥 AI 풋살 코치</h2>
-</div>
     <form id="match-form">
       <div class="input-group">
-        <label>⌚ 워치 착용</label>
+        <label>⌚ 워치 착용 여부</label>
         <div class="watch-buttons">
           <button type="button" class="watch-btn active" data-watch="yes">✅ 착용</button>
           <button type="button" class="watch-btn" data-watch="no">❌ 미착용</button>
@@ -29,7 +24,7 @@
       </div>
 
       <div class="input-group">
-        <label>⚽ 운동 종류</label>
+        <label>⚽ 운동 종목</label>
         <div class="sport-buttons">
           <button type="button" class="sport-btn active" data-sport="futsal">🏠 풋살</button>
           <button type="button" class="sport-btn" data-sport="football">🌳 축구</button>
@@ -37,21 +32,21 @@
       </div>
 
       <div class="input-group large" id="distance-group">
-        <label for="distance">📏 워치 거리</label>
+        <label for="distance">📏 경기 활동 거리</label>
         <div class="large-row">
-          <input type="number" id="distance" placeholder="3.8" step="0.1" min="1" max="15"/>
+          <input type="number" id="distance" placeholder="3.8" step="0.1" min="1" max="20"/>
           <span>km</span>
         </div>
-        <small class="hint">풋살 3.5~5km · 축구 9~13km 기준</small>
+        <small class="hint">평균 활동량: 풋살 3.5~5km / 축구 9~13km [FIFA 자료]</small>
       </div>
 
       <div class="input-group" id="rpe-group" style="display:none;">
-        <label for="rpe">💪 RPE 체감 강도 (0–10)</label>
+        <label for="rpe">💪 RPE 체감 운동 강도 (0–10)</label>
         <div class="rpe-row">
           <input type="range" id="rpe" min="0" max="10" value="7"/>
           <span id="rpe-value">7</span>
         </div>
-        <small class="hint">0=쉬움 · 5=보통 · 8+=고강도</small>
+        <small class="hint">0=안정 · 5=보통 · 8+=매우 힘듦</small>
       </div>
 
       <div class="input-group">
@@ -59,12 +54,12 @@
         <select id="duration">
           <option value="60">60분</option>
           <option value="90" selected>90분</option>
-          <option value="120">2시간(연장전)</option>
+          <option value="120">120분 (연장전)</option>
         </select>
       </div>
 
       <div class="input-group">
-        <label>🩹 통증 부위 <span id="pain-count" style="color:#10b981;font-weight:700;font-size:.9rem">(0개)</span></label>
+        <label>🩹 현재 통증/불편 부위 <span id="pain-count" style="color:#10b981;font-weight:700;">(0개)</span></label>
         <div class="pain-grid">
           <label><input type="checkbox" name="pain" value="calf"/><span>종아리</span></label>
           <label><input type="checkbox" name="pain" value="shin"/><span>정강이</span></label>
@@ -72,22 +67,16 @@
           <label><input type="checkbox" name="pain" value="knee"/><span>무릎</span></label>
           <label><input type="checkbox" name="pain" value="ankle"/><span>발목</span></label>
           <label><input type="checkbox" name="pain" value="groin"/><span>사타구니</span></label>
-          <label><input type="checkbox" name="pain" value="shoulder"/><span>어깨</span></label>
           <label><input type="checkbox" name="pain" value="back"/><span>허리</span></label>
           <label><input type="checkbox" name="pain" value="foot"/><span>발바닥</span></label>
-          <label><input type="checkbox" name="pain" value="none"/><span>없음</span></label>
+          <label><input type="checkbox" name="pain" value="none"/><span>통증 없음</span></label>
         </div>
       </div>
 
-      <button type="submit" class="submit-btn-top">📊 분석 & 회복 플랜</button>
+      <button type="submit" class="submit-btn-top">📊 데이터 정밀 분석 시작</button>
     </form>
 
-    <ins class="adsbygoogle" 
-         style="display:block;margin:2rem 1.5rem;" 
-         data-ad-client="ca-pub-9152530321662851" 
-         data-ad-slot="5555555555" 
-         data-ad-format="auto" 
-         data-full-width-responsive="true"></ins>
+    <ins class="adsbygoogle" style="display:block;margin:1rem 1.5rem;" data-ad-client="ca-pub-9152530321662851" data-ad-slot="5555555555" data-ad-format="auto" data-full-width-responsive="true"></ins>
 
     <section id="result" style="display:none;">
       <div class="sport-info">
@@ -96,29 +85,29 @@
       </div>
 
       <div class="performance-card">
-        <h2>📊 오늘 퍼포먼스</h2>
+        <h2>📊 신체 데이터 리포트</h2>
         <div class="stats-grid">
           <div class="stat">
             <div class="stat-num green" id="perf-rank">–</div>
-            <div class="stat-label">등급</div>
+            <div class="stat-label">활동 등급</div>
           </div>
           <div class="stat">
             <div class="stat-num orange" id="calories">–</div>
-            <div class="stat-label">칼로리</div>
+            <div class="stat-label">소모 칼로리</div>
           </div>
           <div class="stat">
             <div class="stat-num red" id="load-score">–</div>
-            <div class="stat-label">부하</div>
+            <div class="stat-label">신체 부하 지수</div>
           </div>
         </div>
         <div class="benchmark" id="benchmark-note"></div>
       </div>
 
       <div class="recovery-card">
-        <h2>🩹 48시간 회복 플랜</h2>
-        <p class="recovery-note">경기 후 2일 동안 해야 할 최소한의 회복 루틴입니다. 통증이 심하면 무조건 병원 진료가 우선입니다.</p>
+        <h2>🩹 48시간 과학적 회복 프로토콜</h2>
+        <p class="recovery-note">근거 기반 재활 및 영양 전략입니다. 통증이 심해질 경우 반드시 전문가와 상담하세요.</p>
         <div class="timeline-item">
-          <div class="time">🚨 지금</div>
+          <div class="time">🚨 즉시</div>
           <div class="action" id="now-action"></div>
         </div>
         <div class="timeline-item">
@@ -134,46 +123,34 @@
           <div class="action" id="step3-action"></div>
         </div>
         <div class="timeline-item">
-          <div class="time">⚽ 다음 경기</div>
+          <div class="time">⚽ 경기 전</div>
           <div class="action" id="prep-action"></div>
         </div>
       </div>
 
       <div class="nutrition-card">
-        <h3>🍎 영양 가이드</h3>
+        <h3>🍎 영양학적 보충 전략</h3>
         <div id="nutrition-guide"></div>
       </div>
 
       <div class="readiness-card">
-        <h3>📈 다음 경기 준비도 <span id="readiness-score">–</span></h3>
+        <h3>📈 컨디션 준비도 지수 <span id="readiness-score">–</span></h3>
         <div id="readiness-tips"></div>
       </div>
 
       <div class="history-card">
-        <h3>📊 최근 기록</h3>
-        <div id="history-list">분석 후 표시됩니다</div>
-        <button id="clear-history" style="display:none;">기록 삭제</button>
+        <h3>📊 나의 경기 히스토리</h3>
+        <div id="history-list">기록 데이터가 없습니다.</div>
+        <button id="clear-history" style="display:none;">히스토리 삭제</button>
       </div>
 
       <div class="share-card">
-        <h3>👥 팀 공유</h3>
-        <button onclick="shareResult()" class="share-btn">📱 카톡 공유</button>
+        <h3>👥 팀원과 공유</h3>
+        <button onclick="shareResult()" class="share-btn">📱 카카오톡으로 전송</button>
       </div>
     </section>
   </div>
-<script>
-const coachUI = {
-  title: "컨디션 체크", 
-  elements: [
-    {type:"slider",label:"피로도",name:"fatigue",min:1,max:10},
-    {type:"checkboxes",label:"아픈부위",name:"pain",options:["종아리","허벅지"]},
-    {type:"button",label:"💪 코칭받기",action:"analyze"}
-  ]
-};
-A2UIRenderer.render(document.getElementById('ai-coach'), coachUI);
-</script>
   <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
   <script src="app.js"></script>
-  
 </body>
 </html>
