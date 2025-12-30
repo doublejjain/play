@@ -48,11 +48,21 @@
       </div>
 
       <div class="input-group">
-        <label for="duration">⏱️ 경기 상세 시간</label>
-        <select id="duration" style="display:block; width:100%; height:50px; padding:10px; font-size:16px;">
-          <!-- JS에서 동적 생성 -->
-        </select>
-      </div>
+  <label for="duration">⏱️ 경기 상세 시간</label>
+  <select id="duration" style="display:block; width:100%; height:55px; padding:10px; font-size:16px; border:2px solid #e2e8f0; border-radius:12px;">
+    <optgroup label="🏠 풋살" id="futsal-options">
+      <option value="60">15분 x 4쿼터 (60분)</option>
+      <option value="90">15분 x 6쿼터 (90분)</option>
+      <option value="120">20분 x 6쿼터 (120분)</option>
+    </optgroup>
+    <optgroup label="🌳 축구" id="football-options" style="display:none;">
+      <option value="90">45분 x 2쿼터 (90분)</option>
+      <option value="100">25분 x 4쿼터 (100분)</option>
+      <option value="150">25분 x 6쿼터 (150분)</option>
+    </optgroup>
+  </select>
+</div>
+
 
       <div class="input-group">
         <label>🩹 통증 부위 <span id="pain-count">(0개)</span></label>
