@@ -10,8 +10,8 @@
 <body>
   <div class="container">
     <header class="header">
-      <h1 id="page-title">⚽ 풋살/축구 컨디션 분석</h1>
-      <p id="subtitle">스포츠 과학 기반 · 개인 기록 · 정밀 회복 솔루션</p>
+      <h1>⚽ 풋살/축구 컨디션 분석</h1>
+      <p>스포츠 과학 기반 · 개인 기록 · 정밀 회복 솔루션</p>
     </header>
 
     <form id="match-form">
@@ -49,7 +49,7 @@
 
       <div class="input-group">
         <label for="duration">⏱️ 경기 상세 시간</label>
-        <select id="duration">
+        <select id="duration" style="display:block; width:100%; height:50px; padding:10px; font-size:16px;">
           <!-- JS에서 동적 생성 -->
         </select>
       </div>
@@ -94,12 +94,13 @@
       </div>
 
       <div class="nutrition-card">
-        <h3>🍎 영양 보충 전략 (파워젤)</h3>
+        <h3>🍎 영양 및 파워젤 전략</h3>
         <div id="nutrition-guide" style="white-space: pre-wrap;"></div>
       </div>
 
       <div class="readiness-card">
         <h3>📈 컨디션 준비도 지수 <span id="readiness-score">–</span></h3>
+        <div id="readiness-tips"></div>
       </div>
 
       <div class="history-card">
