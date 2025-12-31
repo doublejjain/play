@@ -1,1 +1,167 @@
 
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+  <title>⚽ 풋살/축구 컨디션 분석</title>
+  <link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+<div class="container">
+  <header class="header">
+    <h1>⚽ 풋살/축구 컨디션 분석</h1>
+    <p>스포츠과학 + 재활 + 영양학 개인 리포트</p>
+  </header>
+
+  <form id="analysisForm">
+    <!-- 종목 -->
+    <div class="section">
+      <span class="section-title">⚽ 종목 선택</span>
+      <div class="btn-group">
+        <button type="button" class="toggle-btn sport-btn active" data-sport="futsal">🏠 풋살</button>
+        <button type="button" class="toggle-btn sport-btn" data-sport="football">🌳 축구</button>
+      </div>
+    </div>
+
+    <!-- 거리 -->
+    <div class="section">
+      <span class="section-title">📏 활동 거리 (km)</span>
+      <input type="number" id="distanceInput" class="num-box" value="3.8" step="0.1" min="0.5" max="20" inputmode="decimal">
+    </div>
+
+    <!-- 시간 -->
+    <div class="section">
+      <span class="section-title">⏱️ 경기 시간</span>
+      <select id="durationSelect"></select>
+    </div>
+
+    <!-- 통증 부위 -->
+    <div class="section">
+      <span class="section-title">🩹 통증 부위 (복수 선택 가능)</span>
+      <div class="pain-grid" id="painGrid">
+        <label class="pain-item checked"><input type="checkbox" name="painArea" value="none" checked><span>통증없음</span></label>
+        <label class="pain-item"><input type="checkbox" name="painArea" value="calf"><span>종아리</span></label>
+        <label class="pain-item"><input type="checkbox" name="painArea" value="knee"><span>무릎</span></label>
+        <label class="pain-item"><input type="checkbox" name="painArea" value="hamstring"><span>햄스트링</span></label>
+        <label class="pain-item"><input type="checkbox" name="painArea" value="ankle"><span>발목</span></label>
+        <label class="pain-item"><input type="checkbox" name="painArea" value="groin"><span>사타구니</span></label>
+      </div>
+    </div>
+
+    <!-- 컨디션 & 좌우 밸런스 -->
+    <div class="section">
+      <span class="section-title">🧠 컨디션 & 좌우 밸런스</span>
+      <div class="range-row">
+        <div class="range-label">
+          <span>오늘 전체 컨디션</span>
+          <span><span id="condValue">7</span> / 10</span>
+        </div>
+        <input type="range" id="conditionScore" min="1" max="10" value="7">
+      </div>
+      <div class="range-row">
+        <div class="range-label">
+          <span>왼발 체감 부하</span>
+          <span><span id="leftValue">5</span> / 10</span>
+        </div>
+        <input type="range" id="leftLoad" min="0" max="10" value="5">
+      </div>
+      <div class="range-row">
+        <div class="range-label">
+          <span>오른발 체감 부하</span>
+          <span><span id="rightValue">5</span> / 10</span>
+        </div>
+        <input type="range" id="rightLoad" min="0" max="10" value="5">
+      </div>
+    </div>
+
+    <button type="submit" class="analyze-btn">📊 정밀 분석 실행</button>
+  </form>
+
+  <!-- 결과 섹션 -->
+  <section id="resultSection" style="display:none">
+    <div class="res-card">
+      <h3 id="reportTitle" class="card-title">분석 리포트</h3>
+      <div class="stat-grid">
+        <div class="stat-box">
+          <span class="stat-val" id="distanceResult">-</span>
+          <span class="stat-lab">활동량</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-val" id="loadResult">-</span>
+          <span class="stat-lab">부하 지수</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-val" id="readinessResult">-</span>
+          <span class="stat-lab">준비도</span>
+        </div>
+      </div>
+      <div id="statusSummary" style="font-size:.95rem;color:#475569;font-weight:600;margin-top:10px;line-height:1.6"></div>
+    </div>
+
+    <!-- 회복 프로토콜 -->
+    <div class="info-card">
+      <h3 class="card-title">🩹 48시간 회복 전략</h3>
+
+      <ul style="margin-bottom:12px;font-size:0.9rem;color:#0f172a;font-weight:600;line-height:1.5">
+        <li>경기 직후 30분: 냉수 샤워/냉수욕으로 염증·근육통 완화에 도움</li>
+        <li>1시간 이내: 탄수화물과 단백질을 함께 섭취해 에너지 회복 속도 유지</li>
+        <li>6–8시간 이내: 가벼운 가동성·폼롤러 중심, 과한 스트레칭은 피하기</li>
+        <li>48시간 동안: 수면·수분·다음 세션 강도 조절이 부상 예방의 핵심</li>
+      </ul>
+
+      <div class="pro-item">
+        <div class="pro-time">🚨 즉시 (0-30분)</div>
+        <div class="pro-content" id="recoveryImmediate"></div>
+      </div>
+      <div class="pro-item">
+        <div class="pro-time">⏰ 1시간 후</div>
+        <div class="pro-content" id="recovery1Hour"></div>
+      </div>
+      <div class="pro-item">
+        <div class="pro-time">🌙 저녁 (6-8시간)</div>
+        <div class="pro-content" id="recoveryEvening"></div>
+      </div>
+      <div class="pro-item">
+        <div class="pro-time">🛌 취침 전</div>
+        <div class="pro-content" id="recoveryBedtime"></div>
+      </div>
+
+      <p style="margin-top:15px;font-size:0.78rem;color:#94a3b8;line-height:1.5">
+        * 회복 시간대와 내용은 축구·풋살 선수들을 대상으로 한 회복 전략 연구들을 참고해, 실전에서 바로 적용할 수 있도록 단순화한 가이드입니다.
+      </p>
+    </div>
+
+    <!-- 영양 & 파워젤 -->
+    <div class="info-card" style="border-left:5px solid #10b981">
+      <h3 class="card-title">🍎 영양 & 파워젤 전략</h3>
+
+      <ul style="margin-bottom:12px;font-size:0.9rem;color:#0f172a;font-weight:600;line-height:1.5">
+        <li>고강도 경기: 하루 탄수 8–10 g/kg, 단백질 약 2 g/kg 수준 권장</li>
+        <li>중강도 경기: 탄수 5–7 g/kg, 단백질 1.5–2 g/kg 정도로 조절</li>
+        <li>경기 후 첫 4시간: 매시간 탄수 중심으로 에너지 회복 집중</li>
+        <li>파워젤: 60분 이상 경기에서는 전·후반 시작 전으로 나누어 섭취</li>
+      </ul>
+
+      <div id="nutritionStrategy" class="nutrition-content"></div>
+
+      <p style="margin-top:15px;font-size:0.78rem;color:#94a3b8;line-height:1.5">
+        * 섭취량과 타이밍은 축구/단체 구기 종목 선수들을 대상으로 한 영양·회복 가이드를 바탕으로, 아마추어 경기 상황에 맞게 조정한 값입니다.
+      </p>
+    </div>
+
+    <!-- 히스토리 -->
+    <div class="info-card">
+      <h3 class="card-title">📋 최근 경기 기록</h3>
+      <div id="historyList" class="history-empty">분석 후 기록이 표시됩니다</div>
+      <button class="del-btn" type="button" onclick="clearAllHistory()">전체 기록 삭제</button>
+    </div>
+
+    <button class="share-btn" type="button" onclick="shareAnalysis()">📱 팀원에게 리포트 공유</button>
+  </section>
+</div>
+
+<!-- 난독화된 JS 로드 (analysis.prod.js) -->
+<script src="/assets/analysis.prod.js"></script>
+</body>
+</html>
