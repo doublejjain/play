@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -16,7 +15,7 @@
 <div class="container">
   <header class="header">
     <h1>⚽ 풋살/축구 컨디션 분석</h1>
-    <p>스포츠과학 + 재활 + 영양학 개인 리포트</p>
+    <p>스포츠과학 · 재활 · 영양학 개인 리포트</p>
   </header>
 
   <form id="analysisForm">
@@ -86,7 +85,10 @@
   <!-- 결과 섹션 -->
   <section id="resultSection" style="display:none">
     <div class="res-card">
-      <h3 id="reportTitle" class="card-title">분석 리포트</h3>
+      <h3 class="card-title">
+        <span id="reportTitle">분석 리포트</span>
+        <span id="modeBadge" class="mode-badge"></span>
+      </h3>
       <div class="stat-grid">
         <div class="stat-box">
           <span class="stat-val" id="distanceResult">-</span>
@@ -101,14 +103,13 @@
           <span class="stat-lab">준비도</span>
         </div>
       </div>
-      <div id="statusSummary" style="font-size:.95rem;color:#475569;font-weight:600;margin-top:10px;line-height:1.6"></div>
+      <div id="statusSummary" class="status-summary"></div>
     </div>
 
-    <!-- 회복 프로토콜 -->
+    <!-- 48시간 회복 전략 -->
     <div class="info-card">
       <h3 class="card-title">🩹 48시간 회복 전략</h3>
-
-      <ul style="margin-bottom:12px;font-size:0.9rem;color:#0f172a;font-weight:600;line-height:1.5">
+      <ul class="summary-list">
         <li>경기 직후 30분: 냉수 샤워/냉수욕으로 염증·근육통 완화에 도움</li>
         <li>1시간 이내: 탄수화물과 단백질을 함께 섭취해 에너지 회복 속도 유지</li>
         <li>6–8시간 이내: 가벼운 가동성·폼롤러 중심, 과한 스트레칭은 피하기</li>
@@ -132,16 +133,16 @@
         <div class="pro-content" id="recoveryBedtime"></div>
       </div>
 
-      <p style="margin-top:15px;font-size:0.78rem;color:#94a3b8;line-height:1.5">
+      <p class="note-text">
         * 회복 시간대와 내용은 축구·풋살 선수들을 대상으로 한 회복 전략 연구들을 참고해, 실전에서 바로 적용할 수 있도록 단순화한 가이드입니다.
       </p>
     </div>
 
-    <!-- 영양 & 파워젤 -->
+    <!-- 영양 & 파워젤 전략 -->
     <div class="info-card" style="border-left:5px solid #10b981">
       <h3 class="card-title">🍎 영양 & 파워젤 전략</h3>
 
-      <ul style="margin-bottom:12px;font-size:0.9rem;color:#0f172a;font-weight:600;line-height:1.5">
+      <ul class="summary-list">
         <li>고강도 경기: 하루 탄수 8–10 g/kg, 단백질 약 2 g/kg 수준 권장</li>
         <li>중강도 경기: 탄수 5–7 g/kg, 단백질 1.5–2 g/kg 정도로 조절</li>
         <li>경기 후 첫 4시간: 매시간 탄수 중심으로 에너지 회복 집중</li>
@@ -150,9 +151,23 @@
 
       <div id="nutritionStrategy" class="nutrition-content"></div>
 
-      <p style="margin-top:15px;font-size:0.78rem;color:#94a3b8;line-height:1.5">
+      <p class="note-text">
         * 섭취량과 타이밍은 축구/단체 구기 종목 선수들을 대상으로 한 영양·회복 가이드를 바탕으로, 아마추어 경기 상황에 맞게 조정한 값입니다.
       </p>
+    </div>
+
+    <!-- 최근 4회 트렌드 -->
+    <div class="info-card">
+      <h3 class="card-title">📈 최근 4회 부하 & 준비도</h3>
+      <div id="miniTrend" class="mini-trend">데이터가 쌓이면 최근 4회 흐름이 표시됩니다.</div>
+    </div>
+
+    <!-- 이번 주 부하 예상 -->
+    <div class="info-card">
+      <h3 class="card-title">📅 이번 주 부하 예상</h3>
+      <div id="weekForecast" class="week-forecast">
+        오늘 부하를 계산하면 이번 주 예상 부하가 표시됩니다.
+      </div>
     </div>
 
     <!-- 히스토리 -->
@@ -166,7 +181,6 @@
   </section>
 </div>
 
-<!-- 난독화된 JS 로드 (analysis.prod.js) -->
 <script src="/assets/analysis.prod.js"></script>
 </body>
 </html>
