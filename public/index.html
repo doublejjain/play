@@ -5,16 +5,15 @@
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
   <title>⚽ 풋살/축구 컨디션 & 회복 분석기 | play.namane.info</title>
   <link rel="stylesheet" href="style.css"/>
-  <!-- AdSense 자동 광고 -->
+  <!-- AdSense Auto Ads -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9152530321662851" crossorigin="anonymous"></script>
 </head>
 <body>
   <div class="main-container">
-    
-    <!-- 히어로 섹션 -->
+    <!-- 히어로 -->
     <section class="hero-card">
-      <h1>⚽ 풋살/축구<br>컨디션 분석기</h1>
-      <p class="hero-subtitle">오늘 경기 부하와 통증으로 내일 준비도 자동 진단</p>
+      <h1>⚽ 풋살/축구 컨디션 분석기</h1>
+      <p class="hero-subtitle">경기 부하와 통증으로 내일 준비도를 계산하는 스포츠 과학 리포트</p>
     </section>
 
     <!-- 입력 폼 -->
@@ -22,33 +21,26 @@
       <form id="analysisForm">
         <!-- 종목 선택 -->
         <div class="input-group">
-          <label>🏟️ 종목</label>
+          <label>🏟️ 종목 선택</label>
           <div class="sport-buttons">
             <button type="button" class="sport-btn active" data-sport="futsal">풋살</button>
             <button type="button" class="sport-btn" data-sport="football">축구</button>
           </div>
         </div>
 
-        <!-- 거리 입력 -->
+        <!-- 거리 -->
         <div class="input-group">
-          <label>📏 워치 거리 (km)</label>
-          <input type="number" id="distanceInput" min="0" max="20" step="0.1" placeholder="4.2" value="4.2"/>
+          <label>📏 활동 거리 (km)</label>
+          <input type="number" id="distanceInput" min="0" max="20" step="0.1" placeholder="3.8" value="3.8"/>
         </div>
 
         <!-- 경기 시간 -->
         <div class="input-group">
           <label>⏱️ 경기 시간</label>
-          <select id="durationSelect">
-            <option value="60">풋살 15분×4 (60분)</option>
-            <option value="90">풋살 15분×6 (90분)</option>
-            <option value="120">풋살 20분×6 (120분)</option>
-            <option value="90">축구 45분×2 (90분)</option>
-            <option value="100">축구 25분×4 (100분)</option>
-            <option value="150">축구 25분×6 (150분)</option>
-          </select>
+          <select id="durationSelect"></select>
         </div>
 
-        <!-- 컨디션 슬라이더 -->
+        <!-- 컨디션 -->
         <div class="input-group">
           <label>😰 컨디션 (1=최고 ~ 10=지옥)</label>
           <div class="slider-container">
@@ -75,9 +67,9 @@
           </div>
         </div>
 
-        <!-- 통증 체크 -->
+        <!-- 통증 -->
         <div class="input-group">
-          <label>🤕 통증 부위</label>
+          <label>🤕 통증 부위 (복수 선택 가능)</label>
           <div id="painGrid" class="pain-grid">
             <label class="pain-item checked">
               <input type="checkbox" name="painArea" value="none" checked> 통증 없음
@@ -104,7 +96,7 @@
       </form>
     </section>
 
-    <!-- 분석 결과 (숨김) -->
+    <!-- 결과 -->
     <section id="resultSection" class="result-section" style="display:none;">
       <div class="result-header">
         <h2 id="reportTitle">분석 리포트</h2>
@@ -126,10 +118,8 @@
 
       <div id="statusSummary" class="status-summary"></div>
 
-      <!-- 모드 뱃지 -->
       <div id="modeBadge" class="mode-badge">훈련 모드</div>
 
-      <!-- 회복 플랜 -->
       <div class="recovery-plan">
         <h3>🔄 48시간 회복 플랜</h3>
         <div class="timeline">
@@ -152,37 +142,33 @@
         </div>
       </div>
 
-      <!-- 영양 전략 -->
       <div class="nutrition-section">
         <h3>🍎 영양 전략</h3>
         <div id="nutritionStrategy" class="nutrition-plan"></div>
       </div>
 
-      <!-- 버튼들 -->
       <div class="action-buttons">
-        <button onclick="shareAnalysis()" class="share-btn">📱 팀 공유</button>
-        <button onclick="document.getElementById('analysisForm').scrollIntoView({behavior:'smooth'})" class="reset-btn">다시 분석</button>
+        <button type="button" onclick="shareAnalysis()" class="share-btn">📱 팀 공유</button>
+        <button type="button" onclick="document.getElementById('analysisForm').scrollIntoView({behavior:'smooth'})" class="reset-btn">다시 분석</button>
       </div>
     </section>
 
-    <!-- 최근 4회 트렌드 -->
+    <!-- 트렌드/히스토리/예상 -->
     <section class="trend-section">
       <h3>📈 최근 4회 흐름</h3>
       <div id="miniTrend">분석 후 기록이 표시됩니다</div>
     </section>
 
-    <!-- 히스토리 -->
     <section class="history-section">
       <div class="history-header">
         <h3>📋 분석 히스토리</h3>
-        <button id="clearHistory" class="clear-btn">전체 삭제</button>
+        <button id="clearHistory" class="clear-btn" type="button">전체 삭제</button>
       </div>
       <div id="historyList" class="history-list history-empty">
         분석 기록이 여기에 표시됩니다
       </div>
     </section>
 
-    <!-- 주간 예상 -->
     <section class="forecast-section">
       <h3>📅 이번 주 예상</h3>
       <div id="weekForecast" class="forecast-text">
@@ -190,7 +176,7 @@
       </div>
     </section>
 
-    <!-- 스페이서 (Auto Ads 유도) -->
+    <!-- Auto Ads 유도 영역 -->
     <div class="section-spacer"></div>
     <div class="ad-likely-zone">
       <div class="spacer-text">다음 세션에서 안전하게 뛸 수 있도록 미리 준비하세요 📊</div>
