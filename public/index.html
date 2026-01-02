@@ -2,132 +2,119 @@
 <html lang="ko">
 <head>
   <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
   <title>⚽ 풋살/축구 컨디션 분석기 | play.namane.info</title>
-
+  
+  <!-- CSS 경로 정확히 -->
   <link rel="stylesheet" href="/assets/style.css"/>
 
-  <!-- AdSense Auto Ads -->
+  <!-- AdSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9152530321662851" crossorigin="anonymous"></script>
 
-  <!-- 앱 스크립트(파일명/경로 고정) -->
+  <!-- JS 경로 정확히 -->
   <script defer src="/assets/analysis.prod.js"></script>
 </head>
 <body>
+
   <div class="main-container">
 
-    <!-- HERO -->
-    <header class="hero-card">
-      <div class="hero-top">
-        <div class="hero-title">
-          <span class="ball">⚽</span>
-          <h1>풋살/축구 컨디션 분석기</h1>
-        </div>
-        <span class="pill">스포츠 과학 리포트</span>
+    <!-- 히어로 섹션 -->
+    <div class="hero-card">
+      <div class="hero-title">
+        <span class="ball">⚽</span>
+        <h1>풋살/축구 컨디션 분석기</h1>
+        <span class="pill">스포츠 과학</span>
       </div>
-      <p class="hero-subtitle">경기 부하·통증으로 내일 준비도를 계산하고 48시간 회복 플랜을 추천합니다.</p>
-    </header>
+      <p class="hero-subtitle">경기 부하와 통증으로 내일 준비도를 계산하고<br>48시간 회복 플랜을 추천합니다.</p>
+    </div>
 
-    <!-- Auto Ads 유도(컨텐츠 블록 사이 공간) -->
-    <div class="section-spacer"></div>
-
-    <!-- FORM -->
-    <section class="card input-section">
+    <!-- 입력 폼 섹션 -->
+    <div class="card input-section">
       <form id="analysisForm">
-
+        
         <div class="field">
-          <label class="field-label">🏟️ 종목</label>
-          <div class="segmented" role="tablist" aria-label="sport">
+          <label class="field-label">종목 선택</label>
+          <div class="segmented">
             <button type="button" class="seg-btn active sport-btn" data-sport="futsal">풋살</button>
             <button type="button" class="seg-btn sport-btn" data-sport="football">축구</button>
           </div>
         </div>
 
         <div class="field">
-          <label class="field-label" for="distanceInput">📏 활동 거리 (km)</label>
-          <input type="number" id="distanceInput" min="0" max="50" step="0.1" placeholder="3.8" value="3.8"/>
+          <label class="field-label">활동 거리 (km)</label>
+          <input type="number" id="distanceInput" step="0.1" placeholder="3.8" value="3.8">
         </div>
 
         <div class="field">
-          <label class="field-label" for="durationSelect">⏱️ 경기 시간</label>
+          <label class="field-label">경기 시간</label>
           <select id="durationSelect"></select>
         </div>
 
         <div class="field">
-          <label class="field-label">😰 컨디션 (1=최고 ~ 10=지옥)</label>
+          <label class="field-label">컨디션 (1=최고 ~ 10=지옥)</label>
           <div class="range-row">
-            <input type="range" id="conditionScore" min="1" max="10" value="7"/>
+            <input type="range" id="conditionScore" min="1" max="10" value="7">
             <span class="range-value" id="condValue">7</span>
           </div>
         </div>
 
         <div class="grid-2">
           <div class="field">
-            <label class="field-label">🦵 왼발 부하</label>
+            <label class="field-label">왼발 부하</label>
             <div class="range-row">
-              <input type="range" id="leftLoad" min="0" max="10" value="5"/>
+              <input type="range" id="leftLoad" min="0" max="10" value="5">
               <span class="range-value" id="leftValue">5</span>
             </div>
           </div>
-
           <div class="field">
-            <label class="field-label">🦵 오른발 부하</label>
+            <label class="field-label">오른발 부하</label>
             <div class="range-row">
-              <input type="range" id="rightLoad" min="0" max="10" value="5"/>
+              <input type="range" id="rightLoad" min="0" max="10" value="5">
               <span class="range-value" id="rightValue">5</span>
             </div>
           </div>
         </div>
 
         <div class="field">
-          <label class="field-label">🤕 통증 부위 (복수 선택)</label>
-
+          <label class="field-label">통증 부위 (복수 선택)</label>
+          <!-- 칩 그리드 -->
           <div id="painGrid" class="chip-grid">
             <label class="chip checked">
-              <input type="checkbox" name="painArea" value="none" checked/>
+              <input type="checkbox" name="painArea" value="none" checked>
               통증 없음
             </label>
-
             <label class="chip">
-              <input type="checkbox" name="painArea" value="calf"/>
+              <input type="checkbox" name="painArea" value="calf">
               종아리
             </label>
-
             <label class="chip">
-              <input type="checkbox" name="painArea" value="knee"/>
+              <input type="checkbox" name="painArea" value="knee">
               무릎
             </label>
-
             <label class="chip">
-              <input type="checkbox" name="painArea" value="hamstring"/>
+              <input type="checkbox" name="painArea" value="hamstring">
               햄스트링
             </label>
-
             <label class="chip">
-              <input type="checkbox" name="painArea" value="groin"/>
+              <input type="checkbox" name="painArea" value="groin">
               사타구니
             </label>
-
             <label class="chip">
-              <input type="checkbox" name="painArea" value="ankle"/>
+              <input type="checkbox" name="painArea" value="ankle">
               발목
             </label>
           </div>
-
-          <div class="help-text">통증이 있으면 통합 부하가 자동 가중됩니다.</div>
+          <div class="help-text">통증이 있으면 부하가 자동 가중됩니다.</div>
         </div>
 
-        <!-- 광고와 너무 붙지 않게 -->
         <div class="ad-safe-gap"></div>
 
         <button type="submit" class="primary-btn">분석하기</button>
       </form>
-    </section>
+    </div>
 
-    <div class="section-spacer"></div>
-
-    <!-- RESULT -->
-    <section id="resultSection" class="card result-section" style="display:none;">
+    <!-- 결과 섹션 -->
+    <div id="resultSection" class="card result-section" style="display:none;">
       <div class="result-head">
         <h2 id="reportTitle">분석 리포트</h2>
         <div id="modeBadge" class="mode-badge">훈련 모드</div>
@@ -151,59 +138,51 @@
       <div id="statusSummary" class="note"></div>
 
       <div class="subcard">
-        <h3 class="subhead">🔄 48시간 회복 플랜</h3>
+        <div class="subhead">🔄 48시간 회복 플랜</div>
         <div class="timeline">
-          <div class="t-item"><span class="t-time">지금</span><span id="recoveryImmediate" class="t-text"></span></div>
-          <div class="t-item"><span class="t-time">1시간</span><span id="recovery1Hour" class="t-text"></span></div>
-          <div class="t-item"><span class="t-time">저녁</span><span id="recoveryEvening" class="t-text"></span></div>
-          <div class="t-item"><span class="t-time">취침</span><span id="recoveryBedtime" class="t-text"></span></div>
+          <div class="t-item"><div class="t-time">지금</div><div class="t-text" id="recoveryImmediate"></div></div>
+          <div class="t-item"><div class="t-time">1시간</div><div class="t-text" id="recovery1Hour"></div></div>
+          <div class="t-item"><div class="t-time">저녁</div><div class="t-text" id="recoveryEvening"></div></div>
+          <div class="t-item"><div class="t-time">취침</div><div class="t-text" id="recoveryBedtime"></div></div>
         </div>
       </div>
 
       <div class="subcard">
-        <h3 class="subhead">🍎 영양 전략</h3>
+        <div class="subhead">🍎 영양 전략</div>
         <div id="nutritionStrategy" class="nutrition"></div>
       </div>
 
       <div class="btn-row">
-        <button type="button" class="ghost-btn" onclick="shareAnalysis()">공유</button>
+        <button type="button" class="ghost-btn" onclick="shareAnalysis()">결과 공유</button>
         <button type="button" class="ghost-btn" onclick="document.getElementById('analysisForm').scrollIntoView({behavior:'smooth'})">다시 분석</button>
       </div>
-    </section>
+    </div>
 
-    <div class="section-spacer"></div>
-
-    <!-- TREND -->
-    <section class="card">
+    <!-- 트렌드/히스토리 -->
+    <div class="card">
       <h3 class="section-title">📈 최근 4회 흐름</h3>
-      <div id="miniTrend" class="plain-box">분석 후 기록이 표시됩니다</div>
-    </section>
+      <div id="miniTrend" class="plain-box">기록이 쌓이면 표시됩니다.</div>
+    </div>
 
-    <div class="section-spacer"></div>
-
-    <!-- HISTORY -->
-    <section class="card">
+    <div class="card">
       <div class="section-head">
         <h3 class="section-title">📋 분석 히스토리</h3>
-        <button id="clearHistory" type="button" class="tiny-btn">전체 삭제</button>
+        <button id="clearHistory" class="tiny-btn">전체 삭제</button>
       </div>
       <div id="historyList" class="history-list history-empty">분석 기록이 여기에 표시됩니다</div>
-    </section>
-
-    <div class="section-spacer"></div>
-
-    <!-- FORECAST -->
-    <section class="card">
+    </div>
+    
+    <!-- 주간 예상 -->
+    <div class="card">
       <h3 class="section-title">📅 이번 주 예상</h3>
-      <div id="weekForecast" class="plain-box">오늘 부하를 계산하면 이번 주 총 부하가 표시됩니다</div>
-    </section>
+      <div id="weekForecast" class="plain-box">오늘 운동 후 예상 부하를 확인하세요.</div>
+    </div>
 
-    <!-- Auto Ads 유도: 컨텐츠 끝 여백 -->
+    <!-- 하단 여백 -->
     <div class="section-spacer"></div>
     <div class="ad-likely-zone">
-      <div class="spacer-text">다음 세션에서 안전하게 뛸 수 있도록 미리 준비하세요</div>
+      <div class="spacer-text">다음 경기를 위해 미리 준비하세요</div>
     </div>
-    <div class="section-spacer"></div>
 
   </div>
 </body>
