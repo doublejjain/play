@@ -9,11 +9,11 @@
   --bg-card: #ffffff;
   --bg-soft: #f9fafb;
 
-  --primary: #2563eb;       /* 메인 파랑 */
+  --primary: #2563eb;
   --primary-dark: #1d4ed8;
   --accent-green: #10b981;
   --accent-green-dark: #059669;
-  --accent-purple: #6366f1; /* 공유 버튼용 */
+  --accent-purple: #6366f1;   /* 공유 버튼만 살짝 */
   --danger: #ef4444;
   --danger-soft: #fef2f2;
 
@@ -25,7 +25,7 @@
   --shadow-soft: 0 4px 16px rgba(15,23,42,0.06);
 }
 
-/* 전체 기본 */
+/* 기본 */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
@@ -46,7 +46,7 @@ body {
   padding: 24px 16px;
 }
 
-/* 공통 카드 스타일 */
+/* 공통 카드 */
 .hero-card,
 .input-section,
 .result-section,
@@ -81,22 +81,17 @@ body {
 .hero-subtitle {
   font-size: 13px;
   color: var(--text-muted);
-  line-height: 1.6;
 }
 
 /* 입력 섹션 */
-.input-section {
-  overflow: hidden;
-}
+.input-section { overflow: hidden; }
 
 .input-group {
   padding: 16px 0;
   border-bottom: 1px solid #f3f4f6;
 }
 
-.input-group:last-child {
-  border-bottom: none;
-}
+.input-group:last-child { border-bottom: none; }
 
 .input-group label {
   display: block;
@@ -226,14 +221,10 @@ input:focus, select:focus {
   transition: all 0.2s;
 }
 
-.submit-btn:hover {
-  transform: translateY(-1px);
-}
+.submit-btn:hover { transform: translateY(-1px); }
 
 /* 결과 섹션 */
-.result-section {
-  padding: 22px 18px;
-}
+.result-section { padding: 22px 18px; }
 
 .result-header h2 {
   font-size: 18px;
@@ -271,7 +262,6 @@ input:focus, select:focus {
 .stat-label {
   font-size: 12px;
   color: var(--text-muted);
-  margin-top: 2px;
 }
 
 /* 상태 요약 */
@@ -297,9 +287,7 @@ input:focus, select:focus {
 }
 
 /* 회복/영양 */
-.recovery-plan, .nutrition-section {
-  margin-bottom: 18px;
-}
+.recovery-plan, .nutrition-section { margin-bottom: 18px; }
 
 .recovery-plan h3, .nutrition-section h3 {
   font-size: 16px;
@@ -345,7 +333,7 @@ input:focus, select:focus {
   font-size: 13px;
 }
 
-/* 버튼들 */
+/* 결과 버튼 */
 .action-buttons {
   display: flex;
   gap: 10px;
@@ -377,9 +365,7 @@ input:focus, select:focus {
 }
 
 /* 트렌드/히스토리/예상 */
-.trend-section, .history-section, .forecast-section {
-  padding: 20px 18px;
-}
+.trend-section, .history-section, .forecast-section { padding: 20px 18px; }
 
 .trend-section h3, .history-section h3, .forecast-section h3 {
   font-size: 16px;
@@ -424,7 +410,7 @@ input:focus, select:focus {
 
 .history-row {
   display: flex;
-  justify-content: space-between;
+  justify-content: space_between;
   padding: 10px 12px;
   background: #f9fafb;
   border-radius: 10px;
@@ -445,14 +431,14 @@ input:focus, select:focus {
   color: var(--text-muted);
 }
 
-/* 그리드 */
+/* 좌우 부하 그리드 */
 .stats-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 14px;
 }
 
-/* Auto Ads */
+/* Auto Ads – 모바일에서 2~3개 들어갈 여유 */
 .google-auto-placed, .adsbygoogle, ins.adsbygoogle {
   margin: 24px 0 !important;
   max-width: 100% !important;
@@ -501,11 +487,7 @@ input:focus, select:focus {
     gap: 8px;
   }
 
-  .action-buttons {
-    flex-direction: column;
-  }
+  .action-buttons { flex-direction: column; }
 
-  .sport-buttons {
-    grid-template-columns: 1fr;
-  }
+  .sport-buttons { grid-template-columns: 1fr; }
 }
