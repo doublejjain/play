@@ -5,13 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
   <title>⚽ 풋살/축구 컨디션 분석기 | play.namane.info</title>
   
-  <!-- CSS 경로 정확히 -->
+  <!-- 스타일시트 연결 -->
   <link rel="stylesheet" href="/assets/style.css"/>
 
-  <!-- AdSense -->
+  <!-- 구글 애드센스 -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9152530321662851" crossorigin="anonymous"></script>
 
-  <!-- JS 경로 정확히 -->
+  <!-- 로직 스크립트 연결 -->
   <script defer src="/assets/analysis.prod.js"></script>
 </head>
 <body>
@@ -23,9 +23,9 @@
       <div class="hero-title">
         <span class="ball">⚽</span>
         <h1>풋살/축구 컨디션 분석기</h1>
-        <span class="pill">스포츠 과학</span>
+        <span class="pill">스포츠 과학 적용</span>
       </div>
-      <p class="hero-subtitle">경기 부하와 통증으로 내일 준비도를 계산하고<br>48시간 회복 플랜을 추천합니다.</p>
+      <p class="hero-subtitle">운동 강도(RPE)와 통증 데이터를 기반으로<br>부상 위험도와 회복 시간을 과학적으로 계산합니다.</p>
     </div>
 
     <!-- 입력 폼 섹션 -->
@@ -42,7 +42,7 @@
 
         <div class="field">
           <label class="field-label">활동 거리 (km)</label>
-          <input type="number" id="distanceInput" step="0.1" placeholder="3.8" value="3.8">
+          <input type="number" id="distanceInput" step="0.1" placeholder="예: 4.2" inputmode="decimal">
         </div>
 
         <div class="field">
@@ -50,24 +50,29 @@
           <select id="durationSelect"></select>
         </div>
 
+        <!-- [중요] 라벨 변경: 컨디션 -> 운동 강도 -->
         <div class="field">
-          <label class="field-label">컨디션 (1=최고 ~ 10=지옥)</label>
+          <label class="field-label">오늘 운동 강도 (1=산책 ~ 10=극한)</label>
           <div class="range-row">
             <input type="range" id="conditionScore" min="1" max="10" value="7">
             <span class="range-value" id="condValue">7</span>
+          </div>
+          <div class="help-text" style="text-align: left; margin-top: 6px;">
+            🥵 7점: 숨이 차고 대화가 어려움<br>
+            🤮 9점: 더 이상 못 뛸 것 같음
           </div>
         </div>
 
         <div class="grid-2">
           <div class="field">
-            <label class="field-label">왼발 부하</label>
+            <label class="field-label">왼발 부하 (피로도)</label>
             <div class="range-row">
               <input type="range" id="leftLoad" min="0" max="10" value="5">
               <span class="range-value" id="leftValue">5</span>
             </div>
           </div>
           <div class="field">
-            <label class="field-label">오른발 부하</label>
+            <label class="field-label">오른발 부하 (피로도)</label>
             <div class="range-row">
               <input type="range" id="rightLoad" min="0" max="10" value="5">
               <span class="range-value" id="rightValue">5</span>
@@ -76,8 +81,7 @@
         </div>
 
         <div class="field">
-          <label class="field-label">통증 부위 (복수 선택)</label>
-          <!-- 칩 그리드 -->
+          <label class="field-label">통증 부위 (중복 선택)</label>
           <div id="painGrid" class="chip-grid">
             <label class="chip checked">
               <input type="checkbox" name="painArea" value="none" checked>
@@ -104,12 +108,11 @@
               발목
             </label>
           </div>
-          <div class="help-text">통증이 있으면 부하가 자동 가중됩니다.</div>
         </div>
 
         <div class="ad-safe-gap"></div>
 
-        <button type="submit" class="primary-btn">분석하기</button>
+        <button type="submit" class="primary-btn">분석 결과 보기</button>
       </form>
     </div>
 
@@ -117,7 +120,7 @@
     <div id="resultSection" class="card result-section" style="display:none;">
       <div class="result-head">
         <h2 id="reportTitle">분석 리포트</h2>
-        <div id="modeBadge" class="mode-badge">훈련 모드</div>
+        <div id="modeBadge" class="mode-badge">분석 중...</div>
       </div>
 
       <div class="stats-3">
@@ -131,11 +134,9 @@
         </div>
         <div class="stat">
           <div class="stat-num" id="readinessResult">--</div>
-          <div class="stat-label">준비도</div>
+          <div class="stat-label">회복도</div>
         </div>
       </div>
-
-      <div id="statusSummary" class="note"></div>
 
       <div class="subcard">
         <div class="subhead">🔄 48시간 회복 플랜</div>
@@ -154,14 +155,14 @@
 
       <div class="btn-row">
         <button type="button" class="ghost-btn" onclick="shareAnalysis()">결과 공유</button>
-        <button type="button" class="ghost-btn" onclick="document.getElementById('analysisForm').scrollIntoView({behavior:'smooth'})">다시 분석</button>
+        <button type="button" class="ghost-btn" onclick="location.reload()">다시 분석</button>
       </div>
     </div>
 
     <!-- 트렌드/히스토리 -->
     <div class="card">
-      <h3 class="section-title">📈 최근 4회 흐름</h3>
-      <div id="miniTrend" class="plain-box">기록이 쌓이면 표시됩니다.</div>
+      <h3 class="section-title">📈 최근 흐름</h3>
+      <div id="miniTrend" class="plain-box">데이터가 쌓이면 표시됩니다.</div>
     </div>
 
     <div class="card">
@@ -169,19 +170,18 @@
         <h3 class="section-title">📋 분석 히스토리</h3>
         <button id="clearHistory" class="tiny-btn">전체 삭제</button>
       </div>
-      <div id="historyList" class="history-list history-empty">분석 기록이 여기에 표시됩니다</div>
+      <div id="historyList" class="history-list history-empty">기록이 없습니다</div>
     </div>
     
     <!-- 주간 예상 -->
     <div class="card">
-      <h3 class="section-title">📅 이번 주 예상</h3>
+      <h3 class="section-title">📅 주간 부하 예측</h3>
       <div id="weekForecast" class="plain-box">오늘 운동 후 예상 부하를 확인하세요.</div>
     </div>
 
-    <!-- 하단 여백 -->
     <div class="section-spacer"></div>
     <div class="ad-likely-zone">
-      <div class="spacer-text">다음 경기를 위해 미리 준비하세요</div>
+      <div class="spacer-text">play.namane.info</div>
     </div>
 
   </div>
