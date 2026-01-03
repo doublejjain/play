@@ -1,32 +1,36 @@
 /* =========================================
-   play.namane.info FINAL STYLE
-   (Rounded, Clean, Soft Shadow)
+   play.namane.info FINAL STYLE (V2)
+   (High Contrast, Deep Shadow, Clean Layout)
    ========================================= */
 
 :root {
-  /* 배경/카드 색상 */
-  --bg-body: #f3f5f9;
-  --bg-card: #ffffff;
+  /* 배경/카드 색상 (대비 강화) */
+  --bg-body: #e2e8f0;   /* 기존보다 더 진한 회색 배경 */
+  --bg-card: #ffffff;   /* 카드는 완전 흰색 */
   
   /* 브랜드 컬러 (선명한 로얄 블루) */
   --primary: #3b82f6;
   --primary-dark: #2563eb;
-  --primary-soft: #eff6ff; /* 아주 연한 파랑 배경용 */
+  --primary-soft: #eff6ff; 
 
-  /* 텍스트 컬러 */
-  --text-main: #1e293b; /* 진한 남색 계열 검정 */
-  --text-sub: #64748b;  /* 부드러운 회색 */
-  --text-muted: #94a3b8; /* 더 연한 회색 */
+  /* 텍스트 컬러 (가독성 강화) */
+  --text-main: #0f172a; /* 거의 검정에 가까운 남색 */
+  --text-sub: #475569;  /* 가독성 있는 진한 회색 */
+  --text-muted: #94a3b8; 
 
   /* 라인/그림자 */
-  --border: #e2e8f0;
-  --shadow-card: 0 10px 25px -5px rgba(0, 0, 0, 0.06), 0 8px 10px -6px rgba(0, 0, 0, 0.03);
-  --shadow-float: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --border: #cbd5e1;    /* 테두리도 조금 더 선명하게 */
+  
+  /* 그림자 (입체감 대폭 강화) */
+  --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 
+                 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-float: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 
+                  0 10px 10px -5px rgba(0, 0, 0, 0.04);
   
   /* 둥글기 */
-  --radius-card: 24px;
-  --radius-btn: 16px;
-  --radius-input: 14px;
+  --radius-card: 20px;
+  --radius-btn: 14px;
+  --radius-input: 12px;
 }
 
 /* 기본 리셋 & 폰트 */
@@ -37,13 +41,19 @@ body {
   background: var(--bg-body);
   color: var(--text-main);
   line-height: 1.6;
-  padding: 20px 16px 80px; /* 하단 여백 충분히 */
+  padding: 40px 16px 80px; /* 상단 여백 추가 */
   -webkit-font-smoothing: antialiased;
+  
+  /* PC 화면 중앙 정렬을 위한 Flex 설정 */
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
 }
 
-/* 메인 컨테이너 (중앙 정렬) */
+/* 메인 컨테이너 (중앙 정렬 & 폭 제한) */
 .main-container {
-  max-width: 680px;
+  width: 100%;
+  max-width: 500px; /* PC에서도 모바일 앱처럼 집중되게 폭을 좁힘 */
   margin: 0 auto;
 }
 
@@ -57,16 +67,16 @@ body {
   background: var(--bg-card);
   border-radius: var(--radius-card);
   box-shadow: var(--shadow-card);
-  padding: 24px 22px;
+  padding: 24px;
   margin-bottom: 24px;
-  border: 1px solid rgba(255,255,255,0.8); /* 흰색 테두리로 깔끔하게 */
+  border: 1px solid rgba(255,255,255,0.8);
 }
 
 /* 히어로 섹션 */
 .hero-card {
   text-align: center;
-  padding: 36px 22px;
-  background: linear-gradient(180deg, #ffffff 0%, #fcfdff 100%);
+  padding: 32px 24px;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
 }
 
 .hero-title {
@@ -74,17 +84,17 @@ body {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 }
 
 .hero-card h1 {
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 800;
   color: #0f172a;
   letter-spacing: -0.02em;
 }
 
-.ball { font-size: 22px; }
+.ball { font-size: 20px; }
 
 .pill {
   display: inline-block;
@@ -95,7 +105,6 @@ body {
   padding: 4px 8px;
   border-radius: 999px;
   vertical-align: middle;
-  margin-left: 6px;
 }
 
 .hero-subtitle {
@@ -127,20 +136,20 @@ input[type="number"], select {
   background: #f8fafc;
   color: var(--text-main);
   transition: all 0.2s;
-  appearance: none; /* 네이티브 스타일 제거 */
+  appearance: none;
 }
 
 input[type="number"]:focus, select:focus {
   outline: none;
   background: #fff;
   border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.12);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
 }
 
 /* 종목 선택 (세그먼트 컨트롤) */
 .segmented {
   display: flex;
-  background: #f1f5f9;
+  background: #e2e8f0; /* 배경을 좀 더 진하게 */
   padding: 4px;
   border-radius: var(--radius-btn);
 }
@@ -149,11 +158,11 @@ input[type="number"]:focus, select:focus {
   flex: 1;
   border: none;
   background: transparent;
-  padding: 11px;
+  padding: 10px;
   font-size: 14px;
   font-weight: 600;
   color: var(--text-sub);
-  border-radius: 12px;
+  border-radius: 10px;
   cursor: pointer;
   transition: all 0.2s ease;
 }
@@ -161,7 +170,7 @@ input[type="number"]:focus, select:focus {
 .seg-btn.active {
   background: #ffffff;
   color: var(--primary-dark);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.08);
 }
 
 /* 슬라이더 그룹 */
@@ -190,13 +199,13 @@ input[type=range] {
 
 input[type=range]::-webkit-slider-thumb {
   -webkit-appearance: none;
-  width: 22px;
-  height: 22px;
+  width: 20px;
+  height: 20px;
   background: #ffffff;
   border: 2px solid var(--primary);
   border-radius: 50%;
   cursor: pointer;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   transition: transform 0.1s;
 }
 
@@ -224,9 +233,9 @@ input[type=range]::-webkit-slider-thumb:active {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 12px 6px;
+  padding: 12px 4px;
   border: 1px solid var(--border);
-  border-radius: 14px;
+  border-radius: 12px;
   background: #ffffff;
   color: var(--text-sub);
   font-size: 13px;
@@ -249,7 +258,7 @@ input[type=range]::-webkit-slider-thumb:active {
   border-color: var(--primary);
   color: var(--primary-dark);
   font-weight: 700;
-  box-shadow: 0 2px 8px rgba(37,99,235,0.1);
+  box-shadow: 0 2px 6px rgba(37,99,235,0.12);
 }
 
 .help-text {
@@ -270,13 +279,13 @@ input[type=range]::-webkit-slider-thumb:active {
   font-size: 16px;
   font-weight: 700;
   cursor: pointer;
-  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.25);
+  box-shadow: 0 8px 16px -4px rgba(37, 99, 235, 0.3);
   transition: transform 0.1s, box-shadow 0.1s;
 }
 
 .primary-btn:active {
   transform: scale(0.98);
-  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.2);
+  box-shadow: 0 4px 8px -2px rgba(37, 99, 235, 0.2);
 }
 
 .ad-safe-gap { height: 16px; }
@@ -314,7 +323,7 @@ input[type=range]::-webkit-slider-thumb:active {
   text-align: center;
   background: #f8fafc;
   border-radius: 16px;
-  padding: 14px 4px;
+  padding: 16px 4px;
   border: 1px solid var(--border);
 }
 
@@ -381,6 +390,7 @@ input[type=range]::-webkit-slider-thumb:active {
 .t-text {
   font-size: 13px;
   color: var(--text-main);
+  line-height: 1.5;
 }
 
 .nutrition {
@@ -391,6 +401,7 @@ input[type=range]::-webkit-slider-thumb:active {
   border-radius: 12px;
   font-size: 13px;
   white-space: pre-line;
+  line-height: 1.6;
 }
 
 .btn-row {
@@ -422,13 +433,17 @@ input[type=range]::-webkit-slider-thumb:active {
   padding-left: 4px;
 }
 
+/* 텍스트 박스 개선 (잘림 방지 및 가독성) */
 .plain-box {
   background: #f8fafc;
-  border-radius: 16px;
+  border-radius: 14px;
   padding: 16px;
   font-size: 13px;
   color: var(--text-main);
   border: 1px solid var(--border);
+  line-height: 1.6;        /* 줄간격 넉넉하게 */
+  word-break: keep-all;    /* 한글 단어 끊김 방지 */
+  height: auto;            /* 높이 자동 조절 */
 }
 
 .history-list {
@@ -440,8 +455,8 @@ input[type=range]::-webkit-slider-thumb:active {
 .history-row {
   background: #ffffff;
   border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 14px;
+  border-radius: 14px;
+  padding: 16px;
   cursor: pointer;
   transition: border-color 0.2s;
 }
@@ -462,9 +477,12 @@ input[type=range]::-webkit-slider-thumb:active {
 
 .history-empty {
   text-align: center;
-  padding: 20px;
+  padding: 24px;
   color: var(--text-muted);
   font-size: 13px;
+  background: #f8fafc;
+  border-radius: 14px;
+  border: 1px dashed var(--border);
 }
 
 .section-head {
@@ -492,34 +510,21 @@ input[type=range]::-webkit-slider-thumb:active {
 
 /* 모바일 대응 */
 @media (max-width: 480px) {
-  body { padding: 16px 12px 60px; }
+  body { padding: 20px 12px 60px; display: block; }
+  .main-container { max-width: 100%; margin: 0; }
   .grid-2 { grid-template-columns: 1fr; }
   .chip-grid { grid-template-columns: repeat(3, 1fr); }
-  .hero-card h1 { font-size: 20px; }
+  .hero-card h1 { font-size: 18px; }
   .stats-3 { gap: 8px; }
   .stat-num { font-size: 18px; }
 }
 
-/* Google Auto Ads 간격 조정 (너무 붙지 않게) */
+/* Google Auto Ads */
 .google-auto-placed, .adsbygoogle {
   margin: 24px 0 !important;
   width: 100% !important;
   display: block !important;
   border-radius: 12px !important;
   overflow: hidden !important;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
 }
-
-/* 다크모드 대응 (OS 설정 따라감) - 필요시 활성화 */
-@media (prefers-color-scheme: dark) {
-  /* 
-  :root {
-    --bg-body: #0f172a;
-    --bg-card: #1e293b;
-    --text-main: #f8fafc;
-    --text-sub: #cbd5e1;
-    --border: #334155;
-    --primary: #60a5fa;
-  } 
-  */
-}
-
