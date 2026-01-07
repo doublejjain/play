@@ -17,18 +17,20 @@
   
 
 <body>
-<!-- 🔝 공통 Header (모든 페이지 최상단에 삽입) -->
+<!-- ===== Header (전체 화면 너비) ===== -->
 <style>
-  /* Header 스타일 (namane.info와 동일) */
+  /* ✅ Header 강제 전체 너비 */
   .site-header {
     position: sticky;
     top: 0;
-    z-index: 1000;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
+    left: 0;
+    width: 100vw; /* 뷰포트 전체 너비 */
+    z-index: 9999;
+    background: #ffffff;
     border-bottom: 1px solid #e2e8f0;
     padding: 1rem 1.5rem;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    margin: 0; /* 마진 제거 */
   }
   .header-content {
     max-width: 900px;
@@ -43,14 +45,12 @@
     font-weight: 700;
     color: #334155;
     text-decoration: none;
-    letter-spacing: -0.02em;
   }
   .header-logo .dot { color: #3b82f6; }
   .header-logo .info { color: #64748b; font-weight: 300; }
   .header-nav {
     display: flex;
     gap: 1.5rem;
-    align-items: center;
   }
   .header-nav a {
     font-size: 0.95rem;
@@ -60,17 +60,13 @@
     transition: color 0.2s;
   }
   .header-nav a:hover { color: #3b82f6; }
-  .header-nav a.active { color: #334155; font-weight: 700; }
 </style>
 
 <header class="site-header">
   <div class="header-content">
-    <!-- 왼쪽: 로고 (클릭 시 메인으로) -->
     <a href="https://namane.info" class="header-logo">
       namane<span class="dot">.</span><span class="info">info</span>
     </a>
-    
-    <!-- 오른쪽: 네비게이션 (선택 사항) -->
     <nav class="header-nav">
       <a href="/">홈</a>
       <a href="/calc">컨디션</a>
@@ -78,6 +74,7 @@
     </nav>
   </div>
 </header>
+<!-- ===== Header 끝 ===== -->
   <div class="main-container">
 
     <!-- 히어로 섹션 -->
