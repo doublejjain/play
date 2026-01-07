@@ -367,7 +367,6 @@ window.addEventListener('load', () => {
     ctx.font = '18px "Noto Sans KR"';
     ctx.textAlign = 'center';
     ctx.fillText('📹 동영상을 선택해주세요', 320, 240);
-    console.log('✅ 캔버스 초기화 완료
     console.log('✅ 캔버스 초기화 완료');
   }
 
