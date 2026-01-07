@@ -1,127 +1,82 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Play Lab | 스포츠 과학 연구소</title>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;500;700;900&display=swap" rel="stylesheet">
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: 'Noto Sans KR', sans-serif;
-      background: #f8fafc;
-      color: #1e293b;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+  <title>⚽ 풋살/축구 컨디션 분석기 | play.namane.info</title>
+  
+  <!-- 스타일시트 연결 -->
+  <link rel="stylesheet" href="/assets/style.css"/>
 
-    /* Header */
-    .site-header {
-      position: sticky;
-      top: 0;
-      width: 100%;
-      z-index: 9999;
-      background: #ffffff;
-      border-bottom: 1px solid #e2e8f0;
-      padding: 1rem 1.5rem;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
-    }
-    .header-content {
-      max-width: 900px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .header-logo {
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: #334155;
-      text-decoration: none;
-    }
-    .header-logo .dot { color: #3b82f6; }
-    .header-logo .info { color: #64748b; font-weight: 300; }
-    .header-nav { display: flex; gap: 1.5rem; }
-    .header-nav a {
-      font-size: 0.95rem;
-      color: #64748b;
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.2s;
-    }
-    .header-nav a:hover { color: #3b82f6; }
+  <!-- 구글 애드센스 -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9152530321662851" crossorigin="anonymous"></script>
 
-    /* Main Dashboard */
-    main {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 3rem 1.5rem;
-      max-width: 800px;
-      margin: 0 auto;
-      width: 100%;
-    }
-    h1 {
-      font-size: 2.5rem;
-      font-weight: 900;
-      color: #334155;
-      margin-bottom: 3rem;
-      text-align: center;
-    }
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-      width: 100%;
-    }
-    .feature-card {
-      background: white;
-      border-radius: 20px;
-      padding: 2.5rem;
-      text-decoration: none;
-      color: inherit;
-      border: 1px solid #e2e8f0;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-      transition: all 0.3s;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
-    .feature-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-      border-color: #3b82f6;
-    }
-    .card-icon {
-      font-size: 3.5rem;
-      margin-bottom: 1.5rem;
-    }
-    .card-title {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: #0f172a;
-      margin-bottom: 0.75rem;
-    }
-    .card-desc {
-      font-size: 0.95rem;
-      color: #64748b;
-      line-height: 1.5;
-    }
-
-    @media (max-width: 768px) {
-      h1 { font-size: 2rem; margin-bottom: 2rem; }
-      .card-grid { grid-template-columns: 1fr; gap: 1.5rem; }
-      main { padding: 2rem 1.25rem; }
-    }
-  </style>
+  <!-- 로직 스크립트 연결 -->
+  <script defer src="/assets/analysis.prod.js"></script>
 </head>
+
 <body>
 
-<!-- Header -->
+<!-- ===== Header 전용 스타일 (body 레이아웃 리셋 포함) ===== -->
+<style>
+  /* ✅ 중요: body를 세로 배치로 강제 (기존 CSS 덮어쓰기) */
+  body {
+    display: block !important; /* Flexbox 무시 */
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Header 스타일 */
+  .site-header {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+    background: #ffffff;
+    border-bottom: 1px solid #e2e8f0;
+    padding: 1rem 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    margin: 0;
+  }
+  .header-content {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .header-logo {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #334155;
+    text-decoration: none;
+  }
+  .header-logo .dot { color: #3b82f6; }
+  .header-logo .info { color: #64748b; font-weight: 300; }
+  .header-nav {
+    display: flex;
+    gap: 1.5rem;
+  }
+  .header-nav a {
+    font-size: 0.95rem;
+    color: #64748b;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+  .header-nav a:hover { color: #3b82f6; }
+  
+  /* 모바일 대응 */
+  @media (max-width: 480px) {
+    .site-header { padding: 0.75rem 1rem; }
+    .header-logo { font-size: 1.1rem; }
+    .header-nav { gap: 0.75rem; }
+    .header-nav a { font-size: 0.85rem; }
+  }
+</style>
+
 <header class="site-header">
   <div class="header-content">
     <a href="https://namane.info" class="header-logo">
@@ -135,32 +90,174 @@
   </div>
 </header>
 
-<!-- Dashboard -->
-<main>
-  <h1>⚽ Play Lab</h1>
-  
-  <div class="card-grid">
-    <!-- 컨디션 분석기 -->
-    <a href="/calc" class="feature-card">
-      <div class="card-icon">🔋</div>
-      <div class="card-title">컨디션 분석기</div>
-      <div class="card-desc">
-        운동 강도(RPE)와 통증 데이터를 기반으로<br>
-        부상 위험도와 회복 시간을 과학적으로 계산합니다.
-      </div>
-    </a>
+  <!-- 메인 컨텐츠 -->
+  <div class="main-container">
 
-    <!-- 모션 분석기 -->
-    <a href="/motion" class="feature-card">
-      <div class="card-icon">🏃</div>
-      <div class="card-title">AI 모션 분석</div>
-      <div class="card-desc">
-        웹캠으로 자세를 촬영하고<br>
-        실시간 관절 움직임을 분석합니다.
+    <!-- 히어로 섹션 -->
+    <div class="hero-card">
+      <div class="hero-title">
+        <span class="ball">⚽</span>
+        <h1>풋살/축구 컨디션 분석기</h1>
+        <span class="pill">스포츠 과학 적용</span>
       </div>
-    </a>
+      <p class="hero-subtitle">운동 강도(RPE)와 통증 데이터를 기반으로<br>부상 위험도와 회복 시간을 과학적으로 계산합니다.</p>
+    </div>
+
+    <!-- 입력 폼 섹션 -->
+    <div class="card input-section">
+      <form id="analysisForm">
+        
+        <div class="field">
+          <label class="field-label">종목 선택</label>
+          <div class="segmented">
+            <button type="button" class="seg-btn active sport-btn" data-sport="futsal">풋살</button>
+            <button type="button" class="seg-btn sport-btn" data-sport="football">축구</button>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="field-label">활동 거리 (km)</label>
+          <input type="number" id="distanceInput" step="0.1" placeholder="예: 4.2" inputmode="decimal">
+        </div>
+
+        <div class="field">
+          <label class="field-label">경기 시간</label>
+          <select id="durationSelect"></select>
+        </div>
+
+        <div class="field">
+          <label class="field-label">오늘 운동 강도 (1=산책 ~ 10=극한)</label>
+          <div class="range-row">
+            <input type="range" id="conditionScore" min="1" max="10" value="7">
+            <span class="range-value" id="condValue">7</span>
+          </div>
+          <div class="help-text" style="text-align: left; margin-top: 6px;">
+            🥵 7점: 숨이 차고 대화가 어려움<br>
+            🤮 9점: 더 이상 못 뛸 것 같음
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="field">
+            <label class="field-label">왼발 부하 (피로도)</label>
+            <div class="range-row">
+              <input type="range" id="leftLoad" min="0" max="10" value="5">
+              <span class="range-value" id="leftValue">5</span>
+            </div>
+          </div>
+          <div class="field">
+            <label class="field-label">오른발 부하 (피로도)</label>
+            <div class="range-row">
+              <input type="range" id="rightLoad" min="0" max="10" value="5">
+              <span class="range-value" id="rightValue">5</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="field-label">통증 부위 (중복 선택)</label>
+          <div id="painGrid" class="chip-grid">
+            <label class="chip checked">
+              <input type="checkbox" name="painArea" value="none" checked>
+              통증 없음
+            </label>
+            <label class="chip">
+              <input type="checkbox" name="painArea" value="calf">
+              종아리
+            </label>
+            <label class="chip">
+              <input type="checkbox" name="painArea" value="knee">
+              무릎
+            </label>
+            <label class="chip">
+              <input type="checkbox" name="painArea" value="hamstring">
+              햄스트링
+            </label>
+            <label class="chip">
+              <input type="checkbox" name="painArea" value="groin">
+              사타구니
+            </label>
+            <label class="chip">
+              <input type="checkbox" name="painArea" value="ankle">
+              발목
+            </label>
+          </div>
+        </div>
+
+        <div class="ad-safe-gap"></div>
+
+        <button type="submit" class="primary-btn">분석 결과 보기</button>
+      </form>
+    </div>
+
+    <!-- 결과 섹션 -->
+    <div id="resultSection" class="card result-section" style="display:none;">
+      <div class="result-head">
+        <h2 id="reportTitle">분석 리포트</h2>
+        <div id="modeBadge" class="mode-badge">분석 중...</div>
+      </div>
+
+      <div class="stats-3">
+        <div class="stat">
+          <div class="stat-num" id="distanceResult">--</div>
+          <div class="stat-label">거리</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num" id="loadResult">--</div>
+          <div class="stat-label">통합 부하</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num" id="readinessResult">--</div>
+          <div class="stat-label">회복도</div>
+        </div>
+      </div>
+
+      <div class="subcard">
+        <div class="subhead">🔄 48시간 회복 플랜</div>
+        <div class="timeline">
+          <div class="t-item"><div class="t-time">지금</div><div class="t-text" id="recoveryImmediate"></div></div>
+          <div class="t-item"><div class="t-time">1시간</div><div class="t-text" id="recovery1Hour"></div></div>
+          <div class="t-item"><div class="t-time">저녁</div><div class="t-text" id="recoveryEvening"></div></div>
+          <div class="t-item"><div class="t-time">취침</div><div class="t-text" id="recoveryBedtime"></div></div>
+        </div>
+      </div>
+
+      <div class="subcard">
+        <div class="subhead">🍎 영양 전략</div>
+        <div id="nutritionStrategy" class="nutrition"></div>
+      </div>
+
+      <div class="btn-row">
+        <button type="button" class="ghost-btn" onclick="shareAnalysis()">결과 공유</button>
+        <button type="button" class="ghost-btn" onclick="location.reload()">다시 분석</button>
+      </div>
+    </div>
+
+    <!-- 트렌드/히스토리 -->
+    <div class="card">
+      <h3 class="section-title">📈 최근 흐름</h3>
+      <div id="miniTrend" class="plain-box">데이터가 쌓이면 표시됩니다.</div>
+    </div>
+
+    <div class="card">
+      <div class="section-head">
+        <h3 class="section-title">📋 분석 히스토리</h3>
+        <button id="clearHistory" class="tiny-btn">전체 삭제</button>
+      </div>
+      <div id="historyList" class="history-list history-empty">기록이 없습니다</div>
+    </div>
+    
+    <!-- 주간 예상 -->
+    <div class="card">
+      <h3 class="section-title">📅 주간 부하 예측</h3>
+      <div id="weekForecast" class="plain-box">오늘 운동 후 예상 부하를 확인하세요.</div>
+    </div>
+
+    <div class="section-spacer"></div>
+    <div class="ad-likely-zone">
+      <div class="spacer-text">play.namane.info</div>
+    </div>
+
   </div>
-</main>
-
 </body>
 </html>
