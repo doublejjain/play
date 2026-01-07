@@ -1,1 +1,376 @@
-eval(function(p,a,c,k,e,d){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--){d[e(c)]=k[c]||e(c)}k=[function(e){return d[e]}];e=function(){return'\\w+'};c=1};while(c--){if(k[c]){p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c])}}return p}('3.8(\'🔍 1M 체크 시작...\');6 m=g.f(\'m\');6 j=g.f(\'j\');6 15=g.f(\'15\');6 d=g.f(\'d\');6 9=g.f(\'2l\');6 c=9?9.2k(\'2d\'):1o;6 p=g.f(\'2g-1O\');6 T=g.f(\'2i-1O\');6 R=g.f(\'R\');6 S=g.f(\'S\');7(!m)3.k(\'❌ m 없음\');7(!j)3.k(\'❌ j 없음\');7(!9)3.k(\'❌ 9 없음\');7(!p)3.k(\'❌ p 없음\');3.8(\'✅ 1M 체크 완료:\',{m:!!m,j:!!j,9:!!9,p:!!p});q 1Q=1o;q n=[];q u=1o;M 1x(){7(2I 1m===\'2H\'){3.1F(\'⏳ 1w 대기 중...\');1K(1x,2K);s}1D{u=2L 1m({2z:(o)=>{s`2w:}});u.2A({2D:1,2C:14,2J:1f,2B:0.5,2G:0.5});u.2O(1X);3.8(\'✅ 1w 1m 초기화 완료\')}1A(U){3.k(\'❌ 1w 초기화 실패:\',U)}}M 1X(C){7(!c)s;c.2P();c.2e(0,0,9.z,9.H);c.2t(C.1z,0,0,9.z,9.H);7(C.L){2m(c,C.L,2n,{21:\'#2E\',1Y:4});2o(c,C.L,{21:\'#2j\',1Y:2,2r:5});n.E({h:C.L,2N:d.1e})}c.2M()}7(m){m.v(\'W\',()=>{3.8(\'📂 업로드 박스 클릭됨!\');7(j){j.W();3.8(\'📂 파일 선택창 열림\')}V{3.k(\'❌ j이 없습니다!\')}});3.8(\'✅ m 이벤트 등록 완료\')}V{3.k(\'❌ m를 찾을 수 없습니다!\')}7(j){j.v(\'2x\',(e)=>{3.8(\'📁 파일 선택 이벤트 발생:\',e.22.2a);6 o=e.22.2a[0];7(!o){3.1F(\'⚠️ 파일이 선택되지 않음\');s}7(!o.1C.2y(\'2F/\')){O(\'동영상 파일만 업로드 가능합니다.\');3.k(\'❌ 잘못된 파일 타입:\',o.1C);s}7(o.13>17*Q*Q){O(\'파일 크기가 너무 큽니다. 2v 이하 영상을 선택해주세요.\');3.k(\'❌ 파일 크기 초과:\',o.13);s}3.8(\'✅ 파일 검증 통과:\',o.1J,`(${(o.13/Q/Q).2h(2)}2f)`);1Q=o;6 1R=2c.2u(o);d.2s=1R;d.1E();m.P.1k(\'2q\');m.1H(\'.1Z-2p\').A=\'✅ 영상 선택됨\';m.1H(\'.1Z-2T\').A=o.1J;15.P.1k(\'1i\');p.1j=1f;T.K.12=\'3j-1U\';d.v(\'3k\',()=>{9.z=d.3l;9.H=d.3m;3.8(\'📹 비디오 메타데이터 로드:\',9.z,\'x\',9.H)},{3i:14})});3.8(\'✅ j 이벤트 등록 완료\')}V{3.k(\'❌ j를 찾을 수 없습니다!\')}7(p){p.v(\'W\',1V()=>{3.8(\'🔍 분석 시작 버튼 클릭!\');7(!u){O(\'3h 모델이 아직 로딩 중입니다. 잠시 후 다시 시도해주세요.\');3.k(\'❌ u가 초기화되지 않음\');s}p.1j=14;R.K.12=\'1U\';S.P.3d(\'1i\');n=[];d.1e=0;d.3e();3.8(\'▶️ 비디오 재생 시작\');6 1L=10;6 1W=1G/1L;q 1a=0;6 1N=3f(1V()=>{7(d.3o||d.3t){3v(1N);3.8(`✅분석완료(총${1a}프레임처리)`);1P();R.K.12=\'3x\';S.P.1k(\'1i\');p.1j=1f;d.3w();d.1e=0;s}1D{3u u.3p({1z:d});1a++}1A(U){3.k(\'❌ 프레임 분석 오류:\',U)}},1W)});3.8(\'✅ p 이벤트 등록 완료\')}7(T){T.v(\'W\',()=>{3.8(\'🔄 페이지 새로고침\');2Q.3q()})}M 1P(){7(n.r===0){O(\'분석할 데이터가 없습니다. 영상이 너무 짧거나 사람이 감지되지 않았습니다.\');3.k(\'❌ n가 비어있음\');s}3.8(`📊결과계산시작(${n.r}개프레임)`);q 1h=0;q 1d=0;n.X(l=>{6 w=l.h[27];6 B=l.h[28];7(w&&B){7(w.y>B.y){1h++}V{1d++}}});6 N=t.29((t.3r(1h,1d)/n.r)*17);g.f(\'3s\').A=`${N}점`;g.f(\'3c\').K.z=`${N}%`;3.8(\'✅ 밸런스:\',N);q D=[];n.X(l=>{6 1b=l.h[23];6 19=l.h[25];6 w=l.h[27];7(1b&&19&&w){D.E(1r(1b,19,w))}6 18=l.h[24];6 1g=l.h[26];6 B=l.h[28];7(18&&1g&&B){D.E(1r(18,1g,B))}});6 Y=D.r>0?t.29(D.1p((a,b)=>a+b)/D.r):0;g.f(\'2W\').A=`${Y}°`;3.8(\'✅ 평균 무릎 각도:\',Y);q J=[];n.X(l=>{6 16=l.h[11];6 1l=l.h[23];7(16&&1l){J.E(t.1s(16.x-1l.x)*17)}});6 Z=J.r>0?J.1p((a,b)=>a+b)/J.r:0;6 1c=Z<5?\'우수\':Z<10?\'보통\':\'주의\';g.f(\'30\').A=1c;3.8(\'✅ 상체 기울기:\',1c);q F=[];31(q i=1;i<n.r;i++){6 1v=n[i-1].h[27];6 1y=n[i].h[27];7(1v&&1y){F.E(t.1s(1y.y-1v.y))}}6 1n=F.r>0?F.1p((a,b)=>a+b)/F.r:0;6 1q=1n<0.36?\'안정적\':1n<0.32?\'보통\':\'불안정\';g.f(\'33\').A=1q;3.8(\'✅ 착지 안정성:\',1q);3.8(\'📊 모든 결과 계산 완료!\')}M 1r(1t,I,1u){6 2b=t.20(1u.y-I.y,1u.x-I.x)-t.20(1t.y-I.y,1t.x-I.x);q G=t.1s(2b*1I.0/t.3b);7(G>1I.0){G=35-G}s G}34.v(\'1E\',()=>{3.8(\'🚀 페이지 로드 완료\');7(9&&c){9.z=1B;9.H=1S;c.1T=\'#37\';c.3a(0,0,1B,1S);c.1T=\'#39\';c.38=\'2U "2S 2R 2V"\';c.2Z=\'2Y\';c.2X(\'📹 동영상을 선택해주세요\',3n,3g);3.8(\'✅캔버스초기화완료3.8(\'✅ 캔버스 초기화 완료\')}1K(1x,1G)});',62,220,'|||console|||const|if|log|canvas|||ctx|videoPlayer||getElementById|document|landmarks||fileInput|error|frame|uploadBox|poseResults|file|analyzeBtn|let|length|return|Math|poseAnalyzer|addEventListener|leftAnkle|||width|textContent|rightAnkle|results|kneeAngles|push|movements|angle|height|pointB|tiltScores|style|poseLandmarks|function|balanceScore|alert|classList|1024|loading|resultBox|resetBtn|err|else|click|forEach|avgKnee|avgTilt|||display|size|true|videoWrapper|shoulder|100|rightHip|leftKnee|frameCount|leftHip|tiltGrade|rightWeight|currentTime|false|rightKnee|leftWeight|show|disabled|add|hip|Pose|avgMove|null|reduce|stabilityGrade|calculateAngle|abs|pointA|pointC|prev|MediaPipe|initializePose|curr|image|catch|640|type|try|load|warn|1000|querySelector|180|name|setTimeout|fps|DOM|analyzeInterval|btn|calculateResults|selectedFile|url|480|fillStyle|block|async|interval|onPoseResults|lineWidth|upload|atan2|color|target|||||||round|files|radians|URL||clearRect|MB|analyze|toFixed|reset|FF0000|getContext|output_canvas|drawConnectors|POSE_CONNECTIONS|drawLandmarks|text|active|radius|src|drawImage|createObjectURL|100MB|https|change|startsWith|locateFile|setOptions|minDetectionConfidence|smoothLandmarks|modelComplexity|00FF00|video|minTrackingConfidence|undefined|typeof|enableSegmentation|500|new|restore|timestamp|onResults|save|location|Sans|Noto|subtext|18px|KR|kneeAngle|fillText|center|textAlign|bodyTilt|for|05|stability|window|360|02|000000|font|64748b|fillRect|PI|balanceBar|remove|play|setInterval|240|AI|once|inline|loadedmetadata|videoWidth|videoHeight|320|ended|send|reload|min|balance|paused|await|clearInterval|pause|none'.split('|'),0,{}))
+/* 
+  motion.js
+  AI 모션 분석 로직 (동영상 업로드 방식)
+  ============================================
+*/
+
+// ========== DOM 요소 확인 ==========
+console.log('🔍 DOM 체크 시작...');
+
+const uploadBox = document.getElementById('uploadBox');
+const fileInput = document.getElementById('fileInput');
+const videoWrapper = document.getElementById('videoWrapper');
+const videoPlayer = document.getElementById('videoPlayer');
+const canvas = document.getElementById('output_canvas');
+const ctx = canvas ? canvas.getContext('2d') : null;
+const analyzeBtn = document.getElementById('analyze-btn');
+const resetBtn = document.getElementById('reset-btn');
+const loading = document.getElementById('loading');
+const resultBox = document.getElementById('resultBox');
+
+// 필수 요소 존재 확인
+if (!uploadBox) console.error('❌ uploadBox 없음');
+if (!fileInput) console.error('❌ fileInput 없음');
+if (!canvas) console.error('❌ canvas 없음');
+if (!analyzeBtn) console.error('❌ analyzeBtn 없음');
+
+console.log('✅ DOM 체크 완료:', {
+  uploadBox: !!uploadBox,
+  fileInput: !!fileInput,
+  canvas: !!canvas,
+  analyzeBtn: !!analyzeBtn
+});
+
+let selectedFile = null;
+let poseResults = [];
+let poseAnalyzer = null;
+
+// ========== MediaPipe Pose 초기화 ==========
+function initializePose() {
+  if (typeof Pose === 'undefined') {
+    console.warn('⏳ MediaPipe 대기 중...');
+    setTimeout(initializePose, 500);
+    return;
+  }
+
+  try {
+    poseAnalyzer = new Pose({
+      locateFile: (file) => {
+        return `https://cdn.jsdelivr.net/npm/@mediapipe/pose/${file}`;
+      }
+    });
+
+    poseAnalyzer.setOptions({
+      modelComplexity: 1,
+      smoothLandmarks: true,
+      enableSegmentation: false,
+      minDetectionConfidence: 0.5,
+      minTrackingConfidence: 0.5
+    });
+
+    poseAnalyzer.onResults(onPoseResults);
+    console.log('✅ MediaPipe Pose 초기화 완료');
+  } catch (err) {
+    console.error('❌ MediaPipe 초기화 실패:', err);
+  }
+}
+
+// MediaPipe 결과 처리
+function onPoseResults(results) {
+  if (!ctx) return;
+  
+  ctx.save();
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.drawImage(results.image, 0, 0, canvas.width, canvas.height);
+
+  if (results.poseLandmarks) {
+    // 관절 연결선 (녹색)
+    drawConnectors(ctx, results.poseLandmarks, POSE_CONNECTIONS, {
+      color: '#00FF00',
+      lineWidth: 4
+    });
+    
+    // 관절 점 (빨간색)
+    drawLandmarks(ctx, results.poseLandmarks, {
+      color: '#FF0000',
+      lineWidth: 2,
+      radius: 5
+    });
+
+    // 분석 데이터 저장
+    poseResults.push({
+      landmarks: results.poseLandmarks,
+      timestamp: videoPlayer.currentTime
+    });
+  }
+
+  ctx.restore();
+}
+
+// ========== 이벤트 핸들러 ==========
+
+// 업로드 박스 클릭
+if (uploadBox) {
+  uploadBox.addEventListener('click', () => {
+    console.log('📂 업로드 박스 클릭됨!');
+    if (fileInput) {
+      fileInput.click();
+      console.log('📂 파일 선택창 열림');
+    } else {
+      console.error('❌ fileInput이 없습니다!');
+    }
+  });
+  console.log('✅ uploadBox 이벤트 등록 완료');
+} else {
+  console.error('❌ uploadBox를 찾을 수 없습니다!');
+}
+
+// 파일 선택
+if (fileInput) {
+  fileInput.addEventListener('change', (e) => {
+    console.log('📁 파일 선택 이벤트 발생:', e.target.files);
+    
+    const file = e.target.files[0];
+    if (!file) {
+      console.warn('⚠️ 파일이 선택되지 않음');
+      return;
+    }
+
+    // 파일 타입 체크
+    if (!file.type.startsWith('video/')) {
+      alert('동영상 파일만 업로드 가능합니다.');
+      console.error('❌ 잘못된 파일 타입:', file.type);
+      return;
+    }
+
+    // 파일 크기 체크 (100MB)
+    if (file.size > 100 * 1024 * 1024) {
+      alert('파일 크기가 너무 큽니다. 100MB 이하 영상을 선택해주세요.');
+      console.error('❌ 파일 크기 초과:', file.size);
+      return;
+    }
+
+    console.log('✅ 파일 검증 통과:', file.name, `(${(file.size / 1024 / 1024).toFixed(2)}MB)`);
+
+    selectedFile = file;
+    const url = URL.createObjectURL(file);
+    
+    videoPlayer.src = url;
+    videoPlayer.load();
+    
+    // UI 업데이트
+    uploadBox.classList.add('active');
+    uploadBox.querySelector('.upload-text').textContent = '✅ 영상 선택됨';
+    uploadBox.querySelector('.upload-subtext').textContent = file.name;
+    
+    videoWrapper.classList.add('show');
+    analyzeBtn.disabled = false;
+    resetBtn.style.display = 'inline-block';
+    
+    // 캔버스 크기 설정
+    videoPlayer.addEventListener('loadedmetadata', () => {
+      canvas.width = videoPlayer.videoWidth;
+      canvas.height = videoPlayer.videoHeight;
+      console.log('📹 비디오 메타데이터 로드:', canvas.width, 'x', canvas.height);
+    }, { once: true });
+  });
+  console.log('✅ fileInput 이벤트 등록 완료');
+} else {
+  console.error('❌ fileInput를 찾을 수 없습니다!');
+}
+
+// 분석 시작 버튼
+if (analyzeBtn) {
+  analyzeBtn.addEventListener('click', async () => {
+    console.log('🔍 분석 시작 버튼 클릭!');
+    
+    if (!poseAnalyzer) {
+      alert('AI 모델이 아직 로딩 중입니다. 잠시 후 다시 시도해주세요.');
+      console.error('❌ poseAnalyzer가 초기화되지 않음');
+      return;
+    }
+
+    analyzeBtn.disabled = true;
+    loading.style.display = 'block';
+    resultBox.classList.remove('show');
+    poseResults = [];
+
+    // 비디오 재생
+    videoPlayer.currentTime = 0;
+    videoPlayer.play();
+    console.log('▶️ 비디오 재생 시작');
+
+    // 프레임별 분석 (초당 10프레임)
+    const fps = 10;
+    const interval = 1000 / fps;
+    let frameCount = 0;
+
+    const analyzeInterval = setInterval(async () => {
+      if (videoPlayer.ended || videoPlayer.paused) {
+        clearInterval(analyzeInterval);
+        
+        console.log(`✅ 분석 완료 (총 ${frameCount}프레임 처리)`);
+        
+        // 결과 계산
+        calculateResults();
+        loading.style.display = 'none';
+        resultBox.classList.add('show');
+        analyzeBtn.disabled = false;
+        videoPlayer.pause();
+        videoPlayer.currentTime = 0;
+        return;
+      }
+
+      // MediaPipe에 프레임 전송
+      try {
+        await poseAnalyzer.send({ image: videoPlayer });
+        frameCount++;
+      } catch (err) {
+        console.error('❌ 프레임 분석 오류:', err);
+      }
+    }, interval);
+  });
+  console.log('✅ analyzeBtn 이벤트 등록 완료');
+}
+
+// 다시 선택 버튼
+if (resetBtn) {
+  resetBtn.addEventListener('click', () => {
+    console.log('🔄 페이지 새로고침');
+    location.reload();
+  });
+}
+
+// ========== 분석 결과 계산 ==========
+
+function calculateResults() {
+  if (poseResults.length === 0) {
+    alert('분석할 데이터가 없습니다. 영상이 너무 짧거나 사람이 감지되지 않았습니다.');
+    console.error('❌ poseResults가 비어있음');
+    return;
+  }
+
+  console.log(`📊 결과 계산 시작 (${poseResults.length}개 프레임)`);
+
+  // 1. 좌우 밸런스 (왼발 vs 오른발)
+  let leftWeight = 0;
+  let rightWeight = 0;
+
+  poseResults.forEach(frame => {
+    const leftAnkle = frame.landmarks[27];
+    const rightAnkle = frame.landmarks[28];
+    
+    if (leftAnkle && rightAnkle) {
+      if (leftAnkle.y > rightAnkle.y) {
+        leftWeight++;
+      } else {
+        rightWeight++;
+      }
+    }
+  });
+
+  const balanceScore = Math.round((Math.min(leftWeight, rightWeight) / poseResults.length) * 100);
+  document.getElementById('balance').textContent = `${balanceScore}점`;
+  document.getElementById('balanceBar').style.width = `${balanceScore}%`;
+  console.log('✅ 밸런스:', balanceScore);
+
+  // 2. 무릎 각도 (평균)
+  let kneeAngles = [];
+  
+  poseResults.forEach(frame => {
+    // 왼쪽 무릎
+    const leftHip = frame.landmarks[23];
+    const leftKnee = frame.landmarks[25];
+    const leftAnkle = frame.landmarks[27];
+    
+    if (leftHip && leftKnee && leftAnkle) {
+      kneeAngles.push(calculateAngle(leftHip, leftKnee, leftAnkle));
+    }
+    
+    // 오른쪽 무릎
+    const rightHip = frame.landmarks[24];
+    const rightKnee = frame.landmarks[26];
+    const rightAnkle = frame.landmarks[28];
+    
+    if (rightHip && rightKnee && rightAnkle) {
+      kneeAngles.push(calculateAngle(rightHip, rightKnee, rightAnkle));
+    }
+  });
+
+  const avgKnee = kneeAngles.length > 0 
+    ? Math.round(kneeAngles.reduce((a, b) => a + b) / kneeAngles.length)
+    : 0;
+  
+  document.getElementById('kneeAngle').textContent = `${avgKnee}°`;
+  console.log('✅ 평균 무릎 각도:', avgKnee);
+
+  // 3. 상체 기울기
+  let tiltScores = [];
+  
+  poseResults.forEach(frame => {
+    const shoulder = frame.landmarks[11];
+    const hip = frame.landmarks[23];
+    
+    if (shoulder && hip) {
+      tiltScores.push(Math.abs(shoulder.x - hip.x) * 100);
+    }
+  });
+
+  const avgTilt = tiltScores.length > 0
+    ? tiltScores.reduce((a, b) => a + b) / tiltScores.length
+    : 0;
+  
+  const tiltGrade = avgTilt < 5 ? '우수' : avgTilt < 10 ? '보통' : '주의';
+  document.getElementById('bodyTilt').textContent = tiltGrade;
+  console.log('✅ 상체 기울기:', tiltGrade);
+
+  // 4. 착지 안정성
+  let movements = [];
+  
+  for (let i = 1; i < poseResults.length; i++) {
+    const prev = poseResults[i - 1].landmarks[27];
+    const curr = poseResults[i].landmarks[27];
+    
+    if (prev && curr) {
+      movements.push(Math.abs(curr.y - prev.y));
+    }
+  }
+
+  const avgMove = movements.length > 0
+    ? movements.reduce((a, b) => a + b) / movements.length
+    : 0;
+  
+  const stabilityGrade = avgMove < 0.02 ? '안정적' : avgMove < 0.05 ? '보통' : '불안정';
+  document.getElementById('stability').textContent = stabilityGrade;
+  console.log('✅ 착지 안정성:', stabilityGrade);
+
+  console.log('📊 모든 결과 계산 완료!');
+}
+
+// ========== 유틸리티 함수 ==========
+
+// 각도 계산 (3개 점을 이용한 각도)
+function calculateAngle(pointA, pointB, pointC) {
+  const radians = Math.atan2(pointC.y - pointB.y, pointC.x - pointB.x) 
+                - Math.atan2(pointA.y - pointB.y, pointA.x - pointB.x);
+  let angle = Math.abs(radians * 180.0 / Math.PI);
+  
+  if (angle > 180.0) {
+    angle = 360 - angle;
+  }
+  
+  return angle;
+}
+
+// ========== 페이지 초기화 ==========
+
+window.addEventListener('load', () => {
+  console.log('🚀 페이지 로드 완료');
+  
+  // 캔버스 초기 상태
+  if (canvas && ctx) {
+    canvas.width = 640;
+    canvas.height = 480;
+    ctx.fillStyle = '#000000';
+    ctx.fillRect(0, 0, 640, 480);
+    ctx.fillStyle = '#64748b';
+    ctx.font = '18px "Noto Sans KR"';
+    ctx.textAlign = 'center';
+    ctx.fillText('📹 동영상을 선택해주세요', 320, 240);
+    console.log('✅ 캔버스 초기화 완료
+    console.log('✅ 캔버스 초기화 완료');
+  }
+
+  // MediaPipe 초기화 (1초 후)
+  setTimeout(initializePose, 1000);
+});
