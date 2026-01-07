@@ -1,1 +1,326 @@
 
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>🏃 AI 모션 분석 | Play Lab</title>
+  
+  <!-- 폰트 -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;500;700;900&display=swap" rel="stylesheet">
+  
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      background: #f8fafc;
+      color: #1e293b;
+      display: block !important; /* 레이아웃 리셋 */
+    }
+
+    /* ===== Header ===== */
+    .site-header {
+      position: sticky;
+      top: 0;
+      width: 100%;
+      z-index: 9999;
+      background: #ffffff;
+      border-bottom: 1px solid #e2e8f0;
+      padding: 1rem 1.5rem;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    }
+    .header-content {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .header-logo {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #334155;
+      text-decoration: none;
+    }
+    .header-logo .dot { color: #3b82f6; }
+    .header-logo .info { color: #64748b; font-weight: 300; }
+    .header-nav { display: flex; gap: 1.5rem; }
+    .header-nav a {
+      font-size: 0.95rem;
+      color: #64748b;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .header-nav a:hover { color: #3b82f6; }
+
+    /* ===== Main Content ===== */
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+    .hero {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .hero h1 {
+      font-size: 2rem;
+      font-weight: 900;
+      color: #334155;
+      margin-bottom: 0.5rem;
+    }
+    .hero p {
+      font-size: 1rem;
+      color: #64748b;
+    }
+
+    /* ===== 카메라 영역 ===== */
+    .video-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 640px;
+      margin: 0 auto 2rem;
+      background: #000;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    }
+    #input_video {
+      display: none; /* 실제 비디오는 숨김 */
+    }
+    #output_canvas {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* ===== 버튼 ===== */
+    .controls {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+    .btn {
+      padding: 1rem 2rem;
+      font-size: 1rem;
+      font-weight: 700;
+      border: none;
+      border-radius: 14px;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: 'Noto Sans KR', sans-serif;
+    }
+    .btn-start {
+      background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+      color: white;
+      box-shadow: 0 8px 16px -4px rgba(37, 99, 235, 0.3);
+    }
+    .btn-start:hover { transform: translateY(-2px); }
+    .btn-start:disabled {
+      background: #cbd5e1;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+    .btn-stop {
+      background: #ef4444;
+      color: white;
+    }
+    .btn-stop:hover { background: #dc2626; }
+    .btn-stop:disabled {
+      background: #cbd5e1;
+      cursor: not-allowed;
+    }
+
+    /* ===== 분석 결과 ===== */
+    .analysis-box {
+      background: white;
+      border-radius: 20px;
+      padding: 2rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      border: 1px solid #e2e8f0;
+      margin-bottom: 2rem;
+    }
+    .analysis-box h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 1rem;
+    }
+    .analysis-box p {
+      color: #64748b;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 768px) {
+      .container { padding: 1.5rem 1rem; }
+      .hero h1 { font-size: 1.5rem; }
+      .controls { flex-direction: column; }
+      .btn { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="site-header">
+  <div class="header-content">
+    <a href="https://namane.info" class="header-logo">
+      namane<span class="dot">.</span><span class="info">info</span>
+    </a>
+    <nav class="header-nav">
+      <a href="/">홈</a>
+      <a href="/calc">컨디션</a>
+      <a href="/motion">모션</a>
+    </nav>
+  </div>
+</header>
+
+<!-- Main Content -->
+<div class="container">
+  
+  <div class="hero">
+    <h1>🏃 AI 모션 분석</h1>
+    <p>웹캠으로 자세를 촬영하고 실시간 관절 움직임을 추적합니다.</p>
+  </div>
+
+  <!-- 카메라 화면 -->
+  <div class="video-wrapper">
+    <video id="input_video" playsinline></video>
+    anvas id="output_canvas"></canvas>
+  </div>
+
+  <!-- 컨트롤 버튼 -->
+  <div class="controls">
+    <button id="start-btn" class="btn btn-start">📹 분석 시작</button>
+    <button id="stop-btn" class="btn btn-stop" disabled>⏸ 일시정지</button>
+  </div>
+
+  <!-- 분석 결과 (향후 확장 가능) -->
+  <div class="analysis-box">
+    <h3>💡 사용 방법</h3>
+    <p>
+      1. <strong>"분석 시작"</strong> 버튼을 누르고 카메라 권한을 허용하세요.<br>
+      2. 카메라 앞에서 <strong>전신이 보이도록</strong> 서세요.<br>
+      3. 달리기, 스쿼트, 런지 등 동작을 수행하면 <strong>관절 포인트가 실시간으로 표시</strong>됩니다.<br>
+      4. 녹색 선은 관절 연결, 빨간 점은 관절 위치입니다.
+    </p>
+  </div>
+
+</div>
+
+<!-- MediaPipe 라이브러리 -->
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/pose/pose.js" crossorigin="anonymous"></script>
+
+<!-- 모션 분석 로직 -->
+<script>
+  const videoElement = document.getElementById('input_video');
+  const canvasElement = document.getElementById('output_canvas');
+  const canvasCtx = canvasElement.getContext('2d');
+  const startBtn = document.getElementById('start-btn');
+  const stopBtn = document.getElementById('stop-btn');
+
+  let camera = null;
+  let isAnalyzing = false;
+
+  // MediaPipe Pose 설정
+  const pose = new Pose({
+    locateFile: (file) => {
+      return `https://cdn.jsdelivr.net/npm/@mediapipe/pose/${file}`;
+    }
+  });
+
+  pose.setOptions({
+    modelComplexity: 1,
+    smoothLandmarks: true,
+    enableSegmentation: false,
+    minDetectionConfidence: 0.5,
+    minTrackingConfidence: 0.5
+  });
+
+  pose.onResults(onResults);
+
+  // 결과 처리 함수
+  function onResults(results) {
+    if (!isAnalyzing) return;
+
+    canvasCtx.save();
+    canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
+    
+    // 비디오 이미지 그리기
+    canvasCtx.drawImage(results.image, 0, 0, canvasElement.width, canvasElement.height);
+
+    if (results.poseLandmarks) {
+      // 관절 연결선 그리기 (녹색)
+      drawConnectors(canvasCtx, results.poseLandmarks, POSE_CONNECTIONS, {
+        color: '#00FF00',
+        lineWidth: 4
+      });
+      
+      // 관절 점 그리기 (빨간색)
+      drawLandmarks(canvasCtx, results.poseLandmarks, {
+        color: '#FF0000',
+        lineWidth: 2,
+        radius: 5
+      });
+    }
+
+    canvasCtx.restore();
+  }
+
+  // 시작 버튼
+  startBtn.addEventListener('click', async () => {
+    isAnalyzing = true;
+    startBtn.disabled = true;
+    stopBtn.disabled = false;
+
+    // 캔버스 크기 설정
+    canvasElement.width = 640;
+    canvasElement.height = 480;
+
+    if (!camera) {
+      camera = new Camera(videoElement, {
+        onFrame: async () => {
+          await pose.send({ image: videoElement });
+        },
+        width: 640,
+        height: 480
+      });
+      await camera.start();
+    }
+  });
+
+  // 정지 버튼
+  stopBtn.addEventListener('click', () => {
+    isAnalyzing = false;
+    startBtn.disabled = false;
+    stopBtn.disabled = true;
+    
+    // 캔버스 초기화
+    canvasCtx.fillStyle = '#000000';
+    canvasCtx.fillRect(0, 0, canvasElement.width, canvasElement.height);
+    canvasCtx.fillStyle = '#ffffff';
+    canvasCtx.font = '20px "Noto Sans KR"';
+    canvasCtx.textAlign = 'center';
+    canvasCtx.fillText('일시정지됨', canvasElement.width / 2, canvasElement.height / 2);
+  });
+
+  // 초기 상태 (검은 화면)
+  window.addEventListener('load', () => {
+    canvasElement.width = 640;
+    canvasElement.height = 480;
+    canvasCtx.fillStyle = '#000000';
+    canvasCtx.fillRect(0, 0, canvasElement.width, canvasElement.height);
+    canvasCtx.fillStyle = '#64748b';
+    canvasCtx.font = '18px "Noto Sans KR"';
+    canvasCtx.textAlign = 'center';
+    canvasCtx.fillText('📹 "분석 시작" 버튼을 눌러주세요', canvasElement.width / 2, canvasElement.height / 2);
+  });
+</script>
+
+</body>
+</html>
