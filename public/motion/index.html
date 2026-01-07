@@ -8,6 +8,7 @@
   <!-- 폰트 -->
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;500;700;900&display=swap" rel="stylesheet">
   
+  <!-- 스타일 -->
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -53,7 +54,7 @@
     }
     .header-nav a:hover { color: #3b82f6; }
 
-    /* Main Container */
+    /* Container */
     .container {
       max-width: 900px;
       margin: 0 auto;
@@ -77,7 +78,7 @@
       line-height: 1.5;
     }
 
-    /* 업로드 박스 */
+    /* Upload Box */
     .upload-box {
       background: white;
       border: 2px dashed #cbd5e1;
@@ -114,7 +115,7 @@
       display: none;
     }
 
-    /* 비디오 플레이어 */
+    /* Video Wrapper */
     .video-wrapper {
       position: relative;
       width: 100%;
@@ -124,7 +125,7 @@
       border-radius: 20px;
       overflow: hidden;
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-      display: none; /* 초기에는 숨김 */
+      display: none;
     }
     .video-wrapper.show {
       display: block;
@@ -140,9 +141,10 @@
       left: 0;
       width: 100%;
       height: 100%;
+      pointer-events: none;
     }
 
-    /* 컨트롤 버튼 */
+    /* Buttons */
     .controls {
       display: flex;
       gap: 1rem;
@@ -176,7 +178,28 @@
     }
     .btn-reset:hover { background: #475569; }
 
-    /* 분석 결과 */
+    /* Loading */
+    .loading {
+      text-align: center;
+      padding: 2rem;
+      color: #64748b;
+      display: none;
+    }
+    .spinner {
+      border: 3px solid #e2e8f0;
+      border-top: 3px solid #3b82f6;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 1rem;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Result Box */
     .result-box {
       background: white;
       border-radius: 20px;
@@ -226,26 +249,6 @@
       transition: width 0.3s;
     }
 
-    /* 로딩 상태 */
-    .loading {
-      text-align: center;
-      padding: 2rem;
-      color: #64748b;
-    }
-    .spinner {
-      border: 3px solid #e2e8f0;
-      border-top: 3px solid #3b82f6;
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      animation: spin 1s linear infinite;
-      margin: 0 auto 1rem;
-    }
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
     @media (max-width: 768px) {
       .container { padding: 1.5rem 1rem; }
       .hero h1 { font-size: 1.5rem; }
@@ -270,7 +273,7 @@
   </div>
 </header>
 
-<!-- Main Content -->
+<!-- Main -->
 <div class="container">
   
   <div class="hero">
@@ -278,7 +281,7 @@
     <p>5~10초 영상을 업로드하면 자세와 밸런스를 분석합니다.</p>
   </div>
 
-  <!-- 파일 업로드 영역 -->
+  <!-- Upload -->
   <div class="upload-box" id="uploadBox">
     <div class="upload-icon">📹</div>
     <div class="upload-text">동영상 선택하기</div>
@@ -286,25 +289,25 @@
     <input type="file" id="fileInput" accept="video/*">
   </div>
 
-  <!-- 비디오 플레이어 + 캔버스 -->
+  <!-- Video Player -->
   <div class="video-wrapper" id="videoWrapper">
     <video id="videoPlayer" playsinline muted loop></video>
     anvas id="output_canvas"></canvas>
   </div>
 
-  <!-- 컨트롤 버튼 -->
+  <!-- Controls -->
   <div class="controls">
     <button id="analyze-btn" class="btn btn-analyze" disabled>🔍 분석 시작</button>
     <button id="reset-btn" class="btn btn-reset" style="display:none;">🔄 다시 선택</button>
   </div>
 
-  <!-- 로딩 상태 -->
-  <div id="loading" class="loading" style="display:none;">
+  <!-- Loading -->
+  <div id="loading" class="loading">
     <div class="spinner"></div>
     <p>영상을 분석하고 있습니다...</p>
   </div>
 
-  <!-- 분석 결과 -->
+  <!-- Results -->
   <div id="resultBox" class="result-box">
     <h3>📊 분석 결과</h3>
     
@@ -334,245 +337,13 @@
 
 </div>
 
-<!-- MediaPipe 라이브러리 -->
+<!-- MediaPipe Libraries -->
 <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/@mediapipe/pose/pose.js" crossorigin="anonymous"></script>
 
-<!-- 모션 분석 로직 -->
-<script>
-  const uploadBox = document.getElementById('uploadBox');
-  const fileInput = document.getElementById('fileInput');
-  const videoWrapper = document.getElementById('videoWrapper');
-  const videoPlayer = document.getElementById('videoPlayer');
-  const canvas = document.getElementById('output_canvas');
-  const ctx = canvas.getContext('2d');
-  const analyzeBtn = document.getElementById('analyze-btn');
-  const resetBtn = document.getElementById('reset-btn');
-  const loading = document.getElementById('loading');
-  const resultBox = document.getElementById('resultBox');
-
-  let selectedFile = null;
-  let poseResults = [];
-
-  // 업로드 박스 클릭 → 파일 선택
-  uploadBox.addEventListener('click', () => {
-    fileInput.click();
-  });
-
-  // 파일 선택 시
-  fileInput.addEventListener('change', (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-
-    selectedFile = file;
-    const url = URL.createObjectURL(file);
-    
-    videoPlayer.src = url;
-    videoPlayer.load();
-    
-    // UI
-    // UI 업데이트
-    uploadBox.classList.add('active');
-    uploadBox.querySelector('.upload-text').textContent = '✅ 영상 선택됨';
-    uploadBox.querySelector('.upload-subtext').textContent = file.name;
-    
-    videoWrapper.classList.add('show');
-    analyzeBtn.disabled = false;
-    resetBtn.style.display = 'inline-block';
-  });
-
-  // MediaPipe Pose 설정
-  const pose = new Pose({
-    locateFile: (file) => {
-      return `https://cdn.jsdelivr.net/npm/@mediapipe/pose/${file}`;
-    }
-  });
-
-  pose.setOptions({
-    modelComplexity: 1,
-    smoothLandmarks: true,
-    enableSegmentation: false,
-    minDetectionConfidence: 0.5,
-    minTrackingConfidence: 0.5
-  });
-
-  pose.onResults(onPoseResults);
-
-  // Pose 결과 처리
-  function onPoseResults(results) {
-    // 캔버스에 그리기
-    ctx.save();
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.drawImage(results.image, 0, 0, canvas.width, canvas.height);
-
-    if (results.poseLandmarks) {
-      // 관절 연결선 (녹색)
-      drawConnectors(ctx, results.poseLandmarks, POSE_CONNECTIONS, {
-        color: '#00FF00',
-        lineWidth: 4
-      });
-      
-      // 관절 점 (빨간색)
-      drawLandmarks(ctx, results.poseLandmarks, {
-        color: '#FF0000',
-        lineWidth: 2,
-        radius: 5
-      });
-
-      // 분석 데이터 저장
-      poseResults.push({
-        landmarks: results.poseLandmarks,
-        timestamp: videoPlayer.currentTime
-      });
-    }
-
-    ctx.restore();
-  }
-
-  // 분석 시작 버튼
-  analyzeBtn.addEventListener('click', async () => {
-    analyzeBtn.disabled = true;
-    loading.style.display = 'block';
-    resultBox.classList.remove('show');
-    poseResults = []; // 초기화
-
-    // 캔버스 크기 설정
-    canvas.width = videoPlayer.videoWidth;
-    canvas.height = videoPlayer.videoHeight;
-
-    // 비디오 재생 및 프레임별 분석
-    videoPlayer.currentTime = 0;
-    videoPlayer.play();
-
-    const fps = 10; // 초당 10프레임 분석
-    const interval = 1000 / fps;
-
-    const analyzeInterval = setInterval(async () => {
-      if (videoPlayer.ended || videoPlayer.paused) {
-        clearInterval(analyzeInterval);
-        
-        // 분석 완료 → 결과 계산
-        calculateResults();
-        loading.style.display = 'none';
-        resultBox.classList.add('show');
-        analyzeBtn.disabled = false;
-        return;
-      }
-
-      // MediaPipe에 프레임 전송
-      await pose.send({ image: videoPlayer });
-    }, interval);
-  });
-
-  // 다시 선택 버튼
-  resetBtn.addEventListener('click', () => {
-    location.reload();
-  });
-
-  // 분석 결과 계산
-  function calculateResults() {
-    if (poseResults.length === 0) {
-      alert('분석할 데이터가 없습니다. 영상을 다시 선택해주세요.');
-      return;
-    }
-
-    // 1. 좌우 밸런스 계산 (왼발 vs 오른발 체중 분포)
-    let leftWeight = 0;
-    let rightWeight = 0;
-
-    poseResults.forEach(frame => {
-      const landmarks = frame.landmarks;
-      
-      // 왼쪽 발목(27) vs 오른쪽 발목(28)의 y 좌표 비교
-      const leftAnkle = landmarks[27];
-      const rightAnkle = landmarks[28];
-      
-      if (leftAnkle && rightAnkle) {
-        // y값이 낮을수록 더 높이 있음 (체중이 덜 실림)
-        if (leftAnkle.y > rightAnkle.y) {
-          leftWeight++;
-        } else {
-          rightWeight++;
-        }
-      }
-    });
-
-    const totalFrames = poseResults.length;
-    const balanceScore = Math.round((Math.min(leftWeight, rightWeight) / totalFrames) * 100);
-    
-    document.getElementById('balance').textContent = `${balanceScore}점`;
-    document.getElementById('balanceBar').style.width = `${balanceScore}%`;
-
-    // 2. 무릎 각도 계산 (평균)
-    let kneeAngles = [];
-    
-    poseResults.forEach(frame => {
-      const landmarks = frame.landmarks;
-      
-      // 왼쪽 무릎 각도 (허벅지-무릎-종아리)
-      const leftHip = landmarks[23];
-      const leftKnee = landmarks[25];
-      const leftAnkle = landmarks[27];
-      
-      if (leftHip && leftKnee && leftAnkle) {
-        const angle = calculateAngle(leftHip, leftKnee, leftAnkle);
-        kneeAngles.push(angle);
-      }
-    });
-
-    const avgKneeAngle = kneeAngles.length > 0 
-      ? Math.round(kneeAngles.reduce((a, b) => a + b, 0) / kneeAngles.length)
-      : 0;
-    
-    document.getElementById('kneeAngle').textContent = `${avgKneeAngle}°`;
-
-    // 3. 상체 기울기 (어깨-엉덩이 각도)
-    const firstFrame = poseResults[0]?.landmarks;
-    if (firstFrame) {
-      const leftShoulder = firstFrame[11];
-      const leftHip = firstFrame[23];
-      
-      if (leftShoulder && leftHip) {
-        const tilt = Math.abs(leftShoulder.x - leftHip.x) * 100;
-        const tiltScore = tilt < 5 ? '우수' : tilt < 10 ? '보통' : '주의';
-        document.getElementById('bodyTilt').textContent = tiltScore;
-      }
-    }
-
-    // 4. 착지 안정성 (발목 y좌표 변화량)
-    let ankleMovement = [];
-    
-    for (let i = 1; i < poseResults.length; i++) {
-      const prev = poseResults[i - 1].landmarks[27]; // 왼쪽 발목
-      const curr = poseResults[i].landmarks[27];
-      
-      if (prev && curr) {
-        const movement = Math.abs(curr.y - prev.y);
-        ankleMovement.push(movement);
-      }
-    }
-
-    const avgMovement = ankleMovement.length > 0
-      ? ankleMovement.reduce((a, b) => a + b, 0) / ankleMovement.length
-      : 0;
-    
-    const stabilityScore = avgMovement < 0.02 ? '안정적' : avgMovement < 0.05 ? '보통' : '불안정';
-    document.getElementById('stability').textContent = stabilityScore;
-  }
-
-  // 각도 계산 함수 (3점 기준)
-  function calculateAngle(a, b, c) {
-    const radians = Math.atan2(c.y - b.y, c.x - b.x) - Math.atan2(a.y - b.y, a.x - b.x);
-    let angle = Math.abs(radians * 180.0 / Math.PI);
-    
-    if (angle > 180.0) {
-      angle = 360 - angle;
-    }
-    
-    return angle;
-  }
-</script>
+<!-- Motion Analysis Logic (분리됨) -->
+<script src="../assets/motion.prod.js"></script>
 
 </body>
 </html>
