@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Play Lab | 스포츠 과학 연구소</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      background: #f8fafc;
+      color: #1e293b;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      width: 100%;
+      z-index: 9999;
+      background: #ffffff;
+      border-bottom: 1px solid #e2e8f0;
+      padding: 1rem 1.5rem;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    }
+    .header-content {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .header-logo {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #334155;
+      text-decoration: none;
+    }
+    .header-logo .dot { color: #3b82f6; }
+    .header-logo .info { color: #64748b; font-weight: 300; }
+    .header-nav { display: flex; gap: 1.5rem; }
+    .header-nav a {
+      font-size: 0.95rem;
+      color: #64748b;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .header-nav a:hover { color: #3b82f6; }
+
+    /* Main Dashboard */
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem 1.5rem;
+      max-width: 800px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: #334155;
+      margin-bottom: 3rem;
+      text-align: center;
+    }
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      width: 100%;
+    }
+    .feature-card {
+      background: white;
+      border-radius: 20px;
+      padding: 2.5rem;
+      text-decoration: none;
+      color: inherit;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      border-color: #3b82f6;
+    }
+    .card-icon {
+      font-size: 3.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .card-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 0.75rem;
+    }
+    .card-desc {
+      font-size: 0.95rem;
+      color: #64748b;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 768px) {
+      h1 { font-size: 2rem; margin-bottom: 2rem; }
+      .card-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+      main { padding: 2rem 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="site-header">
+  <div class="header-content">
+    <a href="https://namane.info" class="header-logo">
+      namane<span class="dot">.</span><span class="info">info</span>
+    </a>
+    <nav class="header-nav">
+      <a href="/">홈</a>
+      <a href="/calc">컨디션</a>
+      <a href="/motion">모션</a>
+    </nav>
+  </div>
+</header>
+
+<!-- Dashboard -->
+<main>
+  <h1>⚽ Play Lab</h1>
+  
+  <div class="card-grid">
+    <!-- 컨디션 분석기 -->
+    <a href="/calc" class="feature-card">
+      <div class="card-icon">🔋</div>
+      <div class="card-title">컨디션 분석기</div>
+      <div class="card-desc">
+        운동 강도(RPE)와 통증 데이터를 기반으로<br>
+        부상 위험도와 회복 시간을 과학적으로 계산합니다.
+      </div>
+    </a>
+
+    <!-- 모션 분석기 -->
+    <a href="/motion" class="feature-card">
+      <div class="card-icon">🏃</div>
+      <div class="card-title">AI 모션 분석</div>
+      <div class="card-desc">
+        웹캠으로 자세를 촬영하고<br>
+        실시간 관절 움직임을 분석합니다.
+      </div>
+    </a>
+  </div>
+</main>
+
+</body>
+</html>
