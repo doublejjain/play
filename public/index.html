@@ -14,23 +14,30 @@
   <!-- 로직 스크립트 연결 -->
   <script defer src="/assets/analysis.prod.js"></script>
 </head>
-  
 
 <body>
-<!-- ===== Header (전체 화면 너비) ===== -->
+
+<!-- ===== Header 전용 스타일 (body 레이아웃 리셋 포함) ===== -->
 <style>
-  /* ✅ Header 강제 전체 너비 */
+  /* ✅ 중요: body를 세로 배치로 강제 (기존 CSS 덮어쓰기) */
+  body {
+    display: block !important; /* Flexbox 무시 */
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Header 스타일 */
   .site-header {
     position: sticky;
     top: 0;
     left: 0;
-    width: 100vw; /* 뷰포트 전체 너비 */
+    width: 100%;
     z-index: 9999;
     background: #ffffff;
     border-bottom: 1px solid #e2e8f0;
     padding: 1rem 1.5rem;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
-    margin: 0; /* 마진 제거 */
+    margin: 0;
   }
   .header-content {
     max-width: 900px;
@@ -60,6 +67,14 @@
     transition: color 0.2s;
   }
   .header-nav a:hover { color: #3b82f6; }
+  
+  /* 모바일 대응 */
+  @media (max-width: 480px) {
+    .site-header { padding: 0.75rem 1rem; }
+    .header-logo { font-size: 1.1rem; }
+    .header-nav { gap: 0.75rem; }
+    .header-nav a { font-size: 0.85rem; }
+  }
 </style>
 
 <header class="site-header">
@@ -74,7 +89,8 @@
     </nav>
   </div>
 </header>
-<!-- ===== Header 끝 ===== -->
+
+  <!-- 메인 컨텐츠 -->
   <div class="main-container">
 
     <!-- 히어로 섹션 -->
@@ -109,7 +125,6 @@
           <select id="durationSelect"></select>
         </div>
 
-        <!-- [중요] 라벨 변경: 컨디션 -> 운동 강도 -->
         <div class="field">
           <label class="field-label">오늘 운동 강도 (1=산책 ~ 10=극한)</label>
           <div class="range-row">
