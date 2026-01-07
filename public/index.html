@@ -67,13 +67,28 @@
       margin: 0 auto;
       width: 100%;
     }
-    h1 {
-      font-size: 2.5rem;
-      font-weight: 900;
-      color: #334155;
-      margin-bottom: 3rem;
-      text-align: center;
+      h1 {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: #334155;
+    margin-bottom: 3rem;
+    text-align: center;
+  }
+
+  /* ✅ 축구공 통통 애니메이션 */
+  .bounce-ball {
+    display: inline-block;
+    animation: bounce 1.5s ease-in-out infinite;
+  }
+  
+  @keyframes bounce {
+    0%, 100% {
+      transform: translateY(0);
     }
+    50% {
+      transform: translateY(-15px);
+    }
+  }
     .card-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -140,7 +155,8 @@
 
 <!-- Dashboard -->
 <main>
-  <h1>⚽ Play Lab</h1>
+    <h1><span class="bounce-ball">⚽</span> Play Lab</h1>
+
   
   <div class="card-grid">
     <!-- 컨디션 분석기 -->
