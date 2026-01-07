@@ -14,6 +14,68 @@
   <!-- 로직 스크립트 연결 -->
   <script defer src="/assets/analysis.prod.js"></script>
 </head>
+  <!-- 🔝 공통 Header (모든 페이지 최상단에 삽입) -->
+<style>
+  /* Header 스타일 (namane.info와 동일) */
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid #e2e8f0;
+    padding: 1rem 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  }
+  .header-content {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .header-logo {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #334155;
+    text-decoration: none;
+    letter-spacing: -0.02em;
+  }
+  .header-logo .dot { color: #3b82f6; }
+  .header-logo .info { color: #64748b; font-weight: 300; }
+  .header-nav {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+  }
+  .header-nav a {
+    font-size: 0.95rem;
+    color: #64748b;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+  .header-nav a:hover { color: #3b82f6; }
+  .header-nav a.active { color: #334155; font-weight: 700; }
+</style>
+
+<header class="site-header">
+  <div class="header-content">
+    <!-- 왼쪽: 로고 (클릭 시 메인으로) -->
+    <a href="https://namane.info" class="header-logo">
+      namane<span class="dot">.</span><span class="info">info</span>
+    </a>
+    
+    <!-- 오른쪽: 네비게이션 (선택 사항) -->
+    <nav class="header-nav">
+      <a href="/">홈</a>
+      <a href="/calc">컨디션</a>
+      <a href="/motion">모션</a>
+    </nav>
+  </div>
+</header>
+
 <body>
 
   <div class="main-container">
