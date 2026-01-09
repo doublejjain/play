@@ -1,1 +1,777 @@
-eval(function(p,a,c,k,e,d){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--){d[e(c)]=k[c]||e(c)}k=[function(e){return d[e]}];e=function(){return'\\w+'};c=1};while(c--){if(k[c]){p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c])}}return p}('1m.2b(\'🏃 3x 5j 5z 5v\');7 1v=19.18(\'1v\');7 2f=19.18(\'2f\');7 3a=19.18(\'3a\');7 Q=19.18(\'Q\');7 L=19.18(\'3V\');7 C=L?L.5s(\'2d\'):46;7 1s=19.18(\'5f-3M\');7 2D=19.18(\'53-3M\');7 1Z=19.18(\'1Z\');7 21=19.18(\'21\');E N=[];E 1P=46;1g 3g(){f(63 4g===\'5Z\'){2M(3g,6a);n}3Q{1P=67 4g({68:(1O)=>`4U:});1P.69({5W:1,5J:2i,5H:0.3,5C:0.3});1P.5D(3r);1m.2b(\'✅ 3o 5E\')}3A(2l){1m.2U(\'3o 5F:\',2l)}}1g 3r(1B){f(!1B.2L)n;f(C&&L){C.5T();C.5U(0,0,L.1N,L.1b);C.3O(1B.3B,0,0,L.1N,L.1b);5Q(C,1B.2L,5N,{q:\'#6f\',41:4});4H(C,1B.2L,{q:\'#4J\',41:2,S:5});C.4t()}N.D({r:1B.2L,4j:4k.4r()})}f(1v){1v.1l(\'2k\',()=>2f.2k())}f(2f){2f.1l(\'4K\',(e)=>{7 1O=e.4S.4Q[0];f(!1O||!1O.1S.4I(\'4B/\'))n;7 3z=4C.4G(1O);Q.4F=3z;1v.2j.2X(\'4E\');1v.3Z(\'.4i-43\').3D=\'영상 선택됨\';1v.3Z(\'.4i-4y\').3D=1O.g;3a.2j.2X(\'2Y\');1s.2u=2Z;2D.h.1q=\'3P-3Y\';Q.1l(\'4w\',()=>{7 c=19.18(\'3V\');f(c){c.1N=Q.4D||2W;c.1b=Q.4o||38}},{3h:2i})})}f(1s){1s.1l(\'2k\',3C()=>{f(!1P)n;1s.2u=2i;1Z.h.1q=\'3Y\';21.2j.4m(\'2Y\');N=[];Q.4q=0;3U Q.4l();E 2T=0;7 49=3d;7 2r=3C()=>{f(Q.4u||2T>=49){Q.4T();2M(()=>{f(N.u<10){4M(\'프레임이 너무 적습니다. 5초 이상 영상을 사용해주세요.\');1Z.h.1q=\'3T\';1s.2u=2Z;n}4f();1Z.h.1q=\'3T\';21.2j.2X(\'2Y\');1s.2u=2Z},3j);n}f(C&&L){C.3O(Q,0,0,L.1N,L.1b);3Q{3U 1P.4O({3B:L});2T++}3A(2l){1m.2U(\'4P 2U:\',2l)}}2M(2r,50)};f(Q.4x>=2){2r()}1x{Q.1l(\'4N\',2r,{3h:2i})}})}f(2D){2D.1l(\'2k\',()=>4z.4A())}1g 1E(a,b,c){7 3v=m.3n(c.y-b.y,c.x-b.x)-m.3n(a.y-b.y,a.x-b.x);E Z=m.1c(3v*3t.0/m.4R);f(Z>3t.0)Z=4L-Z;n Z}1g 4b(){E 1e=[];E 2h=[];N.2w(t=>{7 1C=t.r[11];7 1k=t.r[23];7 z=t.r[25];7 31=t.r[27];f(1C&&1k){1e.D((1C.x-1k.x)*1Q)}f(1k&&z&&31){2h.D(1E(1k,z,31))}});7 R=m.1c(1e.14((a,b)=>a+b)/1e.u);7 3e=2h.14((a,b)=>a+b)/2h.u;f(3e<4v&&R>10){n{1S:\'4s\',g:\'드리블\',1X:\'드리블 시에는 중심을 낮추고 상체를 숙이는 게 정상입니다. 무릎 3k°, 상체 15° 기울기가 일반적입니다.\',2F:{1I:{T:8,M:20},z:{T:4n,M:3L}}}}1x f(3e>3d&&R<8){n{1S:\'4p\',g:\'패스/주행\',1X:\'패스나 일반 달리기에서는 상체가 거의 수직이어야 합니다. 무릎 3d° 이상, 상체 5° 이내가 이상적입니다.\',2F:{1I:{T:-3,M:8},z:{T:3L,M:2S}}}}1x f(R>15){n{1S:\'5A\',g:\'슛\',1X:\'슛 동작에서는 백스윙으로 상체가 뒤로 젖혀지고, 축발 무릎이 깊게 굽혀집니다.\',2F:{1I:{T:10,M:35},z:{T:5P,M:3k}}}}1x{n{1S:\'5O\',g:\'일반 움직임\',1X:\'일반적인 움직임 패턴입니다.\',2F:{1I:{T:-5,M:5},z:{T:2q,M:2S}}}}}1g 4d(){E 2C=0,2H=0;E 2B=[],2G=[];N.2w(t=>{7 39=t.r[27];7 32=t.r[28];f(39&&32){f(39.y>32.y)2C++;1x 2H++}7 1y=t.r[23],1z=t.r[25],1D=t.r[27];f(1y&&1z&&1D)2B.D(1E(1y,1z,1D));7 1F=t.r[24],1G=t.r[26],1H=t.r[28];f(1F&&1G&&1H)2G.D(1E(1F,1G,1H))});7 37=2C+2H;7 1o=(2C/37)*1Q;7 1n=(2H/37)*1Q;7 1W=m.1c(1o-1n);7 3l=m.M(0,1Q-(1W*2));7 1r=2B.14((a,b)=>a+b)/2B.u;7 1u=2G.14((a,b)=>a+b)/2G.u;7 2m=m.1c(1r-1u);n{3l,1o:1o.U(1),1n:1n.U(1),1W:1W.U(1),1r,1u,2m}}1g 3W(){E 1p=[];E 2y=[];E 2n=[];N.2w(t=>{7 1y=t.r[23],1z=t.r[25],1D=t.r[27];f(1y&&1z&&1D){7 Z=1E(1y,1z,1D);1p.D(Z);2y.D(Z)}7 1F=t.r[24],1G=t.r[26],1H=t.r[28];f(1F&&1G&&1H){7 Z=1E(1F,1G,1H);1p.D(Z);2n.D(Z)}});7 1h=1p.14((a,b)=>a+b)/1p.u;7 T=m.T(...1p);7 M=m.M(...1p);7 36=2y.14((a,b)=>a+b)/2y.u;7 33=2n.14((a,b)=>a+b)/2n.u;7 3m=m.1c(36-33);n{1h,T,M,36,33,3m}}1g 3G(){E 1e=[];E 5R=[];N.2w(t=>{7 1C=t.r[11];7 1k=t.r[23];f(1C&&1k){7 1I=(1C.x-1k.x)*1Q;1e.D(1I)}});7 R=1e.14((a,b)=>a+b)/1e.u;7 3p=R;7 3q=1e.14((3w,3s)=>3w+m.5S(3s-3p,2),0)/1e.u;7 1R=m.5M(3q);n{R,1R}}1g 3H(){E 2x=[];E 2s=[];5L(E i=1;i<N.u;i++){7 2O=N[i-1].r[27];7 2P=N[i].r[27];f(2O&&2P){2x.D(m.1c(2P.y-2O.y))}7 2Q=N[i-1].r[28];7 2N=N[i].r[28];f(2Q&&2N){2s.D(m.1c(2N.y-2Q.y))}}7 1J=2x.14((a,b)=>a+b)/2x.u;7 1K=2s.14((a,b)=>a+b)/2s.u;7 2o=(1J+1K)/2;n{2o,1J,1K}}1g 3I(v,z,13,W){7 o=[];f(v.1W>15)o.D(\'2t\');f(z.1h<2q)o.D(\'2K\');f(z.1h>2S)o.D(\'4h\');f(m.1c(13.R)>12)o.D(\'2V\');f(W.2o>0.5G)o.D(\'1V\');1m.2b(\'문제 식별:\',o);f(o.u>=3){n{H:\'🔴 연쇄 문제 감지\',J:`${o.u}개부위에서동시문제발생.한부위약점이다른부위로연쇄반응을일으킨상태입니다.`,K:`🚨이패턴지속시:•부상발생확률5배이상증가•한부위만개선해도다른곳에서재발•전신보상동작으로만성화위험`,G:[{2v:1,2I:\'발목/착지\',j:\'카프 레이즈 20회 x 3 + 한발 균형 30초 x 3\',l:\'가장 급한 부상 위험 차단\'},{2v:2,2I:\'무릎 폼\',j:\'스쿼트 깊이 교정 + 햄스트링 스트레칭\',l:\'중심 안정성 확보\'},{2v:3,2I:\'밸런스\',j:\'보수볼 훈련 + 약한 발 집중\',l:\'좌우 균형 맞추기\'},{2v:4,2I:\'통합\',j:\'전체 동작 재학습 + 재촬영\',l:\'개선 확인\'}],3c:\'⚠️ 스포츠 물리치료사 또는 퍼스널 트레이너 상담 권장\',A:\'4주 단계별 접근 필수\'}}f(o.O(\'2t\')&&o.O(\'2K\')){7 1d=v.1r<v.1u?\'오른쪽\':\'왼쪽\';7 1U=1d===\'오른쪽\'?\'왼쪽\':\'오른쪽\';n{H:`${1d}무릎유연성부족`,J:`${1d}무릎이덜굽혀져서${1U}에체중이쏠립니다.(${1d}무릎:${1d===\'오른쪽\'?m.Y(v.1u):m.Y(v.1r)}°3i ${1U}:${1U===\'오른쪽\'?m.Y(v.1u):m.Y(v.1r)}°)`,K:`⚠️이패턴지속시:•${1U}무릎연골조기마모•${1d}근력저하→방향전환시부상•골반보상동작→허리통증유발`,G:[{g:`${1d}무릎유연성`,j:`런지(${1d}만)12회x 3`,k:1,l:\'굽힘 각도 증가시켜 체중 분산\'},{g:`${1d}근력강화`,j:`싱글레그스쿼트8회x 3`,k:2,l:\'약한 쪽 강화\'},{g:\'밸런스 통합\',j:\'보수볼 위 스쿼트 30초 x 3\',k:3,l:\'양쪽 균형 맞추기\'}],A:\'3주 집중 → 밸런스 25% 개선 예상\'}}f(o.O(\'2t\')&&o.O(\'1V\')){7 P=W.1J>W.1K?\'왼쪽\':\'오른쪽\';7 1Y=P===\'왼쪽\'?\'오른쪽\':\'왼쪽\';n{H:`${P}발목불안정`,J:`${P}발목이불안정해서무의식적으로${1Y}에체중을실고있습니다.(${P}흔들림:${(P===\'왼쪽\'?W.1J:W.1K).U(3)}3i ${1Y}:${(1Y===\'왼쪽\'?W.1J:W.1K).U(3)})`,K:`🚨이패턴지속시:•${P}발목염좌반복→만성불안정•${1Y}과부하→피로골절위험•방향전환시${P}회피→플레이제한`,G:[{g:`${P}발목강화`,j:`한발카프레이즈(${P}만)20회x 3`,k:1,l:\'약한 발목 집중 강화\'},{g:`${P}안정성`,j:`${P}한발로서서공받기30초x 5`,k:1,l:\'실전 안정성 훈련\'},{g:\'테이핑\',j:`경기시${P}발목테이핑`,k:1,l:\'즉시 부상 예방\'}],A:\'2주 집중 강화 → 발목 안정 시 밸런스 자동 개선\'}}f(o.O(\'2K\')&&o.O(\'1V\')){n{H:\'무릎 과굽힘으로 인한 발목 충격 증가\',J:`무릎을과도하게구부려(평균${m.Y(z.1h)}°)착지충격이발목에집중되고있습니다.`,K:`🚨이패턴지속시:•발목이무릎충격흡수역할→아킬레스건과부하•슬개건+발목동시손상위험•점프착지시복합부상가능성`,G:[{g:\'무릎 각도 교정\',j:\'착지 시 무릎 2q° 이상 유지 연습\',k:1,l:\'근본 원인 제거\'},{g:\'햄스트링 유연성\',j:\'누워서 다리 들기 스트레칭 30초 x 3\',k:1,l:\'무릎 각도 개선\'},{g:\'발목 보조 강화\',j:\'카프 레이즈 15회 x 3\',k:2,l:\'충격 흡수 능력 향상\'}],A:\'무릎 교정 우선 → 2주 후 발목 부담 자동 감소\'}}f(o.O(\'2V\')){f(13.1R>5){n{H:\'코어 약화로 인한 상체 불안정\',J:`상체흔들림이크게나타납니다(표준편차${13.1R.U(1)}°).코어근력부족으로중심을잡지못하는상태입니다.`,K:`⚠️이패턴지속시:•요추과부하→허리디스크위험•상체흔들림→발목까지연쇄불안정•경기중충돌시부상위험증가`,G:[{g:\'코어 안정화\',j:\'플랭크 40초 x 3 (매일 아침)\',k:1,l:\'모든 문제의 핵심\'},{g:\'측면 코어\',j:\'사이드 플랭크 30초 x 3 (좌우)\',k:1,l:\'회전 안정성\'},{g:\'동적 코어\',j:\'데드버그 12회 x 3\',k:2,l:\'움직임 중 안정성\'}],A:\'2주 코어 집중 → 전신 안정성 30% 개선\'}}1x{n{H:\'자세 습관 문제\',J:`상체기울기가${m.Y(m.1c(13.R))}°로치우쳐있지만,흔들림은적어구조적문제보다는습관적자세로판단됩니다.`,K:`⚠️장기적위험:•습관고착화→근육불균형발전•한쪽척추근육만과긴장→통증`,G:[{g:\'자세 의식\',j:\'거울 앞에서 폼 확인 (주 3회)\',k:1,l:\'시각적 피드백\'},{g:\'반대 방향 스트레칭\',j:13.R>0?\'등 펴기 운동\':\'복근 스트레칭\',k:2}],A:\'2주 의식 개선 → 자세 자동 교정\'}}}f(o.O(\'1V\')&&o.u===1){n{H:\'발목 자체의 안정성 부족\',J:`다른부위는양호하나발목흔들림만기준치초과.발목주변근력약화또는과거부상이력가능성.`,K:`🚨이패턴지속시:•발목염좌발생확률3배증가•아킬레스건누적피로→파열위험•만성발목불안정성으로발전`,G:[{g:\'발목 강화\',j:\'카프 레이즈 25회 x 3 (매일)\',k:1,l:\'직접 원인 해결\'},{g:\'고유 수용 감각\',j:\'한발 서기 (눈 감고) 30초 x 3\',k:1,l:\'신경-근육 연결 강화\'},{g:\'동적 안정성\',j:\'한발 착지 후 3초 정지 x 10회\',k:2,l:\'실전 안정성\'},{g:\'예방\',j:\'경기 시 테이핑 또는 보호대\',k:1,l:\'즉시 보호\'}],A:\'4주 집중 훈련 → 안정성 40~50% 개선\'}}f(o.O(\'2K\')&&o.u===1){n{H:\'무릎 과굽힘 패턴\',J:`평균무릎각도${m.Y(z.1h)}°로과도하게굽혀져있습니다.햄스트링단축또는잘못된스쿼트폼학습가능성.`,K:`🚨이패턴지속시:•슬개건염(5K\'s 5I)발생률4배↑•대퇴사두근만성긴장→근육파열•점프동작시무릎앞쪽통증발생`,G:[{g:\'햄스트링 유연성\',j:\'누워서 다리 들기 스트레칭 40초 x 3\',k:1,l:\'무릎 각도 개선\'},{g:\'폼 재교육\',j:\'거울 앞 스쿼트 (2q° 유지 연습)\',k:1,l:\'올바른 동작 학습\'},{g:\'폼롤러\',j:\'햄스트링 + 종아리 마사지\',k:2,l:\'근막 이완\'}],A:\'2주 유연성 개선 → 무릎 각도 10~15° 증가\'}}f(o.O(\'2t\')&&o.u===1){f(v.2m>5){7 1M=v.1r<v.1u?\'왼쪽\':\'오른쪽\';n{H:`${1M}무릎이더굽혀져체중편중`,J:`좌우무릎각도차이:${v.2m.U(1)}°${1M}무릎이더많이굽혀져서자연스럽게체중이실립니다.`,K:`⚠️이패턴지속시:•${1M}과부하→연골마모•반대쪽근력저하→급격한움직임시부상`,G:[{g:`${1M}유연성`,j:`런지깊이증가(${1M}만)`,k:1,l:\'각도 균형 맞추기\'},{g:\'의식 개선\',j:`양쪽무릎동일각도유지연습`,k:2}],A:\'2주 → 무릎 대칭도 개선되면 밸런스 자동 해결\'}}1x{n{H:\'습관적 편측 선호\',J:`신체적문제는발견안됐으나${v.1o>v.1n?\'왼발\':\'오른발\'}을${m.M(v.1o,v.1n).U(1)}%사용중입니다.과거부상또는주발선호습관으로추정.`,K:`⚠️장기적위험:•약한쪽근육퇴화(사용안해서)•습관고착→향후구조적문제로발전`,G:[{g:\'약한 발 강제 사용\',j:\'훈련 시 약한 발로만 패스 30분\',k:1,l:\'사용 빈도 강제 증가\'},{g:\'밸런스 보드\',j:\'보수볼 위 양발 교대 10회 x 3\',k:2},{g:\'기록\',j:\'경기 중 약한 발 사용 횟수 카운트\',k:3,l:\'의식 개선\'}],A:\'6주 습관 교정 집중\'}}}f(o.O(\'2V\')&&o.O(\'1V\')){n{H:\'코어 약화로 인한 전신 불안정\',J:`상체가흔들리면서(${13.1R.U(1)}°)발목까지영향을받는연쇄불안정패턴입니다.`,K:`🚨이패턴지속시:•상체흔들림→하체보상→발목과부하•코어약화→충돌시부상위험증가•허리-골반-발목연쇄통증발생`,G:[{g:\'코어 집중\',j:\'플랭크 45초 x 3 (매일 필수)\',k:1,l:\'근본 원인 해결\'},{g:\'동적 코어\',j:\'버드독 12회 x 3\',k:1,l:\'움직임 중 안정성\'},{g:\'발목 보조\',j:\'카프 레이즈 15회 x 3\',k:2,l:\'코어 안정되면 발목 부담 자동 감소\'}],A:\'3주 코어 강화 → 상체+발목 동시 개선\'}}f(o.O(\'4h\')&&o.u===1){n{H:\'무릎 과신전 (너무 펴짐)\',J:`평균무릎각도${m.Y(z.1h)}°로너무펴져있습니다.햄스트링과긴장또는발목경직보상가능성.`,K:`⚠️이패턴지속시:•햄스트링만성긴장→파열위험•무릎뒤쪽압박→반월상연골손상•뒤꿈치착지충격2배증가`,G:[{g:\'햄스트링 이완\',j:\'폼롤러 마사지 5분 (매일)\',k:1},{g:\'무릎 굽힘 연습\',j:\'런지 깊이 증가 (벽 터치)\',k:1},{g:\'발목 체크\',j:\'발목 유연성 확인 → 경직 시 스트레칭\',k:2}],A:\'2주 → 무릎 각도 5~10° 감소 목표\'}}f(o.u===0){n{H:\'✅ 문제 없음\',J:\'현재 측정된 모든 지표가 정상 범위 내에 있습니다.\',K:\'위험 없음\',G:[{g:\'현 상태 유지\',j:\'지금 하는 훈련 그대로 지속\',k:1},{g:\'정기 체크\',j:\'한 달에 한 번 재촬영으로 추적\',k:2}],A:\'정기 모니터링\'}}n{H:\'복합 문제\',J:\'여러 요인이 복합적으로 작용\',K:\'개별 항목 참조\',G:[],A:\'단계별 접근\'}}1g 4f(){1m.2b(\'📊 분석 시작:\',N.u,\'프레임\');7 3f=4b();7 v=4d();7 z=3W();7 13=3G();7 W=3H();7 1f=3I(v,z,13,W);7 3u=`<9 h="X: 6b-6e(6d, #34 0%, #6c 1Q%); q: 2z; 17: 1.1a; F-S: 3N; B-I: 1L;"><3K h="B-I: 0.1a;">🎬감지된동작:${3f.g}</3K><p h="w-V: 0.1j; 66: 0.65; 2a-1b: 1.5;">${3f.1X}</p></9><9 h="X: #44; F-2J: 2g 2e #5Y; 17: 1.1a; F-S: 1i; B-I: 1L;"><16 h="q: #5X; B-I: 0.22;">🔍근본원인</16><p h="q: #3b; w-1t: 4a; B-I: 0.1a;">${1f.H}</p><p h="q: #3b; w-V: 0.1j; 2a-1b: 1.6;">${1f.J}</p></9><9 h="X: #60; F-2J: 2g 2e #61; 17: 1.1a; F-S: 1i; B-I: 1L;"><16 h="q: #4c; B-I: 0.22;">🚨이패턴지속시위험</16><9 h="q: #64; w-V: 0.1j; 2a-1b: 1.8; 2z-62: 5V-2a;">${1f.K}</9></9><9 h="X: #5B; F-2J: 2g 2e #34; 17: 1.1a; F-S: 1i; B-I: 1L;"><16 h="q: #59; B-I: 1w;">💊맞춤솔루션</16>${1f.G.58((1T,3E)=>`<9 h="X: 2z; 17: 1w; F-S: 1i; B-I: 0.22; F: 57 2e #5a;"><9 h="1q: 3R; 2R-3S: 29; 3F: 0.1a; B-I: 0.1a;"><2E h="X: #34; q: 2z; 1N: 48; 1b: 48; F-S: 50%; 1q: 3P-3R; 2R-3S: 29; 5b-5e: 29; w-V: 0.3X; w-1t: 2c;">${3E+1}</2E><2A h="q: #5d;">${1T.g}</2A>${1T.k===1?\'<2E h="X: #5c; q: #4c; 17: 56 1i; F-S: 2g; w-V: 0.22; w-1t: 4a;">긴급</2E>\':\'\'}</9><9 h="q: #47; w-V: 0.1j; B-I: 0.55;">📋${1T.j}</9><9 h="q: #1A; w-V: 0.3X;">💡이유:${1T.l||\'개선 효과\'}</9></9>`).4Y(\'\')}${1f.3c?`<9 h="X: #44; 17: 1w; F-S: 1i; B-42: 1w; q: #3b; w-V: 0.1j;">${1f.3c}</9>`:\'\'}</9><9 h="X: #4X; F-2J: 2g 2e #4W; 17: 1.1a; F-S: 1i; B-I: 1L;"><16 h="q: #3J; B-I: 0.22;">📈예상효과</16><p h="q: #3J; w-V: 0.1j; 2a-1b: 1.6;">${1f.A}</p></9><9 h="X: #4V; 17: 1.1a; F-S: 3N;"><16 h="B-I: 1w;">📊상세측정값</16><9 h="1q: 4e; 4e-4Z-51: 54(2, 52); 3F: 1w; w-V: 0.1j;"><9><9 h="q: #1A;">좌우밸런스</9><9 h="w-1t: 2c; q: #2p;">왼발${v.1o}%/ 오른발 ${v.1n}%</9></9><9><9 h="q: #1A;">무릎각도</9><9 h="w-1t: 2c; q: #2p;">평균${m.Y(z.1h)}°(${m.Y(z.T)}~${m.Y(z.M)}°)</9></9><9><9 h="q: #1A;">상체기울기</9><9 h="w-1t: 2c; q: #2p;">${13.R>0?\'앞으로\':\'뒤로\'}${m.1c(13.R).U(1)}°</9></9><9><9 h="q: #1A;">발목흔들림</9><9 h="w-1t: 2c; q: #2p;">${W.2o.U(3)}(기준:0.5g)</9></9></9></9><9 h="B-42: 1L; 17: 1w; X: #5u; F-S: 1i; 43-2R: 29;"><p h="w-V: 0.1j; q: #47;">💾이결과를저장하고,<2A>${1f.A.O(\'주\')?1f.A.5t(/\\d+/)[0]:\'4\'}주후</2A>같은동작을다시촬영하여<5w>개선도를비교해보세요!</p></9>`;21.5y=3u;1m.2b(\'✅ 3x 코치 분석 완료\')}5x.1l(\'5r\',()=>{f(L&&C){L.1N=2W;L.1b=38;C.3y=\'#5q\';C.5k(0,0,2W,38);C.3y=\'#1A\';C.w=\'5i 5h-5l\';C.5m=\'29\';C.5p(\'동영상을 선택해주세요\',5o,5n)}2M(3g,3j)});',62,388,'|||||||const||div||||||if|name|style||detail|priority|why|Math|return|problems||color|landmarks||frame|length|balance|font|||knee|timeline|margin|ctx|push|let|border|exercises|rootCause|bottom|diagnosis|risk|canvas|max|poseResults|includes|weakAnkleSide|videoPlayer|avgTilt|radius|min|toFixed|size|landing|background|round|angle||||posture|reduce||h4|padding|getElementById|document|5rem|height|abs|weakerSide|tilts|solution|function|avg|8px|9rem|hip|addEventListener|console|rightPct|leftPct|allAngles|display|leftKneeAvg|analyzeBtn|weight|rightKneeAvg|uploadBox|1rem|else|lh|lk|64748b|results|shoulder|la|calculateAngle|rh|rk|ra|tilt|leftShake|rightShake|2rem|bentSide|width|file|poseAnalyzer|100|wobble|type|ex|strongerSide|ANKLE|imbalance|desc|strongAnkleSide|loading||resultBox|75rem|||||||center|line|log|700||solid|fileInput|4px|knees|true|classList|click|err|kneeAsymmetry|rightAngles|avgShake|0f172a|130|processFrame|rightShakes|BALANCE|disabled|week|forEach|leftShakes|leftAngles|white|strong|leftKneeAngles|leftDown|resetBtn|span|normalRanges|rightKneeAngles|rightDown|focus|left|KNEE_BENT|poseLandmarks|setTimeout|currRight|prevLeft|currLeft|prevRight|align|170|frameCount|error|POSTURE|640|add|show|false||ankle|rightAnkle|rightAvg|3b82f6||leftAvg|total|480|leftAnkle|videoWrapper|78350f|expert|150|avgKnee|motion|initializePose|once|vs|1000|120|score|asymmetry|atan2|MediaPipe|mean|variance|onPoseResults|val|180|html|radians|sum|AI|fillStyle|url|catch|image|async|textContent|idx|gap|analyzePosture|analyzeLanding|getSolution|166534|h3|140|btn|12px|drawImage|inline|try|flex|items|none|await|output_canvas|analyzeKnee|85rem|block|querySelector||lineWidth|top|text|fef3c7||null|475569|24px|maxFrames|600|detectMotionType|991b1b|analyzeBalance|grid|calculateResults|Pose|KNEE_STRAIGHT|upload|timestamp|Date|play|remove|110|videoHeight|PASSING|currentTime|now|DRIBBLING|restore|ended|135|loadeddata|readyState|subtext|location|reload|video|URL|videoWidth|active|src|createObjectURL|drawLandmarks|startsWith|FF0000|change|360|alert|canplay|send|Frame|files|PI|target|pause|https|f8fafc|22c55e|f0fdf4|join|template||columns|1fr|reset|repeat|25rem|2px|1px|map|1e40af|dbeafe|justify|fecaca|1e293b|content|analyze|03|sans|18px|Motion|fillRect|serif|textAlign|240|320|fillText|000|load|getContext|match|f1f5f9|loaded|br|window|innerHTML|Coach|SHOOTING|eff6ff|minTrackingConfidence|onResults|ready|failed|050|minDetectionConfidence|Knee|smoothLandmarks|Jumper|for|sqrt|POSE_CONNECTIONS|GENERAL|80|drawConnectors|wobbles|pow|save|clearRect|pre|modelComplexity|92400e|f59e0b|undefined|fef2f2|ef4444|space|typeof|7f1d1d|95|opacity|new|locateFile|setOptions|500|linear|2563eb|135deg|gradient|00FF00'.split('|'),0,{}))
+/* 
+  motion.js - AI Coach Edition
+  축구/풋살 특화 모션 분석 + 맞춤형 솔루션 제공
+*/
+
+console.log('🏃 AI Motion Coach loaded');
+
+// DOM 요소
+const uploadBox = document.getElementById('uploadBox');
+const fileInput = document.getElementById('fileInput');
+const videoWrapper = document.getElementById('videoWrapper');
+const videoPlayer = document.getElementById('videoPlayer');
+const canvas = document.getElementById('output_canvas');
+const ctx = canvas ? canvas.getContext('2d') : null;
+const analyzeBtn = document.getElementById('analyze-btn');
+const resetBtn = document.getElementById('reset-btn');
+const loading = document.getElementById('loading');
+const resultBox = document.getElementById('resultBox');
+
+let poseResults = [];
+let poseAnalyzer = null;
+
+// ========== MediaPipe 초기화 ==========
+function initializePose() {
+  if (typeof Pose === 'undefined') {
+    setTimeout(initializePose, 500);
+    return;
+  }
+
+  try {
+    poseAnalyzer = new Pose({
+      locateFile: (file) => `https://cdn.jsdelivr.net/npm/@mediapipe/pose/${file}`
+    });
+
+    poseAnalyzer.setOptions({
+      modelComplexity: 1,
+      smoothLandmarks: true,
+      minDetectionConfidence: 0.3,
+      minTrackingConfidence: 0.3
+    });
+
+    poseAnalyzer.onResults(onPoseResults);
+    console.log('✅ MediaPipe ready');
+  } catch (err) {
+    console.error('MediaPipe failed:', err);
+  }
+}
+
+function onPoseResults(results) {
+  if (!results.poseLandmarks) return;
+
+  if (ctx && canvas) {
+    ctx.save();
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(results.image, 0, 0, canvas.width, canvas.height);
+
+    drawConnectors(ctx, results.poseLandmarks, POSE_CONNECTIONS, {
+      color: '#00FF00',
+      lineWidth: 4
+    });
+    
+    drawLandmarks(ctx, results.poseLandmarks, {
+      color: '#FF0000',
+      lineWidth: 2,
+      radius: 5
+    });
+
+    ctx.restore();
+  }
+
+  poseResults.push({
+    landmarks: results.poseLandmarks,
+    timestamp: Date.now()
+  });
+}
+
+// ========== 이벤트 핸들러 ==========
+
+if (uploadBox) {
+  uploadBox.addEventListener('click', () => fileInput.click());
+}
+
+if (fileInput) {
+  fileInput.addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if (!file || !file.type.startsWith('video/')) return;
+
+    const url = URL.createObjectURL(file);
+    videoPlayer.src = url;
+    
+    uploadBox.classList.add('active');
+    uploadBox.querySelector('.upload-text').textContent = '영상 선택됨';
+    uploadBox.querySelector('.upload-subtext').textContent = file.name;
+    
+    videoWrapper.classList.add('show');
+    analyzeBtn.disabled = false;
+    resetBtn.style.display = 'inline-block';
+    
+    videoPlayer.addEventListener('loadeddata', () => {
+      const c = document.getElementById('output_canvas');
+      if (c) {
+        c.width = videoPlayer.videoWidth || 640;
+        c.height = videoPlayer.videoHeight || 480;
+      }
+    }, { once: true });
+  });
+}
+
+if (analyzeBtn) {
+  analyzeBtn.addEventListener('click', async () => {
+    if (!poseAnalyzer) return;
+
+    analyzeBtn.disabled = true;
+    loading.style.display = 'block';
+    resultBox.classList.remove('show');
+    poseResults = [];
+
+    videoPlayer.currentTime = 0;
+    await videoPlayer.play();
+
+    let frameCount = 0;
+    const maxFrames = 150;
+
+    const processFrame = async () => {
+      if (videoPlayer.ended || frameCount >= maxFrames) {
+        videoPlayer.pause();
+        
+        setTimeout(() => {
+          if (poseResults.length < 10) {
+            alert('프레임이 너무 적습니다. 5초 이상 영상을 사용해주세요.');
+            loading.style.display = 'none';
+            analyzeBtn.disabled = false;
+            return;
+          }
+          
+          calculateResults();
+          loading.style.display = 'none';
+          resultBox.classList.add('show');
+          analyzeBtn.disabled = false;
+        }, 1000);
+        
+        return;
+      }
+
+      if (ctx && canvas) {
+        ctx.drawImage(videoPlayer, 0, 0, canvas.width, canvas.height);
+        
+        try {
+          await poseAnalyzer.send({ image: canvas });
+          frameCount++;
+        } catch (err) {
+          console.error('Frame error:', err);
+        }
+      }
+
+      setTimeout(processFrame, 50);
+    };
+
+    if (videoPlayer.readyState >= 2) {
+      processFrame();
+    } else {
+      videoPlayer.addEventListener('canplay', processFrame, { once: true });
+    }
+  });
+}
+
+if (resetBtn) {
+  resetBtn.addEventListener('click', () => location.reload());
+}
+
+// ========== 분석 함수들 ==========
+
+// 각도 계산
+function calculateAngle(a, b, c) {
+  const radians = Math.atan2(c.y - b.y, c.x - b.x) - Math.atan2(a.y - b.y, a.x - b.x);
+  let angle = Math.abs(radians * 180.0 / Math.PI);
+  if (angle > 180.0) angle = 360 - angle;
+  return angle;
+}
+
+// 동작 인식
+function detectMotionType() {
+  let tilts = [];
+  let knees = [];
+
+  poseResults.forEach(frame => {
+    const shoulder = frame.landmarks[11];
+    const hip = frame.landmarks[23];
+    const knee = frame.landmarks[25];
+    const ankle = frame.landmarks[27];
+
+    if (shoulder && hip) {
+      tilts.push((shoulder.x - hip.x) * 100);
+    }
+
+    if (hip && knee && ankle) {
+      knees.push(calculateAngle(hip, knee, ankle));
+    }
+  });
+
+  const avgTilt = Math.abs(tilts.reduce((a, b) => a + b) / tilts.length);
+  const avgKnee = knees.reduce((a, b) => a + b) / knees.length;
+
+  if (avgKnee < 135 && avgTilt > 10) {
+    return {
+      type: 'DRIBBLING',
+      name: '드리블',
+      desc: '드리블 시에는 중심을 낮추고 상체를 숙이는 게 정상입니다. 무릎 120°, 상체 15° 기울기가 일반적입니다.',
+      normalRanges: {
+        tilt: { min: 8, max: 20 },
+        knee: { min: 110, max: 140 }
+      }
+    };
+  } else if (avgKnee > 150 && avgTilt < 8) {
+    return {
+      type: 'PASSING',
+      name: '패스/주행',
+      desc: '패스나 일반 달리기에서는 상체가 거의 수직이어야 합니다. 무릎 150° 이상, 상체 5° 이내가 이상적입니다.',
+      normalRanges: {
+        tilt: { min: -3, max: 8 },
+        knee: { min: 140, max: 170 }
+      }
+    };
+  } else if (avgTilt > 15) {
+    return {
+      type: 'SHOOTING',
+      name: '슛',
+      desc: '슛 동작에서는 백스윙으로 상체가 뒤로 젖혀지고, 축발 무릎이 깊게 굽혀집니다.',
+      normalRanges: {
+        tilt: { min: 10, max: 35 },
+        knee: { min: 80, max: 120 }
+      }
+    };
+  } else {
+    return {
+      type: 'GENERAL',
+      name: '일반 움직임',
+      desc: '일반적인 움직임 패턴입니다.',
+      normalRanges: {
+        tilt: { min: -5, max: 5 },
+        knee: { min: 130, max: 170 }
+      }
+    };
+  }
+}
+
+// 좌우 밸런스 분석
+function analyzeBalance() {
+  let leftDown = 0, rightDown = 0;
+  let leftKneeAngles = [], rightKneeAngles = [];
+
+  poseResults.forEach(frame => {
+    const leftAnkle = frame.landmarks[27];
+    const rightAnkle = frame.landmarks[28];
+    
+    if (leftAnkle && rightAnkle) {
+      if (leftAnkle.y > rightAnkle.y) leftDown++;
+      else rightDown++;
+    }
+
+    // 좌우 무릎 각도
+    const lh = frame.landmarks[23], lk = frame.landmarks[25], la = frame.landmarks[27];
+    if (lh && lk && la) leftKneeAngles.push(calculateAngle(lh, lk, la));
+
+    const rh = frame.landmarks[24], rk = frame.landmarks[26], ra = frame.landmarks[28];
+    if (rh && rk && ra) rightKneeAngles.push(calculateAngle(rh, rk, ra));
+  });
+
+  const total = leftDown + rightDown;
+  const leftPct = (leftDown / total) * 100;
+  const rightPct = (rightDown / total) * 100;
+  const imbalance = Math.abs(leftPct - rightPct);
+  const score = Math.max(0, 100 - (imbalance * 2));
+
+  const leftKneeAvg = leftKneeAngles.reduce((a, b) => a + b) / leftKneeAngles.length;
+  const rightKneeAvg = rightKneeAngles.reduce((a, b) => a + b) / rightKneeAngles.length;
+  const kneeAsymmetry = Math.abs(leftKneeAvg - rightKneeAvg);
+
+  return {
+    score,
+    leftPct: leftPct.toFixed(1),
+    rightPct: rightPct.toFixed(1),
+    imbalance: imbalance.toFixed(1),
+    leftKneeAvg,
+    rightKneeAvg,
+    kneeAsymmetry
+  };
+}
+
+// 무릎 각도 분석
+function analyzeKnee() {
+  let allAngles = [];
+  let leftAngles = [];
+  let rightAngles = [];
+
+  poseResults.forEach(frame => {
+    const lh = frame.landmarks[23], lk = frame.landmarks[25], la = frame.landmarks[27];
+    if (lh && lk && la) {
+      const angle = calculateAngle(lh, lk, la);
+      allAngles.push(angle);
+      leftAngles.push(angle);
+    }
+
+    const rh = frame.landmarks[24], rk = frame.landmarks[26], ra = frame.landmarks[28];
+    if (rh && rk && ra) {
+      const angle = calculateAngle(rh, rk, ra);
+      allAngles.push(angle);
+      rightAngles.push(angle);
+    }
+  });
+
+  const avg = allAngles.reduce((a, b) => a + b) / allAngles.length;
+  const min = Math.min(...allAngles);
+  const max = Math.max(...allAngles);
+  const leftAvg = leftAngles.reduce((a, b) => a + b) / leftAngles.length;
+  const rightAvg = rightAngles.reduce((a, b) => a + b) / rightAngles.length;
+  const asymmetry = Math.abs(leftAvg - rightAvg);
+
+  return { avg, min, max, leftAvg, rightAvg, asymmetry };
+}
+
+// 상체 기울기 분석
+function analyzePosture() {
+  let tilts = [];
+  let wobbles = [];
+
+  poseResults.forEach(frame => {
+    const shoulder = frame.landmarks[11];
+    const hip = frame.landmarks[23];
+    
+    if (shoulder && hip) {
+      const tilt = (shoulder.x - hip.x) * 100;
+      tilts.push(tilt);
+    }
+  });
+
+  const avgTilt = tilts.reduce((a, b) => a + b) / tilts.length;
+  
+  // 흔들림 계산 (표준편차)
+  const mean = avgTilt;
+  const variance = tilts.reduce((sum, val) => sum + Math.pow(val - mean, 2), 0) / tilts.length;
+  const wobble = Math.sqrt(variance);
+
+  return { avgTilt, wobble };
+}
+
+// 착지 안정성 분석
+function analyzeLanding() {
+  let leftShakes = [];
+  let rightShakes = [];
+
+  for (let i = 1; i < poseResults.length; i++) {
+    const prevLeft = poseResults[i - 1].landmarks[27];
+    const currLeft = poseResults[i].landmarks[27];
+    if (prevLeft && currLeft) {
+      leftShakes.push(Math.abs(currLeft.y - prevLeft.y));
+    }
+
+    const prevRight = poseResults[i - 1].landmarks[28];
+    const currRight = poseResults[i].landmarks[28];
+    if (prevRight && currRight) {
+      rightShakes.push(Math.abs(currRight.y - prevRight.y));
+    }
+  }
+
+  const leftShake = leftShakes.reduce((a, b) => a + b) / leftShakes.length;
+  const rightShake = rightShakes.reduce((a, b) => a + b) / rightShakes.length;
+  const avgShake = (leftShake + rightShake) / 2;
+
+  return { avgShake, leftShake, rightShake };
+}
+
+// ========== 솔루션 데이터베이스 ==========
+
+function getSolution(balance, knee, posture, landing) {
+  const problems = [];
+  
+  // 문제 식별
+  if (balance.imbalance > 15) problems.push('BALANCE');
+  if (knee.avg < 130) problems.push('KNEE_BENT');
+  if (knee.avg > 170) problems.push('KNEE_STRAIGHT');
+  if (Math.abs(posture.avgTilt) > 12) problems.push('POSTURE');
+  if (landing.avgShake > 0.050) problems.push('ANKLE');
+
+  console.log('문제 식별:', problems);
+
+  // ========== 케이스별 솔루션 매칭 ==========
+
+  // 복합 문제 (3개 이상)
+  if (problems.length >= 3) {
+    return {
+      rootCause: '🔴 연쇄 문제 감지',
+      diagnosis: `
+${problems.length}개 부위에서 동시 문제 발생.
+한 부위 약점이 다른 부위로 연쇄 반응을 일으킨 상태입니다.`,
+      risk: `
+🚨 이 패턴 지속 시:
+  • 부상 발생 확률 5배 이상 증가
+  • 한 부위만 개선해도 다른 곳에서 재발
+  • 전신 보상 동작으로 만성화 위험`,
+      exercises: [
+        { week: 1, focus: '발목/착지', detail: '카프 레이즈 20회 x 3 + 한발 균형 30초 x 3', why: '가장 급한 부상 위험 차단' },
+        { week: 2, focus: '무릎 폼', detail: '스쿼트 깊이 교정 + 햄스트링 스트레칭', why: '중심 안정성 확보' },
+        { week: 3, focus: '밸런스', detail: '보수볼 훈련 + 약한 발 집중', why: '좌우 균형 맞추기' },
+        { week: 4, focus: '통합', detail: '전체 동작 재학습 + 재촬영', why: '개선 확인' }
+      ],
+      expert: '⚠️ 스포츠 물리치료사 또는 퍼스널 트레이너 상담 권장',
+      timeline: '4주 단계별 접근 필수'
+    };
+  }
+
+  // ========== 밸런스 + 무릎 조합 ==========
+  if (problems.includes('BALANCE') && problems.includes('KNEE_BENT')) {
+    // 원인 파악: 어느 쪽 무릎이 더 굽혀졌나?
+    const weakerSide = balance.leftKneeAvg < balance.rightKneeAvg ? '오른쪽' : '왼쪽';
+    const strongerSide = weakerSide === '오른쪽' ? '왼쪽' : '오른쪽';
+
+    return {
+      rootCause: `${weakerSide} 무릎 유연성 부족`,
+      diagnosis: `
+${weakerSide} 무릎이 덜 굽혀져서 ${strongerSide}에 체중이 쏠립니다.
+(${weakerSide} 무릎: ${weakerSide === '오른쪽' ? Math.round(balance.rightKneeAvg) : Math.round(balance.leftKneeAvg)}° vs ${strongerSide}: ${strongerSide === '오른쪽' ? Math.round(balance.rightKneeAvg) : Math.round(balance.leftKneeAvg)}°)`,
+      risk: `
+⚠️ 이 패턴 지속 시:
+  • ${strongerSide} 무릎 연골 조기 마모
+  • ${weakerSide} 근력 저하 → 방향 전환 시 부상
+  • 골반 보상 동작 → 허리 통증 유발`,
+      exercises: [
+        { name: `${weakerSide} 무릎 유연성`, detail: `런지 (${weakerSide}만) 12회 x 3`, priority: 1, why: '굽힘 각도 증가시켜 체중 분산' },
+        { name: `${weakerSide} 근력 강화`, detail: `싱글 레그 스쿼트 8회 x 3`, priority: 2, why: '약한 쪽 강화' },
+        { name: '밸런스 통합', detail: '보수볼 위 스쿼트 30초 x 3', priority: 3, why: '양쪽 균형 맞추기' }
+      ],
+      timeline: '3주 집중 → 밸런스 25% 개선 예상'
+    };
+  }
+
+  // ========== 밸런스 + 발목 조합 ==========
+  if (problems.includes('BALANCE') && problems.includes('ANKLE')) {
+    const weakAnkleSide = landing.leftShake > landing.rightShake ? '왼쪽' : '오른쪽';
+    const strongAnkleSide = weakAnkleSide === '왼쪽' ? '오른쪽' : '왼쪽';
+
+    return {
+      rootCause: `${weakAnkleSide} 발목 불안정`,
+      diagnosis: `
+${weakAnkleSide} 발목이 불안정해서 무의식적으로 ${strongAnkleSide}에 체중을 실고 있습니다.
+(${weakAnkleSide} 흔들림: ${(weakAnkleSide === '왼쪽' ? landing.leftShake : landing.rightShake).toFixed(3)} vs ${strongAnkleSide}: ${(strongAnkleSide === '왼쪽' ? landing.leftShake : landing.rightShake).toFixed(3)})`,
+      risk: `
+🚨 이 패턴 지속 시:
+  • ${weakAnkleSide} 발목 염좌 반복 → 만성 불안정
+  • ${strongAnkleSide} 과부하 → 피로 골절 위험
+  • 방향 전환 시 ${weakAnkleSide} 회피 → 플레이 제한`,
+      exercises: [
+        { name: `${weakAnkleSide} 발목 강화`, detail: `한발 카프 레이즈 (${weakAnkleSide}만) 20회 x 3`, priority: 1, why: '약한 발목 집중 강화' },
+        { name: `${weakAnkleSide} 안정성`, detail: `${weakAnkleSide} 한발로 서서 공 받기 30초 x 5`, priority: 1, why: '실전 안정성 훈련' },
+        { name: '테이핑', detail: `경기 시 ${weakAnkleSide} 발목 테이핑`, priority: 1, why: '즉시 부상 예방' }
+      ],
+      timeline: '2주 집중 강화 → 발목 안정 시 밸런스 자동 개선'
+    };
+  }
+
+  // ========== 무릎 + 발목 조합 ==========
+  if (problems.includes('KNEE_BENT') && problems.includes('ANKLE')) {
+    return {
+      rootCause: '무릎 과굽힘으로 인한 발목 충격 증가',
+      diagnosis: `
+무릎을 과도하게 구부려(평균 ${Math.round(knee.avg)}°) 착지 충격이 
+발목에 집중되고 있습니다.`,
+      risk: `
+🚨 이 패턴 지속 시:
+  • 발목이 무릎 충격 흡수 역할 → 아킬레스건 과부하
+  • 슬개건 + 발목 동시 손상 위험
+  • 점프 착지 시 복합 부상 가능성`,
+      exercises: [
+        { name: '무릎 각도 교정', detail: '착지 시 무릎 130° 이상 유지 연습', priority: 1, why: '근본 원인 제거' },
+        { name: '햄스트링 유연성', detail: '누워서 다리 들기 스트레칭 30초 x 3', priority: 1, why: '무릎 각도 개선' },
+        { name: '발목 보조 강화', detail: '카프 레이즈 15회 x 3', priority: 2, why: '충격 흡수 능력 향상' }
+      ],
+      timeline: '무릎 교정 우선 → 2주 후 발목 부담 자동 감소'
+    };
+  }
+
+  // ========== 상체 + 코어 문제 ==========
+  if (problems.includes('POSTURE')) {
+    if (posture.wobble > 5) {
+      return {
+        rootCause: '코어 약화로 인한 상체 불안정',
+        diagnosis: `
+상체 흔들림이 크게 나타납니다(표준편차 ${posture.wobble.toFixed(1)}°).
+코어 근력 부족으로 중심을 잡지 못하는 상태입니다.`,
+        risk: `
+⚠️ 이 패턴 지속 시:
+  • 요추 과부하 → 허리 디스크 위험
+  • 상체 흔들림 → 발목까지 연쇄 불안정
+  • 경기 중 충돌 시 부상 위험 증가`,
+        exercises: [
+          { name: '코어 안정화', detail: '플랭크 40초 x 3 (매일 아침)', priority: 1, why: '모든 문제의 핵심' },
+          { name: '측면 코어', detail: '사이드 플랭크 30초 x 3 (좌우)', priority: 1, why: '회전 안정성' },
+          { name: '동적 코어', detail: '데드버그 12회 x 3', priority: 2, why: '움직임 중 안정성' }
+        ],
+        timeline: '2주 코어 집중 → 전신 안정성 30% 개선'
+      };
+    } else {
+      return {
+        rootCause: '자세 습관 문제',
+        diagnosis: `
+상체 기울기가 ${Math.round(Math.abs(posture.avgTilt))}°로 
+치우쳐 있지만, 흔들림은 적어 구조적 문제보다는 
+습관적 자세로 판단됩니다.`,
+        risk: `
+⚠️ 장기적 위험:
+  • 습관 고착화 → 근육 불균형 발전
+  • 한쪽 척추 근육만 과긴장 → 통증`,
+        exercises: [
+          { name: '자세 의식', detail: '거울 앞에서 폼 확인 (주 3회)', priority: 1, why: '시각적 피드백' },
+          { name: '반대 방향 스트레칭', detail: posture.avgTilt > 0 ? '등 펴기 운동' : '복근 스트레칭', priority: 2 }
+        ],
+        timeline: '2주 의식 개선 → 자세 자동 교정'
+      };
+    }
+  }
+
+  // ========== 발목 단독 문제 ==========
+  if (problems.includes('ANKLE') && problems.length === 1) {
+    return {
+      rootCause: '발목 자체의 안정성 부족',
+      diagnosis: `
+다른 부위는 양호하나 발목 흔들림만 기준치 초과.
+발목 주변 근력 약화 또는 과거 부상 이력 가능성.`,
+      risk: `
+🚨 이 패턴 지속 시:
+  • 발목 염좌 발생 확률 3배 증가
+  • 아킬레스건 누적 피로 → 파열 위험
+  • 만성 발목 불안정성으로 발전`,
+      exercises: [
+        { name: '발목 강화', detail: '카프 레이즈 25회 x 3 (매일)', priority: 1, why: '직접 원인 해결' },
+        { name: '고유 수용 감각', detail: '한발 서기 (눈 감고) 30초 x 3', priority: 1, why: '신경-근육 연결 강화' },
+        { name: '동적 안정성', detail: '한발 착지 후 3초 정지 x 10회', priority: 2, why: '실전 안정성' },
+        { name: '예방', detail: '경기 시 테이핑 또는 보호대', priority: 1, why: '즉시 보호' }
+      ],
+      timeline: '4주 집중 훈련 → 안정성 40~50% 개선'
+    };
+  }
+
+  // ========== 무릎 단독 문제 ==========
+  if (problems.includes('KNEE_BENT') && problems.length === 1) {
+    return {
+      rootCause: '무릎 과굽힘 패턴',
+      diagnosis: `
+평균 무릎 각도 ${Math.round(knee.avg)}°로 과도하게 굽혀져 있습니다.
+햄스트링 단축 또는 잘못된 스쿼트 폼 학습 가능성.`,
+      risk: `
+🚨 이 패턴 지속 시:
+  • 슬개건염(Jumper's Knee) 발생률 4배 ↑
+  • 대퇴사두근 만성 긴장 → 근육 파열
+  • 점프 동작 시 무릎 앞쪽 통증 발생`,
+      exercises: [
+        { name: '햄스트링 유연성', detail: '누워서 다리 들기 스트레칭 40초 x 3', priority: 1, why: '무릎 각도 개선' },
+        { name: '폼 재교육', detail: '거울 앞 스쿼트 (130° 유지 연습)', priority: 1, why: '올바른 동작 학습' },
+        { name: '폼롤러', detail: '햄스트링 + 종아리 마사지', priority: 2, why: '근막 이완' }
+      ],
+      timeline: '2주 유연성 개선 → 무릎 각도 10~15° 증가'
+    };
+  }
+
+  // ========== 밸런스만 문제 (단독) ==========
+  if (problems.includes('BALANCE') && problems.length === 1) {
+    // 세부 원인 파악
+    if (balance.kneeAsymmetry > 5) {
+      const bentSide = balance.leftKneeAvg < balance.rightKneeAvg ? '왼쪽' : '오른쪽';
+      return {
+        rootCause: `${bentSide} 무릎이 더 굽혀져 체중 편중`,
+        diagnosis: `
+좌우 무릎 각도 차이: ${balance.kneeAsymmetry.toFixed(1)}°
+${bentSide} 무릎이 더 많이 굽혀져서 자연스럽게 체중이 실립니다.`,
+        risk: `
+⚠️ 이 패턴 지속 시:
+  • ${bentSide} 과부하 → 연골 마모
+  • 반대쪽 근력 저하 → 급격한 움직임 시 부상`,
+        exercises: [
+          { name: `${bentSide} 유연성`, detail: `런지 깊이 증가 (${bentSide}만)`, priority: 1, why: '각도 균형 맞추기' },
+          { name: '의식 개선', detail: `양쪽 무릎 동일 각도 유지 연습`, priority: 2 }
+        ],
+        timeline: '2주 → 무릎 대칭도 개선되면 밸런스 자동 해결'
+      };
+    } else {
+      return {
+        rootCause: '습관적 편측 선호',
+        diagnosis: `
+신체적 문제는 발견 안 됐으나 ${balance.leftPct > balance.rightPct ? '왼발' : '오른발'}을 
+${Math.max(balance.leftPct, balance.rightPct).toFixed(1)}% 사용 중입니다.
+과거 부상 또는 주발 선호 습관으로 추정.`,
+        risk: `
+⚠️ 장기적 위험:
+  • 약한 쪽 근육 퇴화 (사용 안 해서)
+  • 습관 고착 → 향후 구조적 문제로 발전`,
+        exercises: [
+          { name: '약한 발 강제 사용', detail: '훈련 시 약한 발로만 패스 30분', priority: 1, why: '사용 빈도 강제 증가' },
+          { name: '밸런스 보드', detail: '보수볼 위 양발 교대 10회 x 3', priority: 2 },
+          { name: '기록', detail: '경기 중 약한 발 사용 횟수 카운트', priority: 3, why: '의식 개선' }
+        ],
+        timeline: '6주 습관 교정 집중'
+      };
+    }
+  }
+
+  // ========== 상체 + 발목 조합 (코어 연쇄) ==========
+  if (problems.includes('POSTURE') && problems.includes('ANKLE')) {
+    return {
+      rootCause: '코어 약화로 인한 전신 불안정',
+      diagnosis: `
+상체가 흔들리면서(${posture.wobble.toFixed(1)}°) 발목까지 
+영향을 받는 연쇄 불안정 패턴입니다.`,
+      risk: `
+🚨 이 패턴 지속 시:
+  • 상체 흔들림 → 하체 보상 → 발목 과부하
+  • 코어 약화 → 충돌 시 부상 위험 증가
+  • 허리-골반-발목 연쇄 통증 발생`,
+      exercises: [
+        { name: '코어 집중', detail: '플랭크 45초 x 3 (매일 필수)', priority: 1, why: '근본 원인 해결' },
+        { name: '동적 코어', detail: '버드독 12회 x 3', priority: 1, why: '움직임 중 안정성' },
+        { name: '발목 보조', detail: '카프 레이즈 15회 x 3', priority: 2, why: '코어 안정되면 발목 부담 자동 감소' }
+      ],
+      timeline: '3주 코어 강화 → 상체+발목 동시 개선'
+    };
+  }
+
+  // ========== 무릎만 문제 (과신전) ==========
+  if (problems.includes('KNEE_STRAIGHT') && problems.length === 1) {
+    return {
+      rootCause: '무릎 과신전 (너무 펴짐)',
+      diagnosis: `
+평균 무릎 각도 ${Math.round(knee.avg)}°로 너무 펴져 있습니다.
+햄스트링 과긴장 또는 발목 경직 보상 가능성.`,
+      risk: `
+⚠️ 이 패턴 지속 시:
+  • 햄스트링 만성 긴장 → 파열 위험
+  • 무릎 뒤쪽 압박 → 반월상연골 손상
+  • 뒤꿈치 착지 충격 2배 증가`,
+      exercises: [
+        { name: '햄스트링 이완', detail: '폼롤러 마사지 5분 (매일)', priority: 1 },
+        { name: '무릎 굽힘 연습', detail: '런지 깊이 증가 (벽 터치)', priority: 1 },
+        { name: '발목 체크', detail: '발목 유연성 확인 → 경직 시 스트레칭', priority: 2 }
+      ],
+      timeline: '2주 → 무릎 각도 5~10° 감소 목표'
+    };
+  }
+
+  // ========== 문제 없음 ==========
+  if (problems.length === 0) {
+    return {
+      rootCause: '✅ 문제 없음',
+      diagnosis: '현재 측정된 모든 지표가 정상 범위 내에 있습니다.',
+      risk: '위험 없음',
+      exercises: [
+        { name: '현 상태 유지', detail: '지금 하는 훈련 그대로 지속', priority: 1 },
+        { name: '정기 체크', detail: '한 달에 한 번 재촬영으로 추적', priority: 2 }
+      ],
+      timeline: '정기 모니터링'
+    };
+  }
+
+  // 기본 반환 (예외 처리)
+  return {
+    rootCause: '복합 문제',
+    diagnosis: '여러 요인이 복합적으로 작용',
+    risk: '개별 항목 참조',
+    exercises: [],
+    timeline: '단계별 접근'
+  };
+}
+
+// ========== 결과 계산 (메인 함수) ==========
+
+function calculateResults() {
+  console.log('📊 분석 시작:', poseResults.length, '프레임');
+
+  // 각 부위 분석
+  const motion = detectMotionType();
+  const balance = analyzeBalance();
+  const knee = analyzeKnee();
+  const posture = analyzePosture();
+  const landing = analyzeLanding();
+
+  // AI 솔루션 생성
+  const solution = getSolution(balance, knee, posture, landing);
+
+  // ========== HTML 생성 ==========
+  
+  const html = `
+    <div style="background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); color: white; padding: 1.5rem; border-radius: 12px; margin-bottom: 2rem;">
+      <h3 style="margin-bottom: 0.5rem;">🎬 감지된 동작: ${motion.name}</h3>
+      <p style="font-size: 0.9rem; opacity: 0.95; line-height: 1.5;">${motion.desc}</p>
+    </div>
+
+    <div style="background: #fef3c7; border-left: 4px solid #f59e0b; padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem;">
+      <h4 style="color: #92400e; margin-bottom: 0.75rem;">🔍 근본 원인</h4>
+      <p style="color: #78350f; font-weight: 600; margin-bottom: 0.5rem;">${solution.rootCause}</p>
+      <p style="color: #78350f; font-size: 0.9rem; line-height: 1.6;">${solution.diagnosis}</p>
+    </div>
+
+    <div style="background: #fef2f2; border-left: 4px solid #ef4444; padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem;">
+      <h4 style="color: #991b1b; margin-bottom: 0.75rem;">🚨 이 패턴 지속 시 위험</h4>
+      <div style="color: #7f1d1d; font-size: 0.9rem; line-height: 1.8; white-space: pre-line;">${solution.risk}</div>
+    </div>
+
+    <div style="background: #eff6ff; border-left: 4px solid #3b82f6; padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem;">
+      <h4 style="color: #1e40af; margin-bottom: 1rem;">💊 맞춤 솔루션</h4>
+      ${solution.exercises.map((ex, idx) => `
+        <div style="background: white; padding: 1rem; border-radius: 8px; margin-bottom: 0.75rem; border: 1px solid #dbeafe;">
+          <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+            <span style="background: #3b82f6; color: white; width: 24px; height: 24px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 0.85rem; font-weight: 700;">${idx + 1}</span>
+            <strong style="color: #1e293b;">${ex.name}</strong>
+            ${ex.priority === 1 ? '<span style="background: #fecaca; color: #991b1b; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600;">긴급</span>' : ''}
+          </div>
+          <div style="color: #475569; font-size: 0.9rem; margin-bottom: 0.25rem;">📋 ${ex.detail}</div>
+          <div style="color: #64748b; font-size: 0.85rem;">💡 이유: ${ex.why || '개선 효과'}</div>
+        </div>
+      `).join('')}
+      ${solution.expert ? `<div style="background: #fef3c7; padding: 1rem; border-radius: 8px; margin-top: 1rem; color: #78350f; font-size: 0.9rem;">${solution.expert}</div>` : ''}
+    </div>
+
+    <div style="background: #f0fdf4; border-left: 4px solid #22c55e; padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem;">
+      <h4 style="color: #166534; margin-bottom: 0.75rem;">📈 예상 효과</h4>
+      <p style="color: #166534; font-size: 0.9rem; line-height: 1.6;">${solution.timeline}</p>
+    </div>
+
+    <div style="background: #f8fafc; padding: 1.5rem; border-radius: 12px;">
+      <h4 style="margin-bottom: 1rem;">📊 상세 측정값</h4>
+      <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; font-size: 0.9rem;">
+        <div>
+          <div style="color: #64748b;">좌우 밸런스</div>
+          <div style="font-weight: 700; color: #0f172a;">왼발 ${balance.leftPct}% / 오른발 ${balance.rightPct}%</div>
+        </div>
+        <div>
+          <div style="color: #64748b;">무릎 각도</div>
+          <div style="font-weight: 700; color: #0f172a;">평균 ${Math.round(knee.avg)}° (${Math.round(knee.min)}~${Math.round(knee.max)}°)</div>
+        </div>
+        <div>
+          <div style="color: #64748b;">상체 기울기</div>
+          <div style="font-weight: 700; color: #0f172a;">${posture.avgTilt > 0 ? '앞으로' : '뒤로'} ${Math.abs(posture.avgTilt).toFixed(1)}°</div>
+        </div>
+        <div>
+          <div style="color: #64748b;">발목 흔들림</div>
+          <div style="font-weight: 700; color: #0f172a;">${landing.avgShake.toFixed(3)} (기준: 0.03)</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top: 2rem; padding: 1rem; background: #f1f5f9; border-radius: 8px; text-align: center;">
+      <p style="font-size: 0.9rem; color: #475569;">
+        💾 이 결과를 저장하고, <strong>${solution.timeline.includes('주') ? solution.timeline.match(/\d+/)[0] : '4'}주 후</strong> 같은 동작을 다시 촬영하여<br>
+        개선도를 비교해보세요!
+      </p>
+    </div>
+  `;
+
+  resultBox.innerHTML = html;
+  
+  console.log('✅ AI 코치 분석 완료');
+}
+
+// ========== 초기화 ==========
+
+window.addEventListener('load', () => {
+  if (canvas && ctx) {
+    canvas.width = 640;
+    canvas.height = 480;
+        ctx.fillStyle = '#000';
+    ctx.fillRect(0, 0, 640, 480);
+    ctx.fillStyle = '#64748b';
+    ctx.font = '18px sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText('동영상을 선택해주세요', 320, 240);
+  }
+
+  setTimeout(initializePose, 1000);
+});
