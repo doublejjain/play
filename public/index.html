@@ -63,32 +63,33 @@
       align-items: center;
       justify-content: center;
       padding: 3rem 1.5rem;
-      max-width: 800px;
+      max-width: 900px;
       margin: 0 auto;
       width: 100%;
     }
-      h1 {
-    font-size: 2.5rem;
-    font-weight: 900;
-    color: #334155;
-    margin-bottom: 3rem;
-    text-align: center;
-  }
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: #334155;
+      margin-bottom: 3rem;
+      text-align: center;
+    }
 
-  /* ✅ 축구공 통통 애니메이션 */
-  .bounce-ball {
-    display: inline-block;
-    animation: bounce 1.5s ease-in-out infinite;
-  }
-  
-  @keyframes bounce {
-    0%, 100% {
-      transform: translateY(0);
+    /* ✅ 축구공 통통 애니메이션 */
+    .bounce-ball {
+      display: inline-block;
+      animation: bounce 1.5s ease-in-out infinite;
     }
-    50% {
-      transform: translateY(-15px);
+    
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-15px);
+      }
     }
-  }
+
     .card-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -108,12 +109,41 @@
       flex-direction: column;
       align-items: center;
       text-align: center;
+      position: relative;
     }
     .feature-card:hover {
       transform: translateY(-5px);
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
       border-color: #3b82f6;
     }
+    
+    /* 🆕 Coming Soon 카드 스타일 (비활성화) */
+    .feature-card.coming-soon {
+      border: 2px solid #10b981;
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.15);
+      opacity: 0.7;
+      cursor: not-allowed;
+      pointer-events: none; /* 클릭 방지 */
+    }
+    .feature-card.coming-soon:hover {
+      transform: none; /* 호버 효과 없음 */
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.15);
+    }
+    
+    /* 🆕 COMING SOON 뱃지 */
+    .coming-soon-badge {
+      position: absolute;
+      top: -12px;
+      right: 20px;
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+      color: white;
+      padding: 4px 12px;
+      border-radius: 12px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
     .card-icon {
       font-size: 3.5rem;
       margin-bottom: 1.5rem;
@@ -155,9 +185,8 @@
 
 <!-- Dashboard -->
 <main>
-    <h1><span class="bounce-ball">⚽</span> Play Lab</h1>
+  <h1><span class="bounce-ball">⚽</span> Play Lab</h1>
 
-  
   <div class="card-grid">
     <!-- 컨디션 분석기 -->
     <a href="/calc" class="feature-card">
@@ -178,6 +207,18 @@
         실시간 관절 움직임을 분석합니다.
       </div>
     </a>
+
+    <!-- 🆕 AI 축구 코치 (비활성화) -->
+    <div class="feature-card coming-soon">
+      <div class="coming-soon-badge">COMING SOON</div>
+      <div class="card-icon">⚽</div>
+      <div class="card-title">AI 축구 코치</div>
+      <div class="card-desc">
+        슛/패스 등의 영상을 AI가 분석해서<br>
+        생체역학, 기술, 부상 위험까지<br>
+        코치처럼 피드백해드립니다.
+      </div>
+    </div>
   </div>
 </main>
 
